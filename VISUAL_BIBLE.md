@@ -1,38 +1,56 @@
-# SENDAS - Biblia visual 1.1
+# SENDAS - Biblia visual 1.2
 
 ## Principio artístico
 
-**Realismo cinematográfico premium, épico cuando lo exige el relato, histórico y cercano cuando la escena es cotidiana.** Estilo de fotografía narrativa con contraste alto pero legible, materiales bien definidos, profundidad atmosférica, luz volumétrica y paleta mediterránea. Evitar el aspecto de ilustración genérica, videojuego medieval, comic, fantasía, 2D pixelado o colage promocional.
+**Realismo cinematográfico premium, con base histórica más estricta y constancia fuerte de personajes y escenarios.** La imagen debe hacer sentir que el jugador camina por una Galilea viva del siglo I: trabajo, polvo, tejido, pesca, herbolaria, comercio y enseñanza, no un decorado genérico de fantasía bíblica.
 
-Colores principales: piedra `#D7B48A`, ámbar `#DBA765`, cobre `#8E4F35`, oliva `#5D6847`, lago `#27516B`, sombra `#0D1A22`, lino `#EFE3CF`. No utilizar el atardecer naranja en todas las escenas: alternar mañanas azules, interiores en claroscuro, tardes cálidas y noches oscuras con puntos de luz.
+Paleta principal: piedra `#D7B48A`, basalto `#6E6A63`, ámbar `#DBA765`, cobre `#8E4F35`, oliva `#5D6847`, lago `#27516B`, sombra `#0D1A22`, lino `#EFE3CF`.
 
-## Escenarios
+## Reglas de rigor histórico visual
 
-- Viviendas y patios: piedra irregular, muros de basalto/caliza, tejados planos, vigas, barro, tejidos, cerámica, madera sin barnizar.
-- Lago: embarcaciones de madera de escala verosímil, redes de fibras naturales, orillas pedregosas, agua azul con brillos reales.
-- Naturaleza: olivares, arbustos autóctonos, tierra seca, hierbas y animales, sin flora tropical fantástica.
-- Lugares de enseñanza: multitud diversa con túnicas sencillas, sin aureolas, sin iconografía posterior ni efectos sobrenaturales no narrados en el Evangelio.
-- Interfaz: negro azulado, acentos dorados discretos y tipografía serif de lectura fácil. Textos y botones **nunca incrustados en la imagen**.
+- **Arquitectura:** muros de basalto y caliza, barro, vigas de madera, pérgolas con cañas, patios, terrazas y cubiertas sencillas. Evitar arcos góticos, vidrio moderno, acabados pulidos o palacios irreales.
+- **Paisaje:** entorno del lago de Galilea, colinas secas, olivares, higueras, palmeras puntuales, caminos pedregosos, pequeñas ensenadas y muelles de trabajo.
+- **Vestimenta:** lino y lana en beige, crudo, marrón, terracota, verde oliva y rojo apagado. Sandalias, mantos, velos, cinturones, bolsas y tejidos sin tintes saturados modernos.
+- **Trabajo cotidiano:** redes, cestas, husos, telares, morteros, vasijas, pergaminos, cuerdas de fibra natural, pan, pescado, hierbas, aceite y mercancías verosímiles.
+- **Jesús y la enseñanza:** sin aureolas, rayos, efectos mágicos ni iconografía posterior. Presencia serena, humana y reverente.
+- **Interfaz:** la interfaz nunca va incrustada dentro de las imágenes.
 
 ## Fichas canónicas de personajes
 
-| Personaje | Ficha visual | Función |
+| Personaje | Ficha visual 1.2 | Función |
 |---|---|---|
-| Natán | 24 años aproximados, piel oliva, cabello oscuro rizado medio, barba corta, túnica de lino crudo, manto azul grisáceo gastado, bolsa de cuero | Protagonista ficticio, seguidor periférico de Jesús |
-| Irit | Mujer madura de unos 55-60 años, cabello canoso parcialmente cubierto, manto de terracota, verde oliva y lino, rostro afable con arrugas | Curandera ficticia |
-| Jonás | Pescador de 40-50 años, curtido por el sol, barba entrecana, turbante sencillo beige, tejidos gris tierra, manos de trabajador | Vecino ficticio del lago |
-| Siméon | Escriba de unos 65-70 años, barba blanca, ojos observadores, manto marrón y lino, manuscritos | Testigo ficticio del pasado de Natán |
-| Mara | Comercianta joven adulta, cabello oscuro, manto rojizo, expresión decidida | Personaje ficticio del mercado |
-| Jesús | Representación artística no histórica: hombre judío del Levante, adulto, tez oliva, barba oscura, túnica sencilla de lino o lana, manto en tonos tierra | Maestro, nunca avatar controlable ni emisor de frases inventadas |
+| Natán | Joven galileo, 24-30 años, piel oliva, cabello oscuro rizado medio, barba corta, túnica de lino crudo, manto marrón terroso y bolsa cruzada | Protagonista ficticio |
+| Irit | Curandera madura, velo rojizo, vestido oliva/terracota, manos ocupadas con hierbas, rostro sereno | Curandera ficticia |
+| Jonás | Pescador robusto, cabello oscuro rizado, barba espesa, brazos fuertes, red al hombro, ropa de trabajo áspera | Vecino pescador |
+| Siméon | Escriba anciano, barba blanca, paño rayado, pergaminos y herramientas de escritura | Testigo y sabio |
+| Mara | Vendedora activa, ropa rojiza/arena, velo claro, cestos y mercancías | Comerciante del mercado |
+| Jesús | Maestro judío levantino, barba y cabello oscuros, túnica clara y manto sencillo, expresión compasiva | Figura central no controlable |
 
-**Regla:** la misma cara y el mismo conjunto principal en retrato y escenas futuras. Crear fichas de frente, tres cuartos y perfil antes de ampliar capítulos. Nunca suponer que los retratos artísticos son fotografías reales.
+**Regla de constancia:** la misma cara, gama cromática y silueta principal deben repetirse en retratos, escenas y futuras expansiones. Si se crean nuevas escenas, partir de `historical_character_sheet_v1_2.webp` y `historical_world_anchor_v1_2.webp`.
 
-## Arte realmente integrado
+## Activos integrados en 1.2
 
-`assets/` contiene 36 WebP, `ASSETS_MANIFEST.json` identifica fuente, recorte, tamaño y hash. `tools/build_assets.py` y `tools/apply_upgrade.py` documentan la transformación de los atlas a imágenes del juego. En la release ZIP se incluyen los WebP optimizados; los grandes atlas originales permanecen en el espacio de trabajo.
+- Fondos rehechos: `home.webp`, `village.webp`, `market.webp`, `irit.webp`, `dock.webp`, `simeon.webp`, `hill.webp`, `jesus.webp`.
+- Retratos rehechos: `portrait_natan.webp`, `portrait_irit.webp`, `portrait_jonas.webp`, `portrait_simeon.webp`, `portrait_mara.webp`, `portrait_jesus.webp`.
+- Anclas documentales: `historical_character_sheet_v1_2.webp`, `historical_world_anchor_v1_2.webp`.
 
-## Referencias históricas y comparables
+## Referencias históricas recomendadas
 
-- Museo Yigal Allon (barca antigua del Kinneret): https://yigal-allon-centre.org.il/en/the-museum/the-ancient-boat/
-- Vestimenta judía antigua: https://www.posenlibrary.com/guide/early-jewish-dress-and-adornment
-- Referencias mecánicas ya estudiadas: *Heaven's Vault*, *80 Days*, *Pentiment*, *The Case of the Golden Idol*. Su arte no se reproduce.
+- Barca antigua del Kinneret / Museo Yigal Allon.
+- Estudios sobre Cafarnaúm y aldeas de Galilea del siglo I.
+- Bibliografía sobre vestimenta judía antigua y economía cotidiana del Levante romano.
+
+## Qué evitar en futuras versiones
+
+- Mezclar estilos entre escenas.
+- Convertir los pueblos en ciudades medievales europeas.
+- Exceso de naranja o “puesta de sol épica” en todas las imágenes.
+- Simbología cristiana posterior integrada dentro de la ambientación del año 30.
+- Rostros inestables para Natán, Irit, Jonás, Siméon, Mara o Jesús.
+
+
+## Directiva adicional v1.3
+
+Las seis escenas secundarias antiguas han sido recortadas y remuestreadas; su nitidez y materialidad no igualan todavía a los ocho fondos históricos nuevos. Prioridad de producción v1.4: fondos independientes de alta resolución con referencias cruzadas de personajes, vestuario y emplazamientos. No reutilizar un rostro diferente para el mismo personaje.
+
+Se añade `historical-context.js` como trazabilidad divulgativa. Las escenas y el cuaderno deben respetar la distinción entre evidencia, reconstrucción y ficción.

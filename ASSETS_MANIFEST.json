@@ -1,211 +1,133 @@
 {
   "home": {
-    "source": "a_detailed_cinematic_photo_collage_quad_split_scen.png",
-    "crop": [
-      2,
-      2,
-      765,
-      509
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1536,
+      1024
     ],
-    "bytes": 119148,
-    "sha256": "658f8d7d105191"
+    "bytes": 441984,
+    "sha256": "0d3694e766d604"
   },
   "village": {
-    "source": "a_detailed_cinematic_photo_collage_quad_split_scen.png",
-    "crop": [
-      771,
-      2,
-      1534,
-      509
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1536,
+      1024
     ],
-    "bytes": 151330,
-    "sha256": "f52a60bcd45c2a"
+    "bytes": 530130,
+    "sha256": "be5cd978c0caf8"
   },
   "market": {
-    "source": "a_detailed_cinematic_photo_collage_quad_split_scen.png",
-    "crop": [
-      2,
-      515,
-      765,
-      1022
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1536,
+      1024
     ],
-    "bytes": 149682,
-    "sha256": "b530d3708dc440"
+    "bytes": 456932,
+    "sha256": "f083f0f2a77ea9"
   },
   "irit": {
-    "source": "a_detailed_cinematic_photo_collage_quad_split_scen.png",
-    "crop": [
-      771,
-      515,
-      1534,
-      1022
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1536,
+      1024
     ],
-    "bytes": 154228,
-    "sha256": "40adc6d989527b"
+    "bytes": 496300,
+    "sha256": "0567627fa5608a"
   },
   "dock": {
-    "source": "a_widescreen_2x2_collage_composite_image_of_a_medi.png",
-    "crop": [
-      2,
-      2,
-      765,
-      495
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "scene",
     "px": [
-      763,
-      493
+      1536,
+      1024
     ],
-    "bytes": 138534,
-    "sha256": "f15a961d879e0e"
+    "bytes": 453664,
+    "sha256": "3875c3905f1daa"
   },
   "shore": {
-    "source": "a_widescreen_2x2_collage_composite_image_of_a_medi.png",
-    "crop": [
-      771,
-      2,
-      1534,
-      495
-    ],
+    "source": "v1.1_atlas_trim_resize",
     "kind": "scene",
     "px": [
-      763,
-      493
+      1526,
+      960
     ],
-    "bytes": 157598,
-    "sha256": "2ee395482c58c3"
+    "bytes": 373930,
+    "sha256": "05319611c29d78ee"
   },
   "herbs": {
-    "source": "a_widescreen_2x2_collage_composite_image_of_a_medi.png",
-    "crop": [
-      2,
-      515,
-      765,
-      1022
-    ],
+    "source": "v1.1_atlas_trim_resize",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1526,
+      988
     ],
-    "bytes": 161648,
-    "sha256": "88bb647c42c35e"
+    "bytes": 400266,
+    "sha256": "9b3781eee5a825b5"
   },
   "olive": {
-    "source": "a_widescreen_2x2_collage_composite_image_of_a_medi.png",
-    "crop": [
-      771,
-      515,
-      1534,
-      1022
-    ],
+    "source": "v1.1_atlas_trim_resize",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1526,
+      988
     ],
-    "bytes": 165740,
-    "sha256": "497b84f9930c1a"
+    "bytes": 433510,
+    "sha256": "17fd251be6bde425"
   },
   "simeon": {
-    "source": "a_cinematic_four_panel_collage_of_photorealistic_s.png",
-    "crop": [
-      2,
-      2,
-      765,
-      509
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1536,
+      1024
     ],
-    "bytes": 94376,
-    "sha256": "39a739c52fe47b"
+    "bytes": 273010,
+    "sha256": "b6c78c8c596a9f"
   },
   "injured": {
-    "source": "a_cinematic_four_panel_collage_of_photorealistic_s.png",
-    "crop": [
-      771,
-      2,
-      1534,
-      509
-    ],
+    "source": "v1.1_atlas_trim_resize",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1526,
+      988
     ],
-    "bytes": 152910,
-    "sha256": "7fd5ab04ec4849"
+    "bytes": 367992,
+    "sha256": "9e73019a9f1ff020"
   },
   "spring": {
-    "source": "a_cinematic_four_panel_collage_of_photorealistic_s.png",
-    "crop": [
-      2,
-      515,
-      765,
-      1022
-    ],
+    "source": "v1.1_atlas_trim_resize",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1526,
+      988
     ],
-    "bytes": 167320,
-    "sha256": "f9359fcad0650d"
+    "bytes": 431212,
+    "sha256": "5d5aab52f012f4dd"
   },
   "ruins": {
-    "source": "a_cinematic_four_panel_collage_of_photorealistic_s.png",
-    "crop": [
-      771,
-      515,
-      1534,
-      1022
-    ],
+    "source": "v1.1_atlas_trim_resize",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1526,
+      988
     ],
-    "bytes": 147058,
-    "sha256": "76f96122dfde45"
+    "bytes": 361482,
+    "sha256": "e86e64892589c7b4"
   },
   "hill": {
-    "source": "a_cinematic_4_panel_collage_quad_image_of_a_biblic.png",
-    "crop": [
-      2,
-      2,
-      765,
-      509
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "scene",
     "px": [
-      763,
-      507
+      1536,
+      1024
     ],
-    "bytes": 165064,
-    "sha256": "a58d0592926d64"
+    "bytes": 402842,
+    "sha256": "2d660962c5e765"
   },
   "epilogue": {
     "source": "a_cinematic_4_panel_collage_quad_image_of_a_biblic.png",
@@ -235,15 +157,14 @@
     "sha256": "391e52f2785b26"
   },
   "jesus": {
-    "source": "wide_cinematic_outdoor_scene_a_realistic_detaile.png",
-    "crop": null,
+    "source": "historical_regrounding_v1_2",
     "kind": "scene",
     "px": [
       1536,
       1024
     ],
-    "bytes": 391646,
-    "sha256": "c3b51ad329b20a"
+    "bytes": 310682,
+    "sha256": "44beaaf1116bf1"
   },
   "map": {
     "source": "a_cinematic_warm_detailed_still_life_scene_a_ru.png",
@@ -257,100 +178,64 @@
     "sha256": "89b1307cb96241"
   },
   "portrait_natan": {
-    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
-    "crop": [
-      2,
-      2,
-      510,
-      510
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "portrait",
     "px": [
-      440,
-      440
+      512,
+      512
     ],
-    "bytes": 45020,
-    "sha256": "363ae47104553f"
+    "bytes": 28630,
+    "sha256": "3c41233fde09f0"
   },
   "portrait_irit": {
-    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
-    "crop": [
-      515,
-      2,
-      1022,
-      510
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "portrait",
     "px": [
-      440,
-      440
+      512,
+      512
     ],
-    "bytes": 51184,
-    "sha256": "6ef2ad626726f7"
+    "bytes": 28912,
+    "sha256": "a7bd6202f3dd1f"
   },
   "portrait_jonas": {
-    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
-    "crop": [
-      1027,
-      2,
-      1534,
-      510
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "portrait",
     "px": [
-      440,
-      440
+      512,
+      512
     ],
-    "bytes": 47052,
-    "sha256": "44251a8804f4ff"
+    "bytes": 32768,
+    "sha256": "0acc29ce16d228"
   },
   "portrait_simeon": {
-    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
-    "crop": [
-      2,
-      515,
-      510,
-      1022
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "portrait",
     "px": [
-      440,
-      440
+      512,
+      512
     ],
-    "bytes": 45110,
-    "sha256": "162404a3e3c99a"
+    "bytes": 30460,
+    "sha256": "a826cd6287e305"
   },
   "portrait_mara": {
-    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
-    "crop": [
-      515,
-      515,
-      1022,
-      1022
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "portrait",
     "px": [
-      440,
-      440
+      512,
+      512
     ],
-    "bytes": 43638,
-    "sha256": "a98c0c1b6224b0"
+    "bytes": 31084,
+    "sha256": "dce79eab54ca8c"
   },
   "portrait_jesus": {
-    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
-    "crop": [
-      1027,
-      515,
-      1534,
-      1022
-    ],
+    "source": "historical_regrounding_v1_2",
     "kind": "portrait",
     "px": [
-      440,
-      440
+      512,
+      512
     ],
-    "bytes": 40344,
-    "sha256": "f79c12579753f7"
+    "bytes": 26744,
+    "sha256": "a904b167bb0687"
   },
   "item_chest": {
     "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
@@ -554,5 +439,15 @@
     ],
     "bytes": 77186,
     "sha256": "290a88318c0e9d"
+  },
+  "village_return": {
+    "source": "historical_world_anchor_v1_2",
+    "kind": "scene",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 459066,
+    "sha256": "410ca8aeafcec760"
   }
 }

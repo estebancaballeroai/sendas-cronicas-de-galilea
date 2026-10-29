@@ -1,5 +1,5 @@
 
-/* SENDAS 1.1 - cinema-premium theme. It layers on stable functional CSS. */
+/* SENDAS 1.2 - histórico cinematográfico. Conserva la base funcional y refuerza la presentación inmersiva. */
 :root{--bg:#0d1a22;--ink:#f6eee2;--muted:#c9baaa;--gold:#eac18b;--leaf:#52616a;--panel:#12232e;--paper:#f1e4cf;--stroke:rgba(227,185,132,.28);--shadow:0 22px 58px rgba(0,0,0,.5)}
 html,body{background:#070f16;color:var(--ink)}
 .app{background:#0c1921;box-shadow:0 0 100px #0009}
@@ -70,3 +70,31 @@ html,body{background:#070f16;color:var(--ink)}
 }
 @media(max-width:410px){.scene-stage{flex-basis:42dvh}.hotspot{height:42px;width:42px}.cast-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-height:650px) and (orientation:landscape){.scene-stage{height:auto;flex:1}.cast-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* v1.3: precise, touch-first controls and the historical field journal. */
+.scene-art{transform:none!important;object-position:center center!important;}
+.scene-art.fading{transform:none!important;}
+.hotspot{touch-action:manipulation;min-width:44px;min-height:44px;}
+.story-panel{display:flex;flex-direction:column;}
+.story-scroll{flex:1;min-height:0;height:auto;}
+.actions-jump{display:none;width:100%;flex-shrink:0;align-items:center;justify-content:space-between;background:#22382f;border:0;border-bottom:1px solid #dfbd7a7a;color:#f7e8c9;padding:8px 16px;font-size:13px;font-weight:700;letter-spacing:.015em;min-height:38px;}
+.history-entry{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;gap:12px;background:#253d34;color:#f4e3cb;border:1px solid #c3a97b4a;border-radius:12px;padding:13px;margin:8px 0;min-height:58px;}
+.history-entry small{display:block;font-size:10px;color:#b7c3b6;margin-top:4px;}
+.history-entry span:last-child{font-size:22px;color:#edc78b;}
+.history-status{display:inline-flex;padding:7px 11px;background:#344b40;color:#ffe0ad;border-radius:999px;font-size:11px;letter-spacing:.04em;border:1px solid #e6bd7f58;}
+.history-source{display:block;color:#ffe2ad;text-decoration:underline;text-underline-offset:3px;font-size:13px;line-height:1.5;margin:18px 0;overflow-wrap:anywhere;}
+.story-bottom{flex-wrap:wrap;}
+@media(max-width:760px){
+  .actions-jump{display:flex;}
+  .story-scroll{padding-top:13px!important;}
+  .story-title{margin-top:7px!important;margin-bottom:10px!important;font-size:clamp(22px,6vw,30px)!important;}
+  .story-body{font-size:15px!important;line-height:1.5!important;margin-bottom:13px!important;}
+  .story-label{margin-top:9px!important;padding-top:10px!important;}
+  .action-btn{min-height:46px!important;padding:9px 10px!important;}
+  .image-hint{display:none!important;}
+}
+@media(max-width:390px){
+  .story-scroll{padding-left:13px!important;padding-right:13px!important;}
+  .hotspot{padding:7px 9px;max-width:140px;}
+  .hot-label{font-size:10px;}
+}

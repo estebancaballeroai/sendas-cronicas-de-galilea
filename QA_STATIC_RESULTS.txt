@@ -1,0 +1,132 @@
+PASS required files
+PASS asset present: home
+PASS asset manifest hash: home
+PASS asset valid WebP: home
+PASS asset present: village
+PASS asset manifest hash: village
+PASS asset valid WebP: village
+PASS asset present: market
+PASS asset manifest hash: market
+PASS asset valid WebP: market
+PASS asset present: irit
+PASS asset manifest hash: irit
+PASS asset valid WebP: irit
+PASS asset present: dock
+PASS asset manifest hash: dock
+PASS asset valid WebP: dock
+PASS asset present: shore
+PASS asset manifest hash: shore
+PASS asset valid WebP: shore
+PASS asset present: herbs
+PASS asset manifest hash: herbs
+PASS asset valid WebP: herbs
+PASS asset present: olive
+PASS asset manifest hash: olive
+PASS asset valid WebP: olive
+PASS asset present: simeon
+PASS asset manifest hash: simeon
+PASS asset valid WebP: simeon
+PASS asset present: injured
+PASS asset manifest hash: injured
+PASS asset valid WebP: injured
+PASS asset present: spring
+PASS asset manifest hash: spring
+PASS asset valid WebP: spring
+PASS asset present: ruins
+PASS asset manifest hash: ruins
+PASS asset valid WebP: ruins
+PASS asset present: hill
+PASS asset manifest hash: hill
+PASS asset valid WebP: hill
+PASS asset present: epilogue
+PASS asset manifest hash: epilogue
+PASS asset valid WebP: epilogue
+PASS asset present: cover
+PASS asset manifest hash: cover
+PASS asset valid WebP: cover
+PASS asset present: jesus
+PASS asset manifest hash: jesus
+PASS asset valid WebP: jesus
+PASS asset present: map
+PASS asset manifest hash: map
+PASS asset valid WebP: map
+PASS asset present: portrait_natan
+PASS asset manifest hash: portrait_natan
+PASS asset valid WebP: portrait_natan
+PASS asset present: portrait_irit
+PASS asset manifest hash: portrait_irit
+PASS asset valid WebP: portrait_irit
+PASS asset present: portrait_jonas
+PASS asset manifest hash: portrait_jonas
+PASS asset valid WebP: portrait_jonas
+PASS asset present: portrait_simeon
+PASS asset manifest hash: portrait_simeon
+PASS asset valid WebP: portrait_simeon
+PASS asset present: portrait_mara
+PASS asset manifest hash: portrait_mara
+PASS asset valid WebP: portrait_mara
+PASS asset present: portrait_jesus
+PASS asset manifest hash: portrait_jesus
+PASS asset valid WebP: portrait_jesus
+PASS asset present: item_chest
+PASS asset manifest hash: item_chest
+PASS asset valid WebP: item_chest
+PASS asset present: item_net
+PASS asset manifest hash: item_net
+PASS asset valid WebP: item_net
+PASS asset present: item_herb
+PASS asset manifest hash: item_herb
+PASS asset valid WebP: item_herb
+PASS asset present: item_fish
+PASS asset manifest hash: item_fish
+PASS asset valid WebP: item_fish
+PASS asset present: item_scroll
+PASS asset manifest hash: item_scroll
+PASS asset valid WebP: item_scroll
+PASS asset present: item_jar
+PASS asset manifest hash: item_jar
+PASS asset valid WebP: item_jar
+PASS asset present: item_hare
+PASS asset manifest hash: item_hare
+PASS asset valid WebP: item_hare
+PASS asset present: item_olives
+PASS asset manifest hash: item_olives
+PASS asset valid WebP: item_olives
+PASS asset present: item_tracks
+PASS asset manifest hash: item_tracks
+PASS asset valid WebP: item_tracks
+PASS asset present: item_snare
+PASS asset manifest hash: item_snare
+PASS asset valid WebP: item_snare
+PASS asset present: item_flower
+PASS asset manifest hash: item_flower
+PASS asset valid WebP: item_flower
+PASS asset present: item_goat
+PASS asset manifest hash: item_goat
+PASS asset valid WebP: item_goat
+PASS asset present: item_bread
+PASS asset manifest hash: item_bread
+PASS asset valid WebP: item_bread
+PASS asset present: village_return
+PASS asset manifest hash: village_return
+PASS asset valid WebP: village_return
+PASS SW cache references all exist
+PASS SW includes historian
+PASS SW includes living perspective
+PASS index no zoom-blocker
+PASS all 14 historical fiches
+PASS three main missions unchanged
+PASS PWA installable format
+PASS valid JS game.js
+PASS valid JS historical-context.js
+PASS valid JS sw.js
+PASS HTTP 200 index.html
+PASS HTTP content type index.html
+PASS HTTP 200 game.js
+PASS HTTP content type game.js
+PASS HTTP 200 historical-context.js
+PASS HTTP content type historical-context.js
+PASS HTTP 200 assets/village_return.webp
+PASS HTTP content type assets/village_return.webp
+PASS HTTP 200 assets/shore.webp
+PASS HTTP content type assets/shore.webp

@@ -1,31 +1,32 @@
-# SENDAS 1.1 - Informe QA (29/10/2026)
+# SENDAS 1.3 — Informe de calidad (29/10/2026)
 
-**Estado: refactor gráfico integrado, pruebas automáticas superadas, sin validación en hardware Android/iOS real.**
+## Estado
 
-## Ejecución real
+**Verificaciones locales superadas.** Publicación y funcionamiento en un dispositivo físico pendiente de comprobación independiente. Este informe distingue resultados observados de aspectos aún no comprobados.
 
-- `tests/test_full_chapter.py`: **21/21** comprobaciones superadas. Se completaron la red, pesca, plantas, manuscrito, manantial, ayuda al viajero y final del capítulo. Se verificó la recuperación del progreso y las pantallas móvil/tableta/escritorio.
-- `tests/test_alternates.py`: **14/14** comprobaciones superadas. Hotspots, rutas bloqueadas, caza opcional, recursos consumidos, error en pistas, importación real de JSON, texto grande, ancho móvil pequeño y ausencia de errores JavaScript.
-- `tests/test_premium.py`: **7/7** comprobaciones superadas sobre el HTML autónomo: cuatro escenas nuevas decodificadas, seis retratos en el diario, pan ilustrado y nueve recursos clave cargados.
-- `tests/test_delivery.py`: **25/25** comprobaciones superadas: integridad ZIP, recursos y dependencias, accesibilidad de archivos mediante servidor Python HTTP, reconocimiento de una partida 1.0 y uso del nuevo epílogo.
+## Verificaciones realizadas
 
-**Total: 67 verificaciones superadas** (varias miden el mismo flujo desde ángulos diferentes, por lo que no representan 67 casos de juego distintos). No se detectaron errores JavaScript en las rutas ensayadas.
+- **Ruta principal completa en Chromium con controles táctiles simulados:** 13 comprobaciones finales, incluidas las tres misiones, la nueva perspectiva de la aldea, cinco observaciones opcionales, la llegada a Jesús, el epílogo y ausencia de errores JavaScript detectados. Registro: `QA_RESULTS.txt`.
+- **Cuatro resoluciones:** 360 × 640, 390 × 844, 800 × 1280 y 1365 × 768. Se verificaron la pantalla de inicio, el inicio de juego, la carga de imágenes, la ausencia de desbordamiento horizontal y de errores JavaScript; en móviles se verificó el acceso directo a las acciones.
+- **Guardado:** probado con almacenamiento simulado en un contexto del navegador; una partida se conservó al volver a cargar el HTML de prueba. No se ha validado la persistencia real bajo el dominio de GitHub Pages ni en un teléfono físico.
+- **Integridad estática:** 132 verificaciones técnicas automatizadas superadas, incluyendo existencia e integridad de cada WebP, manifiesto de imágenes, referencias de la caché, código JavaScript, fichas históricas, recursos esenciales y respuestas HTTP 200/MIME del servidor. Registro: `QA_STATIC_RESULTS.txt`. Muchas son verificaciones repetitivas por archivo, **no 132 partidas jugadas**.
+- **Revisión visual manual:** inspección de capturas de 360 y 390 píxeles. El botón `Ver acciones` permite llegar al área de decisiones sin perder el espacio reservado a la ilustración.
 
-## Vista y recursos
+## Restricción del navegador automatizado
 
-- Se crearon e integraron 36 WebP. La ilustración de portada y la escena de Jesús usan recursos de 1536 x 1024 antes de optimización; los fondos extraídos de hojas de 2 x 2 tienen unos 760 x 500 píxeles. **No son archivos 4K nativos**: se busca un acabado cinematográfico de alta calidad adaptado a móvil.
-- Capturas guardadas en `screenshots/`: portada, casa, aldea, muelle, curandera, colina y enseñanza, versión de 360 x 640, galería de rostros y epílogo nocturno.
-- Se mantuvo una sola perspectiva narrativa y se abandonó el sistema de colisiones de los prototipos 0.x.
+Chromium bloquea la navegación directa a `localhost` y a nombres de dominio interceptados en este entorno (`ERR_BLOCKED_BY_ADMINISTRATOR`). Por eso las interacciones de Playwright se ejecutaron con el HTML completo y sus recursos incrustados como datos, mientras que los ficheros del sitio estático se comprobaron por separado mediante HTTP y hashes. **No se presenta esto como una navegación real por GitHub Pages.**
 
-## Limitaciones honestas
+## Limitaciones conocidas
 
-- La navegación del Chromium automatizado a `localhost` está bloqueada por el entorno. Las interacciones de navegador se ensayaron con el HTML **completo embebido**, y la presencia/MIME de los archivos se comprobó por separado mediante HTTP de Python. No se simula que GitHub Pages haya sido publicado o abierto en el navegador.
-- No se han probado gestos, rendimiento ni persistencia en dispositivos Android o iOS reales, ni en navegadores `content://` que pueden impedir `localStorage`.
-- Los personajes comparten ficha y retratos coherentes, pero las escenas de fondo se generaron por separado: algunas caras secundarias aún pueden variar sutilmente. La fidelidad arqueológica no está certificada.
-- Los fondos 2 x 2 se optimizaron para coste y peso; la siguiente iteración puede producir fondos de una sola imagen para mayor resolución sin cambiar el motor.
+- No se ha probado en hardware Android/iOS ni en tabletas antiguas reales.
+- No se ha verificado la instalación PWA ni la actualización de Service Worker con modo sin conexión real en el dispositivo.
+- Los seis escenarios secundarios antiguos fueron limpiados, recortados y remuestreados. Su aumento de resolución no genera nuevos detalles fotográficos; la consistencia con los ocho fondos históricos de mayor resolución aún puede mejorarse.
+- La historia no constituye una reconstrucción arqueológica certificada. El cuaderno histórico separa las evidencias, las hipótesis y la ficción para no confundirlas.
+- Los puntos de interacción se recolocan al recortar la escena, pero es recomendable revisar sus anclajes manualmente en el dispositivo final.
 
-## Seguridad y preservación
+## No regresiones previstas
 
-- Sin dependencias remotas, IA integrada, anuncios ni recolección de datos.
-- Clave de guardado compatible con la versión 1.0. Importación y exportación JSON preservadas.
-- La 1.0 sigue disponible; la 1.1 se entrega de forma experimental y no se ha publicado en GitHub.
+- Las tres misiones principales permanecen inalteradas en su lógica de progreso.
+- Se conserva la clave `sendas_cronicas_ilustrada_1` y el formato `version: 1` para partidas anteriores.
+- Se conserva la importación/exportación JSON.
+- La versión anterior de GitHub se preservará en una rama de respaldo antes de la actualización.

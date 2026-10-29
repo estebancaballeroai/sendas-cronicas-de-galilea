@@ -1,17 +1,19 @@
 # Historial de cambios
 
-## 1.1 - Cine Premium (29/10/2026)
+## 1.3 — Vida en Galilea
 
-- Se conserva el motor narrativo y todas las rutas de la versión 1.0.
-- Se sustituyen los 14 fondos de escenas con una serie fotográfica cinematográfica coherente.
-- Nueva portada 1536 x 1024, nuevo mapa histórico ilustrativo y epílogo nocturno.
-- Se sustituyen cinco retratos, se agrega Jesús como sexto retrato, y se integran fichas de personajes en el diario.
-- Los 13 objetos del inventario tienen fotografías homogéneas; se incorpora pan como recurso visual separado.
-- Se moderniza contraste, tipografía, tonos y ajustes móviles con `premium.css`.
-- Se conserva la misma clave de guardado, estado y compatibilidad de importación con 1.0.
-- Se corrige la descripción ficticia de un mosaico para evitar asociarle un simbolismo anacrónico.
-- Se actualizan iconos, caché PWA y documentación.
+- Integra la serie fotográfica histórica 1.2 dentro de la línea estable 1.1 de GitHub.
+- Limpieza técnica de seis fondos secundarios: bandas de atlas y remuestreo.
+- Alternancia de vista de la aldea cuando el jugador completa dos misiones principales.
+- Cuaderno histórico documentado por los 14 lugares y cinco observaciones de oficios.
+- Navegación táctil mejorada: botón para ir directamente a las acciones, zoom permitido, hotspots posicionados tras el recorte de imagen.
+- Cache PWA `sendas-vida-galilea-v1.3.0`, misma clave de guardado que 1.0/1.1.
 
-## 1.0 - Edición ilustrada (base estable)
+## 1.2 — Edición histórica (integrada)
 
-- Primer episodio por escenas, 14 lugares, tres misiones principales, pesca, plantas, reparación, rastreo, decisiones, enigmas, diario, bolsa y guardado.
+- Ocho escenas principales renovadas y seis retratos derivados de una ficha visual común.
+- Dos referencias de mundo y reparto para producción futura.
+
+## 1.1 — Cine Premium
+
+- Se conservaron las tres misiones y se integraron 36 recursos visuales.
