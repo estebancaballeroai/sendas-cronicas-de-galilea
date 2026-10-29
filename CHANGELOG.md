@@ -1,3 +1,13 @@
+## 1.4 — Mundo vivo (29/10/2026)
+
+- 18 variantes fotográficas de las mismas seis escenas maestras y un embarcadero distinto opcional.
+- Fases narrativas del día ligadas al progreso de las tres misiones principales; sin temporizador obligatorio.
+- Tres diálogos opcionales de seguimiento con Jonás, Irit y Siméon.
+- Diario **Un día en Galilea** que recuerda los cambios.
+- Ambiente sonoro original discreto, opcional y desactivado al inicio.
+- Conservación de las partidas, las escenas y los controles 1.3.1.
+- Las variantes de luz no alteran la geometría original, los rostros ni los materiales.
+
 ## 1.3.1 — Estabilidad móvil (29/10/2026)
 
 - Ampliación táctil de fotografías con acercar, alejar, arrastrar y pellizcar.

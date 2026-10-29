@@ -113,3 +113,6 @@ html,body{background:#070f16;color:var(--ink)}
 .zoom-help{flex-shrink:0;background:#111f29;color:#ddd2bd;text-align:center;padding:10px 12px calc(10px + env(safe-area-inset-bottom));font-size:12px}
 @media(max-width:390px){.scene-zoom-btn{font-size:11px;right:10px;top:10px}.story-body{font-size:14.5px!important}}
 @media(prefers-reduced-motion:reduce){.scene-art,.modal-sheet,.hotspot{transition:none!important}}
+
+/* 1.4: seamless same-geometry photography for changing hours. */
+.scene-art{transition:opacity .35s ease,filter .6s ease!important}.history-status{font-weight:700}.world-map{max-height:50vh;object-fit:contain;background:#0c1922}

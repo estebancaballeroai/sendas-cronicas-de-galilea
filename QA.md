@@ -1,8 +1,8 @@
-# SENDAS 1.3.1 — Informe de pruebas reales (29/10/2026)
+# SENDAS 1.4 — Informe de pruebas reales (29/10/2026)
 
 ## Verificación ejecutada en esta entrega
 
-- **Integridad estática:** 47 referencias estáticas y 37 imágenes WebP. Se comprobaron existencia, lectura y decodificación de todos los WebP incluidos y referencias del Service Worker.
+- **Integridad estática:** 67 referencias estáticas y 56 imágenes WebP (18 variantes, 1 embarcadero nuevo). Se comprobaron existencia, lectura y decodificación de todos los WebP incluidos y referencias del Service Worker.
 - **Sintaxis:** `node --check` sobre `game.js`, `mobile-ux.js`, `sw.js` y, en 1.4, `ambient.js`, todos sin errores.
 - **Navegador real:** Chromium de sistema ejecutó una secuencia de clics y acciones hasta completar las tres misiones esenciales: cuerda y red de Jonás; recolección y entrega a Irit; manuscrito y manantial.
 - **Interfaz táctil:** se abrió el visor de imágenes, se amplió y se cerró; se comprobaron los controles de acciones.

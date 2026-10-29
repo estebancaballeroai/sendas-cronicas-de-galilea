@@ -449,5 +449,195 @@
     ],
     "bytes": 459066,
     "sha256": "410ca8aeafcec760"
+  },
+  "simeon_night": {
+    "source": "simeon.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 64220,
+    "sha256": "faa46ee1fc727f4a"
+  },
+  "home_late": {
+    "source": "home.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 285934,
+    "sha256": "75cdf4915b6aeb0e"
+  },
+  "home_night": {
+    "source": "home.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 113696,
+    "sha256": "51b125c253b6979c"
+  },
+  "market_late": {
+    "source": "market.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 302060,
+    "sha256": "ba35dea5d1096b7e"
+  },
+  "dock_dusk": {
+    "source": "dock.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 243914,
+    "sha256": "b115ae13938033e7"
+  },
+  "market_night": {
+    "source": "market.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 123226,
+    "sha256": "2f6a9dcf562a529e"
+  },
+  "dock_night": {
+    "source": "dock.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 128224,
+    "sha256": "15d6bad83c4a3f3b"
+  },
+  "simeon_late": {
+    "source": "simeon.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 169040,
+    "sha256": "5db17d219b2f67a2"
+  },
+  "dock_late": {
+    "source": "dock.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 304322,
+    "sha256": "79b71b147036ac31"
+  },
+  "irit_dusk": {
+    "source": "irit.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 256468,
+    "sha256": "5013a98d106858a2"
+  },
+  "irit_late": {
+    "source": "irit.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 318514,
+    "sha256": "585f027342ecded9"
+  },
+  "irit_night": {
+    "source": "irit.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 131908,
+    "sha256": "20f2c360b03d678e"
+  },
+  "village_dusk": {
+    "source": "village.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 280976,
+    "sha256": "b09858a4c53d4dff"
+  },
+  "village_night": {
+    "source": "village.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 147468,
+    "sha256": "7e66f0303c52af9f"
+  },
+  "village_late": {
+    "source": "village.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 353668,
+    "sha256": "72df81c9e143a066"
+  },
+  "simeon_dusk": {
+    "source": "simeon.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 130090,
+    "sha256": "091d411dba1ce871"
+  },
+  "home_dusk": {
+    "source": "home.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 224084,
+    "sha256": "ce5dc69f2fadacc0"
+  },
+  "market_dusk": {
+    "source": "market.webp (photometric variant of identical scene)",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 237864,
+    "sha256": "8c3187e8bdaedf60"
+  },
+  "neighbor_dock": {
+    "source": "ImageGen separate neighboring pier",
+    "kind": "scene_variant",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 322728,
+    "sha256": "1cebf67fda0634c7"
   }
 }

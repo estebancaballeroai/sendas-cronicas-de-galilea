@@ -1,1 +1,1 @@
-Node syntax OK; Playwright Chromium main quests and mobile zoom OK; 47 referencias estáticas y 37 imágenes WebP; 4 responsive viewports; no JS errors. Note: Chromium navigation to local/static domain blocked, embedded build test used.
+Node syntax OK; Playwright Chromium main quests and mobile zoom OK; 67 referencias estáticas y 56 imágenes WebP (18 variantes, 1 embarcadero nuevo); 4 responsive viewports; no JS errors. Note: Chromium navigation to local/static domain blocked, embedded build test used.

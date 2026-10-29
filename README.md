@@ -1,6 +1,6 @@
 # SENDAS — Crónicas de Galilea
 
-**1.3.1 · Estabilidad móvil** — RPG narrativo cinematográfico en español para móvil. Capítulo I: *Los que escuchan*.
+**1.4 · Mundo vivo** — RPG narrativo cinematográfico en español para móvil. Capítulo I: *Los que escuchan*.
 
 ## Jugar
 
@@ -28,7 +28,11 @@ Leer `QA.md` antes de declarar esta versión plenamente validada. No confundir t
 
 Botón **Ampliar** para observar cada escena. El visor admite gestos de pellizcar y arrastrar, más botones accesibles. El estado previo se respalda bajo `sendas_backup_pre_131`, manteniendo `sendas_cronicas_ilustrada_1` como guardado activo.
 
+## 1.4: Mundo vivo
+
+Un mismo lugar cambia de luz según el avance de Jonás, Irit y el manuscrito. El diario muestra los avances; después de ayudar a cada vecino se puede volver a hablar una vez y guardar ese reencuentro. La fotografía principal permanece geométricamente idéntica en las variaciones para evitar incoherencias entre personas y arquitectura. Audio ambiental original de síntesis de bajo consumo, opcional y apagado inicialmente.
+
 
 ## Estado de publicación
 
-1.3.1: listo para GitHub Pages. La versión anterior se conserva en ramas de respaldo.
+1.4: listo para GitHub Pages. La versión anterior se conserva en ramas de respaldo.
