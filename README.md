@@ -1,6 +1,6 @@
 # SENDAS — Crónicas de Galilea
 
-**1.3 · Vida en Galilea** — RPG narrativo cinematográfico en español para móvil. Capítulo I: *Los que escuchan*.
+**1.3.1 · Estabilidad móvil** — RPG narrativo cinematográfico en español para móvil. Capítulo I: *Los que escuchan*.
 
 ## Jugar
 
@@ -23,3 +23,12 @@ Natán es ficticio. Jesús y las bienaventuranzas siguen el contexto evangélico
 ## Comprobaciones
 
 Leer `QA.md` antes de declarar esta versión plenamente validada. No confundir tests locales con pruebas en teléfonos reales.
+
+## 1.3.1: controles móviles
+
+Botón **Ampliar** para observar cada escena. El visor admite gestos de pellizcar y arrastrar, más botones accesibles. El estado previo se respalda bajo `sendas_backup_pre_131`, manteniendo `sendas_cronicas_ilustrada_1` como guardado activo.
+
+
+## Estado de publicación
+
+1.3.1: listo para GitHub Pages. La versión anterior se conserva en ramas de respaldo.

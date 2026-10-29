@@ -1,7 +1,7 @@
 {
   "name": "SENDAS — Crónicas de Galilea",
   "short_name": "SENDAS",
-  "description": "Aventura narrativa bíblica con mayor rigor histórico, exploración y decisiones en la Galilea del siglo I.",
+  "description": "Aventura bíblica de exploración y rigor histórico, con fotografía cinematográfica y progreso guardado.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

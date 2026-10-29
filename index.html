@@ -21,6 +21,7 @@
     <section id="scene-stage" class="scene-stage" aria-label="Escena ilustrada">
       <img id="scene-art" class="scene-art" alt="" draggable="false">
       <div class="scene-scrim" aria-hidden="true"></div>
+      <button id="btn-scene-zoom" class="scene-zoom-btn" type="button" aria-label="Ampliar ilustración del lugar">Ampliar <span aria-hidden="true">+</span></button>
       <div class="scene-badge" id="scene-badge">GALILEA · AÑO 30 APROX.</div>
       <div id="hotspot-layer" class="hotspot-layer"></div>
       <div class="image-caption"><span id="scene-place">Casa de Natán</span><span class="image-hint">Toca los puntos luminosos para descubrir</span></div>
@@ -52,12 +53,18 @@
     <h2>Los que escuchan</h2>
     <p>Natán ha escuchado al Maestro. Ahora debe descubrir qué significa seguir sus palabras cuando el camino se vuelve difícil.</p>
     <div class="start-buttons"><button id="start-new" class="primary-btn">Comenzar el viaje <span>→</span></button><button id="start-continue" class="outline-btn" hidden>Continuar mi historia</button></div>
-    <div class="start-foot">Capítulo I · Vida en Galilea 1.3 · Español · Sin combates</div>
+    <div class="start-foot">Capítulo I · Estabilidad móvil 1.3.1 · Español · Sin combates</div>
   </div>
 </div>
 <div id="modal-root" class="modal-root" hidden><div id="modal-backdrop" class="modal-backdrop"></div><div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-header"><div><div id="modal-overline" class="section-overline">SENDAS</div><h2 id="modal-title"></h2></div><button id="modal-close" class="icon-btn modal-x" aria-label="Cerrar">×</button></div><div id="modal-content" class="modal-content"></div></div></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="scene-lightbox" class="scene-lightbox" role="dialog" aria-label="Examinar escenario" aria-modal="true" hidden>
+  <div class="zoom-toolbar"><span id="zoom-scene-title">Examinar el lugar</span><div class="zoom-buttons"><button id="zoom-minus" aria-label="Alejar">−</button><button id="zoom-plus" aria-label="Acercar">+</button><button id="zoom-close" aria-label="Cerrar ampliación">×</button></div></div>
+  <div class="zoom-viewport" id="zoom-viewport"><img id="zoom-art" alt="Ilustración ampliada" draggable="false"></div>
+  <div class="zoom-help">Desliza para explorar · Pellizca con dos dedos para ampliar</div>
+</div>
 <script defer src="historical-context.js"></script>
 <script defer src="game.js"></script>
+<script defer src="mobile-ux.js"></script>
 <script>if("serviceWorker" in navigator && location.protocol.indexOf("http")===0){navigator.serviceWorker.register("./sw.js").catch(function(){});}</script></body>
 </html>

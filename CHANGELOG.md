@@ -1,3 +1,12 @@
+## 1.3.1 — Estabilidad móvil (29/10/2026)
+
+- Ampliación táctil de fotografías con acercar, alejar, arrastrar y pellizcar.
+- Se conserva el zoom de accesibilidad del navegador.
+- Mejor desplazamiento hacia las acciones en pantallas pequeñas.
+- Respaldo automático de la partida preexistente; mismo formato de guardado.
+- Fallback de imagen y actualización más robusta de la caché.
+- Tres misiones principales sin cambios.
+
 # Historial de cambios
 
 ## 1.3 — Vida en Galilea
