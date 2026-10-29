@@ -1,0 +1,558 @@
+{
+  "home": {
+    "source": "a_detailed_cinematic_photo_collage_quad_split_scen.png",
+    "crop": [
+      2,
+      2,
+      765,
+      509
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 119148,
+    "sha256": "658f8d7d105191"
+  },
+  "village": {
+    "source": "a_detailed_cinematic_photo_collage_quad_split_scen.png",
+    "crop": [
+      771,
+      2,
+      1534,
+      509
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 151330,
+    "sha256": "f52a60bcd45c2a"
+  },
+  "market": {
+    "source": "a_detailed_cinematic_photo_collage_quad_split_scen.png",
+    "crop": [
+      2,
+      515,
+      765,
+      1022
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 149682,
+    "sha256": "b530d3708dc440"
+  },
+  "irit": {
+    "source": "a_detailed_cinematic_photo_collage_quad_split_scen.png",
+    "crop": [
+      771,
+      515,
+      1534,
+      1022
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 154228,
+    "sha256": "40adc6d989527b"
+  },
+  "dock": {
+    "source": "a_widescreen_2x2_collage_composite_image_of_a_medi.png",
+    "crop": [
+      2,
+      2,
+      765,
+      495
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      493
+    ],
+    "bytes": 138534,
+    "sha256": "f15a961d879e0e"
+  },
+  "shore": {
+    "source": "a_widescreen_2x2_collage_composite_image_of_a_medi.png",
+    "crop": [
+      771,
+      2,
+      1534,
+      495
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      493
+    ],
+    "bytes": 157598,
+    "sha256": "2ee395482c58c3"
+  },
+  "herbs": {
+    "source": "a_widescreen_2x2_collage_composite_image_of_a_medi.png",
+    "crop": [
+      2,
+      515,
+      765,
+      1022
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 161648,
+    "sha256": "88bb647c42c35e"
+  },
+  "olive": {
+    "source": "a_widescreen_2x2_collage_composite_image_of_a_medi.png",
+    "crop": [
+      771,
+      515,
+      1534,
+      1022
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 165740,
+    "sha256": "497b84f9930c1a"
+  },
+  "simeon": {
+    "source": "a_cinematic_four_panel_collage_of_photorealistic_s.png",
+    "crop": [
+      2,
+      2,
+      765,
+      509
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 94376,
+    "sha256": "39a739c52fe47b"
+  },
+  "injured": {
+    "source": "a_cinematic_four_panel_collage_of_photorealistic_s.png",
+    "crop": [
+      771,
+      2,
+      1534,
+      509
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 152910,
+    "sha256": "7fd5ab04ec4849"
+  },
+  "spring": {
+    "source": "a_cinematic_four_panel_collage_of_photorealistic_s.png",
+    "crop": [
+      2,
+      515,
+      765,
+      1022
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 167320,
+    "sha256": "f9359fcad0650d"
+  },
+  "ruins": {
+    "source": "a_cinematic_four_panel_collage_of_photorealistic_s.png",
+    "crop": [
+      771,
+      515,
+      1534,
+      1022
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 147058,
+    "sha256": "76f96122dfde45"
+  },
+  "hill": {
+    "source": "a_cinematic_4_panel_collage_quad_image_of_a_biblic.png",
+    "crop": [
+      2,
+      2,
+      765,
+      509
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 165064,
+    "sha256": "a58d0592926d64"
+  },
+  "epilogue": {
+    "source": "a_cinematic_4_panel_collage_quad_image_of_a_biblic.png",
+    "crop": [
+      771,
+      515,
+      1534,
+      1022
+    ],
+    "kind": "scene",
+    "px": [
+      763,
+      507
+    ],
+    "bytes": 119340,
+    "sha256": "54f0a89404fec4"
+  },
+  "cover": {
+    "source": "a_cinematic_high_resolution_landscape_scene_a_dr.png",
+    "crop": null,
+    "kind": "scene",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 545184,
+    "sha256": "391e52f2785b26"
+  },
+  "jesus": {
+    "source": "wide_cinematic_outdoor_scene_a_realistic_detaile.png",
+    "crop": null,
+    "kind": "scene",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 391646,
+    "sha256": "c3b51ad329b20a"
+  },
+  "map": {
+    "source": "a_cinematic_warm_detailed_still_life_scene_a_ru.png",
+    "crop": null,
+    "kind": "scene",
+    "px": [
+      1536,
+      1024
+    ],
+    "bytes": 551950,
+    "sha256": "89b1307cb96241"
+  },
+  "portrait_natan": {
+    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
+    "crop": [
+      2,
+      2,
+      510,
+      510
+    ],
+    "kind": "portrait",
+    "px": [
+      440,
+      440
+    ],
+    "bytes": 45020,
+    "sha256": "363ae47104553f"
+  },
+  "portrait_irit": {
+    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
+    "crop": [
+      515,
+      2,
+      1022,
+      510
+    ],
+    "kind": "portrait",
+    "px": [
+      440,
+      440
+    ],
+    "bytes": 51184,
+    "sha256": "6ef2ad626726f7"
+  },
+  "portrait_jonas": {
+    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
+    "crop": [
+      1027,
+      2,
+      1534,
+      510
+    ],
+    "kind": "portrait",
+    "px": [
+      440,
+      440
+    ],
+    "bytes": 47052,
+    "sha256": "44251a8804f4ff"
+  },
+  "portrait_simeon": {
+    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
+    "crop": [
+      2,
+      515,
+      510,
+      1022
+    ],
+    "kind": "portrait",
+    "px": [
+      440,
+      440
+    ],
+    "bytes": 45110,
+    "sha256": "162404a3e3c99a"
+  },
+  "portrait_mara": {
+    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
+    "crop": [
+      515,
+      515,
+      1022,
+      1022
+    ],
+    "kind": "portrait",
+    "px": [
+      440,
+      440
+    ],
+    "bytes": 43638,
+    "sha256": "a98c0c1b6224b0"
+  },
+  "portrait_jesus": {
+    "source": "a_cinematic_realistic_high_resolution_collage_po.png",
+    "crop": [
+      1027,
+      515,
+      1534,
+      1022
+    ],
+    "kind": "portrait",
+    "px": [
+      440,
+      440
+    ],
+    "bytes": 40344,
+    "sha256": "f79c12579753f7"
+  },
+  "item_chest": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      3,
+      3,
+      381,
+      338
+    ],
+    "kind": "item",
+    "px": [
+      350,
+      310
+    ],
+    "bytes": 27734,
+    "sha256": "c750eba49615ea"
+  },
+  "item_net": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      387,
+      3,
+      765,
+      338
+    ],
+    "kind": "item",
+    "px": [
+      350,
+      310
+    ],
+    "bytes": 37048,
+    "sha256": "8419aeaa6f801e"
+  },
+  "item_herb": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      771,
+      3,
+      1149,
+      338
+    ],
+    "kind": "item",
+    "px": [
+      350,
+      310
+    ],
+    "bytes": 34980,
+    "sha256": "5a24835e071f43"
+  },
+  "item_fish": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      1155,
+      3,
+      1533,
+      338
+    ],
+    "kind": "item",
+    "px": [
+      350,
+      310
+    ],
+    "bytes": 28300,
+    "sha256": "fa06214cbca60c"
+  },
+  "item_scroll": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      3,
+      344,
+      381,
+      680
+    ],
+    "kind": "item",
+    "px": [
+      349,
+      310
+    ],
+    "bytes": 26988,
+    "sha256": "a961199f435f2b"
+  },
+  "item_jar": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      387,
+      344,
+      765,
+      680
+    ],
+    "kind": "item",
+    "px": [
+      349,
+      310
+    ],
+    "bytes": 25130,
+    "sha256": "c6af3c4c761a50"
+  },
+  "item_hare": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      771,
+      344,
+      1149,
+      680
+    ],
+    "kind": "item",
+    "px": [
+      349,
+      310
+    ],
+    "bytes": 24958,
+    "sha256": "56fdce3b3d3806"
+  },
+  "item_olives": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      1155,
+      344,
+      1533,
+      680
+    ],
+    "kind": "item",
+    "px": [
+      349,
+      310
+    ],
+    "bytes": 26058,
+    "sha256": "ccf05e17df3af0"
+  },
+  "item_tracks": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      3,
+      686,
+      381,
+      1021
+    ],
+    "kind": "item",
+    "px": [
+      350,
+      310
+    ],
+    "bytes": 40278,
+    "sha256": "08b40a66eab003"
+  },
+  "item_snare": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      387,
+      686,
+      765,
+      1021
+    ],
+    "kind": "item",
+    "px": [
+      350,
+      310
+    ],
+    "bytes": 34882,
+    "sha256": "8c8fbbd97ae509"
+  },
+  "item_flower": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      771,
+      686,
+      1149,
+      1021
+    ],
+    "kind": "item",
+    "px": [
+      350,
+      310
+    ],
+    "bytes": 35026,
+    "sha256": "aeab1da7659f2e"
+  },
+  "item_goat": {
+    "source": "a_cinematic_high_detail_still_life_collage_on_a_d.png",
+    "crop": [
+      1155,
+      686,
+      1533,
+      1021
+    ],
+    "kind": "item",
+    "px": [
+      350,
+      310
+    ],
+    "bytes": 26280,
+    "sha256": "4a7dc76a9b6e0e"
+  },
+  "item_bread": {
+    "source": "rustic_still_life_scene_warm_golden_sunlight_pho.png",
+    "crop": null,
+    "kind": "item",
+    "px": [
+      480,
+      480
+    ],
+    "bytes": 77186,
+    "sha256": "290a88318c0e9d"
+  }
+}

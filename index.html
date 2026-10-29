@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c1922">
+<meta name="description" content="SENDAS: Crónicas de Galilea. Aventura ilustrada de exploración, decisiones y fe, protagonizada por Natán, un seguidor de Jesús.">
+<title>SENDAS · Crónicas de Galilea | Cine 1.1</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="premium.css">
+<link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+<div id="app" class="app">
+  <header class="game-header">
+    <div class="brand" aria-label="SENDAS, Crónicas de Galilea"><div class="brand-mark">✧</div><div><div class="brand-title">SENDAS</div><div class="brand-sub">CRÓNICAS DE GALILEA</div></div></div>
+    <div class="header-info"><span class="chapter-chip">CAPÍTULO I</span><span id="chapter-progress" class="progress-chip">0 / 3</span></div>
+    <button class="icon-btn" id="btn-menu" aria-label="Abrir opciones" title="Opciones">☰</button>
+  </header>
+  <main id="game-main" class="game-main" aria-live="off">
+    <section id="scene-stage" class="scene-stage" aria-label="Escena ilustrada">
+      <img id="scene-art" class="scene-art" alt="" draggable="false">
+      <div class="scene-scrim" aria-hidden="true"></div>
+      <div class="scene-badge" id="scene-badge">GALILEA · AÑO 30 APROX.</div>
+      <div id="hotspot-layer" class="hotspot-layer"></div>
+      <div class="image-caption"><span id="scene-place">Casa de Natán</span><span class="image-hint">Toca los puntos luminosos para descubrir</span></div>
+    </section>
+    <section id="story-panel" class="story-panel" aria-label="Narración y decisiones">
+      <div class="story-scroll">
+        <div class="section-overline" id="story-overline">EL PRINCIPIO DEL CAMINO</div>
+        <h1 id="story-title" class="story-title">Antes del amanecer</h1>
+        <p id="story-body" class="story-body"></p>
+        <div class="story-label"><span>QUÉ QUIERES HACER</span><span id="story-actions-count"></span></div>
+        <div class="actions" id="actions"></div>
+        <div class="story-bottom"><span id="scene-discovery">Aún quedan secretos.</span><button id="btn-help" class="inline-link">¿Cómo se juega?</button></div>
+      </div>
+    </section>
+  </main>
+  <nav class="bottom-nav" aria-label="Herramientas del viajero">
+    <button class="nav-btn" data-panel="map" title="Lugares"><span class="nav-icon">⌖</span><span>Rutas</span></button>
+    <button class="nav-btn" data-panel="inventory" title="Inventario"><span class="nav-icon">◈</span><span>Bolsa</span></button>
+    <button class="nav-btn" data-panel="journal" title="Diario"><span class="nav-icon">▤</span><span>Diario</span></button>
+    <button class="nav-btn" data-panel="objectives" title="Misiones"><span class="nav-icon">◇</span><span>Camino</span></button>
+  </nav>
+</div>
+<div id="start-screen" class="start-screen" role="dialog" aria-label="Inicio de SENDAS">
+  <div class="start-art"></div><div class="start-shade"></div>
+  <div class="start-content">
+    <div class="start-eyebrow">UN VIAJE EN LA TIERRA DE LOS EVANGELIOS</div>
+    <div class="start-logo">✧ SENDAS</div><div class="start-subtitle">CRÓNICAS DE GALILEA</div>
+    <h2>Los que escuchan</h2>
+    <p>Natán ha escuchado al Maestro. Ahora debe descubrir qué significa seguir sus palabras cuando el camino se vuelve difícil.</p>
+    <div class="start-buttons"><button id="start-new" class="primary-btn">Comenzar el viaje <span>→</span></button><button id="start-continue" class="outline-btn" hidden>Continuar mi historia</button></div>
+    <div class="start-foot">Capítulo I · Edición cinematográfica 1.1 · Español · Sin combates</div>
+  </div>
+</div>
+<div id="modal-root" class="modal-root" hidden><div id="modal-backdrop" class="modal-backdrop"></div><div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-header"><div><div id="modal-overline" class="section-overline">SENDAS</div><h2 id="modal-title"></h2></div><button id="modal-close" class="icon-btn modal-x" aria-label="Cerrar">×</button></div><div id="modal-content" class="modal-content"></div></div></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script defer src="game.js"></script>
+<script>if("serviceWorker" in navigator && location.protocol.indexOf("http")===0){navigator.serviceWorker.register("./sw.js").catch(function(){});}</script></body>
+</html>
