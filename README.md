@@ -23,3 +23,7 @@ Natán es ficticio. Jesús y las bienaventuranzas siguen el contexto evangélico
 ## Comprobaciones
 
 Leer `QA.md` antes de declarar esta versión plenamente validada. No confundir tests locales con pruebas en teléfonos reales.
+
+## 1.3.1 · Estabilidad móvil
+
+Añade ampliación fotográfica con controles +/−, respaldo de partidas, soporte de movimiento reducido y caché más robusta. No elimina las tres misiones del capítulo.

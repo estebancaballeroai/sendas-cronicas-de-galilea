@@ -1,0 +1,61 @@
+PASS index.html presente
+PASS styles.css presente
+PASS premium.css presente
+PASS historical-context.js presente
+PASS game.js presente
+PASS sw.js presente
+PASS manifest.webmanifest presente
+PASS ASSETS_MANIFEST.json presente
+PASS .nojekyll presente
+PASS index.html disponible para caché
+PASS styles.css disponible para caché
+PASS premium.css disponible para caché
+PASS game.js disponible para caché
+PASS historical-context.js disponible para caché
+PASS assets/village_return.webp disponible para caché
+PASS manifest.webmanifest disponible para caché
+PASS icon-192.png disponible para caché
+PASS icon-512.png disponible para caché
+PASS assets/cover.webp disponible para caché
+PASS assets/epilogue.webp disponible para caché
+PASS assets/item_bread.webp disponible para caché
+PASS assets/portrait_jesus.webp disponible para caché
+PASS assets/dock.webp disponible para caché
+PASS assets/herbs.webp disponible para caché
+PASS assets/hill.webp disponible para caché
+PASS assets/home.webp disponible para caché
+PASS assets/injured.webp disponible para caché
+PASS assets/irit.webp disponible para caché
+PASS assets/item_chest.webp disponible para caché
+PASS assets/item_fish.webp disponible para caché
+PASS assets/item_flower.webp disponible para caché
+PASS assets/item_goat.webp disponible para caché
+PASS assets/item_hare.webp disponible para caché
+PASS assets/item_herb.webp disponible para caché
+PASS assets/item_jar.webp disponible para caché
+PASS assets/item_net.webp disponible para caché
+PASS assets/item_olives.webp disponible para caché
+PASS assets/item_scroll.webp disponible para caché
+PASS assets/item_snare.webp disponible para caché
+PASS assets/item_tracks.webp disponible para caché
+PASS assets/jesus.webp disponible para caché
+PASS assets/map.webp disponible para caché
+PASS assets/market.webp disponible para caché
+PASS assets/olive.webp disponible para caché
+PASS assets/portrait_irit.webp disponible para caché
+PASS assets/portrait_jonas.webp disponible para caché
+PASS assets/portrait_mara.webp disponible para caché
+PASS assets/portrait_natan.webp disponible para caché
+PASS assets/portrait_simeon.webp disponible para caché
+PASS assets/ruins.webp disponible para caché
+PASS assets/shore.webp disponible para caché
+PASS assets/simeon.webp disponible para caché
+PASS assets/spring.webp disponible para caché
+PASS assets/village.webp disponible para caché
+PASS dependencias JavaScript y CSS conectadas
+PASS clave de guardado conservada
+PASS lectura de partida activa
+PASS versión del motor
+PASS versión mostrada en portada
+PASS caché 1.3.1 versionada
+TOTAL 60 / 60
