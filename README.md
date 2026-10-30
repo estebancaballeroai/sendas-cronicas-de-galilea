@@ -1,6 +1,6 @@
 # SENDAS — Crónicas de Galilea
 
-**1.4 · Mundo vivo** — RPG narrativo cinematográfico en español para móvil. Capítulo I: *Los que escuchan*.
+**1.4.1 · Continuidad visual** — RPG narrativo cinematográfico en español para móvil. Capítulo I: *Los que escuchan*.
 
 ## Jugar
 
@@ -36,3 +36,7 @@ Un mismo lugar cambia de luz según el avance de Jonás, Irit y el manuscrito. E
 ## Estado de publicación
 
 1.4: listo para GitHub Pages. La versión anterior se conserva en ramas de respaldo.
+
+## 1.4.1 — La vivienda de Natán
+
+El comienzo tiene lugar dentro de la casa, junto a una esterilla, una lámpara y la nota del maestro. Las cuatro fases de luz derivan de una única imagen: la anatomía, las herramientas y la arquitectura conservan su posición. Las tres misiones principales permanecen intactas. Ver `NARRATIVE_VISUAL_MATRIX.md`.

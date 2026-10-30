@@ -1,3 +1,11 @@
+## 1.4.1 — La vivienda y la continuidad
+
+- Sustituida la antigua escena exterior inicial por una habitación realista con Natán leyendo su nota.
+- Variantes de luz derivadas de una sola imagen maestra sin cambiar anatomía ni mobiliario.
+- Objetivos, hotspot y narración de inicio corregidos para corresponder con el entorno.
+- Incorporada matriz visual y narrativa de los 14 lugares.
+- Conservadas las tres misiones y las partidas anteriores.
+
 ## 1.4 — Mundo vivo (29/10/2026)
 
 - 18 variantes fotográficas de las mismas seis escenas maestras y un embarcadero distinto opcional.
