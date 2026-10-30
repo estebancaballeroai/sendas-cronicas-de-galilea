@@ -1,3 +1,10 @@
+## 1.5 — Los papeles del camino
+- Nueve documentos y objetos consultables en los escenarios, más un registro oculto.
+- Investigación en varias localizaciones: mercado, muelle, casa de Siméon y manantial.
+- Nuevo apartado Papeles, interfaz de pergamino, guardado dentro de la partida.
+- Eliminación de las notas externas de historicidad del recorrido jugable.
+- Misiones y sistema Mundo vivo 1.4 intactos.
+
 ## 1.4.1 — Coherencia e inmersión
 - Interior de vivienda como primera escena, en lugar de un patio exterior.
 - Cuatro variantes temporales que conservan exactamente la misma arquitectura y utilería.

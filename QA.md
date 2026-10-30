@@ -23,3 +23,9 @@
 
 - Tres misiones principales, decisiones, exportación/importación JSON, progreso, retratos y escenarios anteriores.
 - La rama `releases/v1.3-vida-galilea` conserva la versión publicada anterior. También se publicará una rama separada para 1.3.1.
+
+
+## Actualización 1.5 — Pruebas ejecutadas
+- Playwright Chromium local: cuatro resoluciones (360×640, 390×844, 800×1280, 1365×768), navegación, apertura/cierre de manuscritos; sin errores JavaScript.
+- Prueba de investigación encadenada: mercado → muelle → Siméon → manantial. Hipótesis incorrecta y correcta, registro desbloqueado, estado almacenado en la partida, misión original del manantial intacta.
+- En hardware Android/iOS real: todavía no probado.

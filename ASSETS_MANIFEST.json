@@ -1,13 +1,13 @@
 {
   "home": {
-    "source": "historical_regrounding_v1_2",
+    "source": "interior_original_Sendas_1.1_con_variantes_de_luz",
     "kind": "scene",
     "px": [
-      1536,
-      1024
+      1526,
+      1000
     ],
-    "bytes": 441984,
-    "sha256": "0d3694e766d604"
+    "bytes": 196134,
+    "sha256": "5f568dcdade394"
   },
   "village": {
     "source": "historical_regrounding_v1_2",
@@ -461,24 +461,24 @@
     "sha256": "faa46ee1fc727f4a"
   },
   "home_late": {
-    "source": "home.webp (photometric variant of identical scene)",
-    "kind": "scene_variant",
+    "source": "interior_original_Sendas_1.1_con_variantes_de_luz",
+    "kind": "scene",
     "px": [
-      1536,
-      1024
+      1526,
+      1000
     ],
-    "bytes": 285934,
-    "sha256": "75cdf4915b6aeb0e"
+    "bytes": 214378,
+    "sha256": "0ffa7508b9aab1"
   },
   "home_night": {
-    "source": "home.webp (photometric variant of identical scene)",
-    "kind": "scene_variant",
+    "source": "interior_original_Sendas_1.1_con_variantes_de_luz",
+    "kind": "scene",
     "px": [
-      1536,
-      1024
+      1526,
+      1000
     ],
-    "bytes": 113696,
-    "sha256": "51b125c253b6979c"
+    "bytes": 67532,
+    "sha256": "1f9bb730e8ef1c"
   },
   "market_late": {
     "source": "market.webp (photometric variant of identical scene)",
@@ -611,14 +611,14 @@
     "sha256": "091d411dba1ce871"
   },
   "home_dusk": {
-    "source": "home.webp (photometric variant of identical scene)",
-    "kind": "scene_variant",
+    "source": "interior_original_Sendas_1.1_con_variantes_de_luz",
+    "kind": "scene",
     "px": [
-      1536,
-      1024
+      1526,
+      1000
     ],
-    "bytes": 224084,
-    "sha256": "ce5dc69f2fadacc0"
+    "bytes": 140422,
+    "sha256": "0b7c89ce34f9"
   },
   "market_dusk": {
     "source": "market.webp (photometric variant of identical scene)",

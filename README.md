@@ -41,3 +41,8 @@ Un mismo lugar cambia de luz según el avance de Jonás, Irit y el manuscrito. E
 ## 1.4.1 — Coherencia visual y narrativa
 
 Inicio en el interior de la vivienda de Natán; la misma composición se conserva durante los cambios de luz. Se retiraron del juego los comentarios externos sobre ficción y reconstrucciones; la información verificable sigue en el dossier del repositorio. Las tres misiones y el guardado anterior no cambian.
+
+
+## 1.5 — Los papeles del camino
+
+Nueve documentos narrativos vinculados a lugares del capítulo y un décimo registro oculto. Natán puede reunir tres testimonios, comparar hipótesis y descubrir quién escondió una cuenta injusta junto al canal. Los papeles forman parte del mundo; las fuentes y los límites de la reconstrucción permanecen fuera del juego, en `SCENE_CONTINUITY.md` y `HISTORICAL_SOURCES.md`. Los descubrimientos se guardan en `state.codex` y acompañan a las partidas exportadas.
