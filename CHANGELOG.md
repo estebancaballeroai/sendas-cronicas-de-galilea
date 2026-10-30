@@ -1,3 +1,10 @@
+## 1.4.1 — Coherencia e inmersión
+- Interior de vivienda como primera escena, en lugar de un patio exterior.
+- Cuatro variantes temporales que conservan exactamente la misma arquitectura y utilería.
+- Narración y puntos de interacción revisados para coincidir con la imagen.
+- Notas externas sobre ficción e historia fuera de las escenas de juego.
+- Misiones y guardado de la 1.4 conservados.
+
 ## 1.4 — Mundo vivo (29/10/2026)
 
 - 18 variantes fotográficas de las mismas seis escenas maestras y un embarcadero distinto opcional.

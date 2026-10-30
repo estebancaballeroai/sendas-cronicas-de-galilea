@@ -36,3 +36,8 @@ Un mismo lugar cambia de luz según el avance de Jonás, Irit y el manuscrito. E
 ## Estado de publicación
 
 1.4: listo para GitHub Pages. La versión anterior se conserva en ramas de respaldo.
+
+
+## 1.4.1 — Coherencia visual y narrativa
+
+Inicio en el interior de la vivienda de Natán; la misma composición se conserva durante los cambios de luz. Se retiraron del juego los comentarios externos sobre ficción y reconstrucciones; la información verificable sigue en el dossier del repositorio. Las tres misiones y el guardado anterior no cambian.
