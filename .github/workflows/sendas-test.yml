@@ -1,0 +1,36 @@
+name: SENDAS - integridad y juego real
+on:
+  push:
+    branches:
+      - main
+      - 'development/**'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: |
+          node --check game.js
+          node --check manuscripts.js
+          node --check historical-context.js
+          node --check mobile-ux.js
+          node --check ambient.js
+          node --check sw.js
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pillow playwright
+          python -m playwright install --with-deps chromium
+      - name: Historical and file consistency
+        run: python tests/test_141_15.py
+      - name: Full chapter with touch controls
+        run: python tests/test_browser.py
