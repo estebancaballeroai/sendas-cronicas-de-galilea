@@ -33,7 +33,18 @@ def play():
     verify('Interior de la casa' in page.locator('#scene-place').inner_text(),'opening not in the house')
     verify(page.locator('#scene-art').evaluate('(e)=>e.naturalWidth')>=1500,'home art not loaded')
     def do(action):
-      page.locator('[data-run="'+action+'"]:visible').first.click(timeout=15000)
+      selector='[data-run="'+action+'"]'
+      # Dialog controls must take precedence over hotspots behind a modal.
+      if page.locator('#modal-root').is_visible():
+        choice=page.locator('#modal-content '+selector)
+        if choice.count()>0:
+          choice.first.click(timeout=15000)
+          return
+      button=page.locator('#actions '+selector)
+      if button.count()>0:
+        button.first.click(timeout=15000)
+      else:
+        page.locator(selector+':visible').first.click(timeout=15000)
     def close():page.locator('#modal-close').click()
     def flag(k):return page.evaluate('window.SENDAS_READONLY.getState().flags['+repr(k)+'] || false')
     do('introLetter')
