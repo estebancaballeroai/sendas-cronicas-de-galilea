@@ -1,3 +1,11 @@
+## 1.5 — Los escritos del camino
+
+- 14 documentos y recuerdos legibles, asociados a escenas, personas y oficios.
+- Biblioteca de escritos integrada en el diario y en los objetos observables.
+- Sustituidos los avisos modernos sobre ficción y reconstrucción en la interfaz y el epílogo por narración inmersiva.
+- Mantiene las tres misiones, los reencuentros y los guardados anteriores; migra observaciones del cuaderno.
+- Manuscritos de época representados mediante rollos, tablillas y notas del viajero; las fuentes se conservan en documentación interna.
+
 ## 1.4.1 — La vivienda y la continuidad
 
 - Sustituida la antigua escena exterior inicial por una habitación realista con Natán leyendo su nota.
