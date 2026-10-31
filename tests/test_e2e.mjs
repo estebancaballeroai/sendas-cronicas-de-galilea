@@ -266,11 +266,11 @@ for(const [key,location] of [['mara','market'],['jonas','dock'],['simeon','simeo
     await choose(page,'deliver');
     await choose(page,'check:correct');
     assert.ok((await state(page)).codex.delivered,'Correct response not saved');
-    await page.locator('.ledger16-sheet .codex-close').click();
+    await page.locator('#modal-close').click();
     await action(page,'go:village');
     await action(page,'story:conclude');
     assert.ok((await state(page)).codex.resolved,'Audience was not saved');
-    await page.locator('.ledger16-sheet .codex-close').click();
+    await page.locator('#modal-close').click();
     await page.reload({waitUntil:'domcontentloaded'});
     await page.locator('#start-continue').click();
     assert.equal((await state(page)).codex.entrusted,key);
