@@ -195,6 +195,6 @@ document.addEventListener('change',e=>{if(e.target.id==='import-file'&&e.target.
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('modal-root').hidden)closeModal();if(e.target.tagName==='INPUT')return;if(e.key.toLowerCase()==='m'&&$('modal-root').hidden&&$('start-screen').hidden)openMap();if(e.key.toLowerCase()==='j'&&$('modal-root').hidden&&$('start-screen').hidden)openJournal();});
 window.SENDAS_CODEX_API={get:()=>state.codex||{found:[],solved:false},set:v=>{state.codex={...(state.codex||{}),...v,found:Array.isArray(v.found)?[...new Set(v.found)].slice(0,30):[],solved:!!v.solved};saveData();render();},note:remember,refresh:()=>render()};
 window.SENDAS_CHAPTER_API={get:()=>JSON.parse(JSON.stringify(state)),setChapter18:v=>{state.chapter18=JSON.parse(JSON.stringify(v));saveData();}};
-window.SENDAS_READONLY={getState:()=>JSON.parse(JSON.stringify(state)),version:'1.7.0',getPhase:()=>worldPeriod()};
+window.SENDAS_READONLY={getState:()=>JSON.parse(JSON.stringify(state)),version:'1.8.0',getPhase:()=>worldPeriod()};
 showStart();
 })();
