@@ -37,6 +37,23 @@ await check('new game mobile and image decoding',async()=>{
     assert.deepEqual(errs,[]);
   }finally{await context.close();}
 });
+await check('visited scene action becomes gray and survives reload',async()=>{
+ const {context,page,errs}=await pageAt();
+ try{
+  await page.locator('#start-new').click();
+  await page.locator('#modal-close').click();
+  const b=page.locator('#actions .action-btn').first();
+  const id=await b.getAttribute('data-run');
+  assert.ok(id,'Opening action missing');
+  await b.click();
+  await page.waitForTimeout(150);
+  assert.ok(await page.locator('#actions .action-btn[data-run="'+id+'"]').evaluate(el=>el.classList.contains('action-btn-seen')),'Visited action not gray');
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  assert.ok(await page.locator('#actions .action-btn[data-run="'+id+'"]').evaluate(el=>el.classList.contains('action-btn-seen')),'Visited action not retained');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
 for(const [width,height] of [[360,640],[390,844],[800,1280],[1365,768]]){
  await check('responsive '+width+'x'+height,async()=>{
   const {context,page,errs}=await pageAt(width,height,seed());
