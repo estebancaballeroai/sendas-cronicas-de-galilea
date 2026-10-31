@@ -1,3 +1,9 @@
+## 1.7 — Ecos del pueblo (desarrollo)
+- Tres encuentros posteriores al desenlace de la cuenta: ayuda con Irit, Jonás y Mara.
+- Posibilidad de posponer y volver a la conversación; decisiones registradas con compatibilidad de partidas anteriores.
+- Mantiene los retratos y escenarios originales sin incorporar imágenes históricamente no verificadas.
+- No altera el progreso de las tres misiones principales ni la documentación de v1.5 y v1.6.
+
 ## 1.6 — La cuenta del canal
 - Continuación de la investigación de 1.5: elegir entre Mara, Jonás o Siméon como confidente.
 - Presentación y contraste de las pistas, con respuestas incorrectas recuperables.
