@@ -13,7 +13,7 @@ async function check(name,work){
 }
 async function pageAt(width=390,height=844,seed=null){
   const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:1,isMobile:width<900,hasTouch:width<900});
-  if(seed)await context.addInitScript((s)=>localStorage.setItem('sendas_cronicas_ilustrada_1',JSON.stringify(s)),seed);
+  if(seed)await context.addInitScript((s)=>{if(!sessionStorage.getItem('__sendas_test_seeded')){localStorage.setItem('sendas_cronicas_ilustrada_1',JSON.stringify(s));sessionStorage.setItem('__sendas_test_seeded','1');}},seed);
   const page=await context.newPage();
   const errs=[];page.on('pageerror',e=>errs.push(String(e)));
   await page.goto(base,{waitUntil:'domcontentloaded',timeout:30000});
@@ -71,8 +71,8 @@ for(const [key,location] of [['mara','market'],['jonas','dock'],['simeon','simeo
     await action(page,'story:conclude');
     assert.ok((await state(page)).codex.resolved,'Audience was not saved');
     await page.locator('.ledger16-sheet .codex-close').click();
-    console.log('PRE_RELOAD',key,JSON.stringify(await state(page)),JSON.stringify(await page.evaluate(()=>localStorage.getItem('sendas_cronicas_ilustrada_1'))));await page.reload({waitUntil:'domcontentloaded'});
-    await page.locator('#start-continue').click();console.log('POST_RELOAD',key,JSON.stringify(await state(page)));
+    await page.reload({waitUntil:'domcontentloaded'});
+    await page.locator('#start-continue').click();
     assert.equal((await state(page)).codex.entrusted,key);
     assert.ok((await state(page)).codex.resolved);
     assert.ok((await state(page)).codex.found.includes('revealed'),'Previous collection lost');
