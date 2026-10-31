@@ -54,6 +54,18 @@ await check('chapter II choices survive game engine save and reload',async()=>{
   assert.deepEqual(errs,[]);
  }finally{await context.close();}
 });
+await check('chapter II WebP art files are present and decode',async()=>{
+ const initial=seed();initial.scene='dock';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await page.locator('[data-ch18="open"]').click();
+  const paths=['assets/chapter18/galilea_courtyard_detail.webp','assets/chapter18/yael_portrait.webp','assets/chapter18/eliab_portrait.webp'];
+  const result=await page.evaluate(async(paths)=>Promise.all(paths.map(async path=>{const img=new Image();img.src=path;try{await img.decode();return {path,width:img.naturalWidth,height:img.naturalHeight};}catch(e){return {path,error:String(e)};}})),paths);
+  assert.ok(result.every(x=>x.width>0&&x.height>0),'Missing or undecodable chapter art: '+JSON.stringify(result));
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
 await check('Yael visited questions remain gray after reopening and reload',async()=>{
  const initial=seed();initial.scene='dock';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
  const {context,page,errs}=await pageAt(390,844,initial);
