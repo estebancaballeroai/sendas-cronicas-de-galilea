@@ -56,7 +56,7 @@ for(const [key,location] of [['mara','market'],['jonas','dock'],['simeon','simeo
     await page.locator('#start-continue').click();
     await action(page,'story:plan');
     await choose(page,'choose:'+key);
-    assert.equal((await state(page)).codex.entrusted,key,'Entrusted selection should persist');
+    assert.equal((await state(page)).codex.entrusted,key,'Entrusted selection should persist: '+JSON.stringify(await page.evaluate(()=>({state:window.SENDAS_READONLY.getState().codex,ledger:window.SENDAS_LEDGER.status(),overlay:document.querySelector('#ledger16-overlay')?.innerText.slice(0,200)}))));
     await page.locator('.ledger16-sheet .codex-close').click();
     await action(page,'go:village');
     await action(page,'go:'+location);
