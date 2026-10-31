@@ -13,19 +13,33 @@ function eligible(s){return !!(s&&s.codex&&(s.codex.delivered||s.codex.resolved|
 function button(){var s=get(),host=document.getElementById('actions');if(!host||!eligible(s))return; if(host.querySelector('[data-ch18]'))return;
  var b=document.createElement('button');b.type='button';b.className='action-btn';b.setAttribute('data-ch18','open');b.textContent='Capítulo II · Visitar a la familia del canal';host.appendChild(b);
 }
+var topics={
+ listen:{label:'¿Qué necesita tu familia?',speaker:'Yael',text:'«Que nos escuches antes de ofrecer una solución. No quiero que Eliab aprenda a pedir permiso para tener hambre».',next:['grain','work','account']},
+ grain:{label:'¿Cuánto grano os queda?',speaker:'Yael',text:'«Dos días. Tal vez tres, si mezclo la harina con lentejas. Antes de esta cuenta guardábamos para una semana».',next:['future','account','listen']},
+ future:{label:'¿Y después de esos días?',speaker:'Yael',text:'«No lo sé. Y eso me avergüenza más que la deuda. He pensado vender el telar, pero entonces tampoco tendré trabajo».',next:['work','account','listen']},
+ work:{label:'¿Qué te dijo Jonás del trabajo?',speaker:'Yael',text:'«Que podría haber redes que remendar. No he dicho que sí. Necesito conocer las condiciones, no cambiar una deuda por otra».',next:['promise','account','listen']},
+ account:{label:'¿Qué ocurrió con la cuenta?',speaker:'Yael',text:'«El comerciante afirma que recibimos más grano. Recuerdo dos medidas distintas. Mara estaba allí, pero no quiero acusarla sin saber».',next:['measure','mara','listen']},
+ measure:{label:'¿Puedo examinar las medidas?',speaker:'Natán',text:'La medida tiene dos marcas. Una coincide con el registro; la otra parece trazada después. Una diferencia no demuestra todavía quién la hizo.',next:['permission','mara','account']},
+ mara:{label:'¿Confías en Mara?',speaker:'Yael',text:'«Confío en que no quisiera hacernos daño. Pero confiar en alguien no significa entregarle nuestra voz».',next:['permission','account','listen']},
+ permission:{label:'¿Puedo consultar el registro?',speaker:'Yael',text:'«Sí. Pero antes prométeme que no mencionarás a Eliab en el mercado. Mi hijo no es una prueba que puedas exhibir».',next:['promise','account','listen']},
+ promise:{label:'¿Qué puedo prometerte?',speaker:'Yael',text:'«No me prometas justicia antes de conocer la verdad. Promete que volverás y que nos preguntarás antes de actuar».',next:['commit','listen','account']},
+ commit:{label:'Prometer discreción y regresar',speaker:'Yael',text:'«Entonces esperaré tu regreso. No porque hayas resuelto nada, sino porque has escuchado lo que te pedía».',next:['listen','account','work']},
+ eliab:{label:'Hablar con Eliab',speaker:'Eliab',text:'«Mi madre dice que no me preocupe. Pero anoche contó las monedas dos veces. Creía que yo dormía».',next:['listen','grain','future']}
+};
+var first={mara:'Mara ha ofrecido revisar las medidas, pero Yael todavía duda si aceptar su intervención.',jonas:'Jonás ha mencionado trabajo en el lago. Yael teme aceptar sin conocer las condiciones.',simeon:'Siméon conserva una copia del registro; Yael pregunta quién podrá leerla.'};
 function show(){
  var s=get();if(!eligible(s))return;
- var ch=s.chapter18||{stage:0,choices:[]},w=s.codex.entrusted||'mara';
+ var ch=s.chapter18||{stage:0,choices:[],notes:[]},w=s.codex.entrusted||'mara';
  var root=document.getElementById('chapter18-root');if(!root){root=document.createElement('div');root.id='chapter18-root';document.body.appendChild(root);}
- var lead=branches[w]||branches.mara;
- var opening='El sol alcanza la casa del canal. Yael separa un pequeño montón de grano para el día. Eliab observa sus manos sin preguntar. '+lead;
- var responses={listen:'«No necesito que decidas por nosotros», responde Yael. «Necesito que escuches por qué guardamos este grano. Eliab no ha comido desde ayer por la tarde».',measure:'La medida tiene dos marcas antiguas. Una coincide con el registro; la otra, más profunda, parece hecha con una herramienta distinta. Yael no afirma saber quién la trazó.',offer:'Yael aparta suavemente tu mano. «Agradezco el gesto. Pero antes de ofrecer tu pan, dime si mañana volverás a estar aquí».',respect:'Yael inclina la cabeza. «Gracias por no prometer lo que no sabes si podrás cumplir».',speak:'Yael te mira con firmeza. «No hables por mí sin preguntarme primero. He perdido mercancías, no mi voz».',ask:'Yael asiente. «Puedes mirar el registro. Pero no pronuncies el nombre de Eliab delante de los comerciantes».',close:''};
- var text=ch.stage===0?opening:ch.stage===1?(responses[ch.lastChoice]||'Yael deja la medida sobre la mesa.')+' «¿Qué harás con lo que acabas de saber?»':(responses[ch.lastChoice]||'Yael asiente lentamente.')+' El primer encuentro termina. La familia seguirá aquí cuando regreses.';
- var choices=ch.stage===0?[['Escuchar a Yael antes de intervenir','listen'],['Examinar la medida de grano','measure'],['Ofrecer ayuda antes de preguntar','offer']]:ch.stage===1?[['Escuchar sin prometer nada','respect'],['Prometer hablar por la familia','speak'],['Pedir permiso para consultar el registro','ask']]:[['Volver al pueblo','close']];
- root.innerHTML='<div class="ch18-shade"><section class="ch18-panel" role="dialog" aria-modal="true" aria-label="El amanecer de las deudas"><button class="ch18-close" data-ch18-choice="close" aria-label="Cerrar">×</button><p class="ch18-overline">CAPÍTULO II · EL PESO DE LA VERDAD</p><h2>El amanecer de las deudas</h2><p class="ch18-scene">Casa de Yael · Cafarnaúm · Amanecer</p><p class="ch18-story">'+text+'</p><div class="ch18-options">'+choices.map(function(c){return '<button data-ch18-choice="'+c[1]+'" class="'+((ch.choices||[]).indexOf(c[1])!==-1?'ch18-seen':'')+'">'+c[0]+'</button>';}).join('')+'</div><p class="ch18-foot">Las decisiones se guardan en esta partida.</p></section></div>';
+ var topic=topics[ch.current]||null;
+ var speaker=topic?topic.speaker:'Yael';
+ var line=topic?topic.text:'«Natán, quisiera pagar lo que debemos. Pero si entrego el grano que queda, ¿qué comerá Eliab mañana?» '+(first[w]||first.mara);
+ var options=topic?topic.next:['listen','account','eliab','measure'];
+ var seen=ch.choices||[];
+ root.innerHTML='<div class="ch18-shade"><section class="ch18-panel" role="dialog" aria-modal="true" aria-label="Conversación con Yael"><button class="ch18-close" data-ch18-choice="close" aria-label="Cerrar">×</button><p class="ch18-overline">CAPÍTULO II · EL PESO DE LA VERDAD</p><h2>El amanecer de las deudas</h2><p class="ch18-scene">Casa de Yael · Cafarnaúm · Amanecer</p><div class="ch18-portrait" aria-hidden="true"></div><p class="ch18-speaker">'+speaker+'</p><p class="ch18-story">'+line+'</p><p class="ch18-questions">¿Qué quieres preguntar?</p><div class="ch18-options">'+options.map(function(id){var item=topics[id];return '<button data-ch18-choice="'+id+'" class="'+(seen.indexOf(id)!==-1?'ch18-seen':'')+'" aria-label="'+item.label+(seen.indexOf(id)!==-1?' (ya conversado)':'')+'">'+item.label+(seen.indexOf(id)!==-1?' <small>Ya conversado</small>':'')+'</button>';}).join('')+'</div><button class="ch18-leave" data-ch18-choice="close">Terminar conversación</button><p class="ch18-foot">Puedes volver a consultar cualquier pregunta. Las elecciones quedan guardadas.</p></section></div>';
 }
 document.addEventListener('click',function(e){var b=e.target.closest('[data-ch18],[data-ch18-choice]');if(!b)return;var choice=b.getAttribute('data-ch18-choice');if(!choice){show();return;}if(choice==='close'){document.getElementById('chapter18-root')?.remove();return;}
- patch(function(ch){ch.choices=ch.choices||[];if(ch.choices.indexOf(choice)<0)ch.choices.push(choice);if(ch.stage===0){ch.stage=1;}else if(ch.stage===1){ch.stage=2;}ch.lastChoice=choice;});
+ patch(function(ch){ch.choices=ch.choices||[];if(ch.choices.indexOf(choice)<0)ch.choices.push(choice);ch.current=choice;ch.stage=Math.max(ch.stage||0,1);ch.lastChoice=choice;});
  show();
 });
 var actions=document.getElementById('actions');if(actions)new MutationObserver(button).observe(actions,{childList:true});document.addEventListener('click',function(){setTimeout(button,0)});button();
