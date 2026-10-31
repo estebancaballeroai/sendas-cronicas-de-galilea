@@ -26,7 +26,7 @@ function openDoc(id){if(!DOCS[id])return collection();const doc=DOCS[id],st=curr
 const body=`<div class="codex-art"><img src="${esc(art(doc.image))}" alt="Objeto examinado"></div><div class="codex-parchment"><div class="codex-type">${esc(doc.kind)}</div><p class="codex-lead">${esc(doc.lead)}</p>${doc.paragraphs.map(x=>`<p>${esc(x)}</p>`).join('')}<div class="codex-clue">Lo que Natán recuerda: ${esc(doc.clue)}</div></div>`;
  shell('PAPELES DEL CAMINO',doc.title,body+actions([['Volver a mis papeles','collection'],['Cerrar','close']]));}
 function canSolve(){const st=current(),f=get().found||[];return ['market','dock','simeon'].every(x=>f.includes(x))&&st.visited?.includes('spring');}
-function collection(){const st=current(),v=get();const visited=st.visited||[];const collected=NAMES.filter(x=>found(x));const entries=collected.map(id=>`<button type="button" class="codex-entry" data-codex="read:${id}"><span>${esc(DOCS[id].title)}</span><small>${esc(DOCS[id].kind)}</small></button>`).join('');
+function collection(){const st=current(),v=get();const visited=st.visited||[];const collected=NAMES.filter(x=>found(x));let entries=collected.map(id=>`<button type="button" class="codex-entry" data-codex="read:${id}"><span>${esc(DOCS[id].title)}</span><small>${esc(DOCS[id].kind)}</small></button>`).join('');
 let hint=canSolve()&&!v.solved?'<p class="codex-hint">Las notas del mercado, la red y el escriba hablan de una misma piedra. Tal vez sea el momento de compararlas.</p>':'';
 let choice=canSolve()&&!v.solved?actions([['Relacionar las tres pistas','solve']]):'';
 if(v.solved){entries+=`<button type="button" class="codex-entry codex-revealed" data-codex="read:revealed"><span>${esc(DOCS.revealed.title)}</span><small>Descubrimiento</small></button>`;}
