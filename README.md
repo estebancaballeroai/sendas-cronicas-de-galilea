@@ -46,3 +46,7 @@ Inicio en el interior de la vivienda de Natán; la misma composición se conserv
 ## 1.5 — Los papeles del camino
 
 Nueve documentos narrativos vinculados a lugares del capítulo y un décimo registro oculto. Natán puede reunir tres testimonios, comparar hipótesis y descubrir quién escondió una cuenta injusta junto al canal. Los papeles forman parte del mundo; las fuentes y los límites de la reconstrucción permanecen fuera del juego, en `SCENE_CONTINUITY.md` y `HISTORICAL_SOURCES.md`. Los descubrimientos se guardan en `state.codex` y acompañan a las partidas exportadas.
+
+
+## 1.7 — Ecos del pueblo (rama experimental)
+Tras la audiencia de la familia del canal se abren tres escenas opcionales de consecuencias con Irit, Jonás y Mara. Guardado dentro de la partida preexistente, posibilidad de volver a decisiones aplazadas. Pendientes controles de navegador y revisión narrativa antes de publicar.
