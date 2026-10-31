@@ -13,7 +13,7 @@ async function check(name,work){
 }
 async function pageAt(width=390,height=844,seed=null){
   const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:1,isMobile:width<900,hasTouch:width<900});
-  if(seed)await context.addInitScript((s)=>localStorage.setItem('sendas_cronicas_ilustrada_1',JSON.stringify(s)),seed);
+  if(seed)await context.addInitScript((s)=>{if(!sessionStorage.getItem('__sendas_test_seeded')){localStorage.setItem('sendas_cronicas_ilustrada_1',JSON.stringify(s));sessionStorage.setItem('__sendas_test_seeded','1');}},seed);
   const page=await context.newPage();
   const errs=[];page.on('pageerror',e=>errs.push(String(e)));
   await page.goto(base,{waitUntil:'domcontentloaded',timeout:30000});
@@ -24,7 +24,7 @@ function seed(){
 }
 const choose=(page,action)=>page.locator('[data-ledger="'+action+'"]').last().click({timeout:10000});
 const action=(page,act)=>page.locator('.action-btn[data-run="'+act+'"]').first().click({timeout:10000});
-const state=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('sendas_cronicas_ilustrada_1')));
+const state=page=>page.evaluate(()=>window.SENDAS_READONLY.getState());
 await check('new game mobile and image decoding',async()=>{
   const {context,page,errs}=await pageAt();
   try{
@@ -56,7 +56,7 @@ for(const [key,location] of [['mara','market'],['jonas','dock'],['simeon','simeo
     await page.locator('#start-continue').click();
     await action(page,'story:plan');
     await choose(page,'choose:'+key);
-    assert.equal((await state(page)).codex.entrusted,key);
+    assert.equal((await state(page)).codex.entrusted,key,'Entrusted selection should persist: '+JSON.stringify(await page.evaluate(()=>({state:window.SENDAS_READONLY.getState().codex,ledger:window.SENDAS_LEDGER.status(),overlay:document.querySelector('#ledger16-overlay')?.innerText.slice(0,200)}))));
     await page.locator('.ledger16-sheet .codex-close').click();
     await action(page,'go:village');
     await action(page,'go:'+location);
