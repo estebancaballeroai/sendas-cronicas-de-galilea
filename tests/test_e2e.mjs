@@ -63,14 +63,14 @@ await check('Yael visited questions remain gray after reopening and reload',asyn
   await page.locator('[data-ch18-choice="listen"]').click();
   await page.locator('[data-ch18-choice="close"]').first().click();
   await page.locator('[data-ch18="open"]').click();
-  await page.locator('[data-ch18-choice="listen"]').click();
-  assert.ok(await page.locator('[data-ch18-choice="account"]').count());
+  await page.locator('[data-ch18-choice="account"]').click();
+  assert.ok(await page.locator('[data-ch18-choice="listen"]').count());
   await page.locator('[data-ch18-choice="close"]').first().click();
   await page.reload({waitUntil:'domcontentloaded'});
   await page.locator('#start-continue').click();
   await page.locator('[data-ch18="open"]').click();
-  await page.locator('[data-ch18-choice="account"]').click();
-  assert.ok(await page.locator('[data-ch18-choice="listen"]').evaluate(el=>el.classList.contains('ch18-seen')),'Visited question lost gray styling after reload');
+  await page.locator('[data-ch18-choice="listen"]').click();
+  assert.ok(await page.locator('[data-ch18-choice="account"]').evaluate(el=>el.classList.contains('ch18-seen')),'Visited question lost gray styling after reload');
   assert.deepEqual(errs,[]);
  }finally{await context.close();}
 });
