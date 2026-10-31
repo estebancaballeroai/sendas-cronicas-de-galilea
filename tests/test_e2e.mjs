@@ -37,6 +37,23 @@ await check('new game mobile and image decoding',async()=>{
     assert.deepEqual(errs,[]);
   }finally{await context.close();}
 });
+await check('NPC dialogue history persists across reopening and reload',async()=>{
+ const initial=seed();initial.scene='dock';initial.flags.netDone=false;
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await action(page,'talkJonas');
+  await page.locator('#modal-content [data-run="jonasFaith"]').click();
+  await page.locator('#modal-close').click();
+  await action(page,'talkJonas');
+  assert.ok(await page.locator('#modal-content [data-run="jonasFaith"]').evaluate(el=>el.closest('.dialog-option').classList.contains('dialog-option-seen')),'Reopened dialogue lost visited state');
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  await action(page,'talkJonas');
+  assert.ok(await page.locator('#modal-content [data-run="jonasFaith"]').evaluate(el=>el.closest('.dialog-option').classList.contains('dialog-option-seen')),'Reload lost visited dialogue state');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
 await check('visited scene action becomes gray and survives reload',async()=>{
  const {context,page,errs}=await pageAt();
  try{
