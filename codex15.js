@@ -32,6 +32,7 @@ function collection(){const st=current(),v=get();const visited=st.visited||[];co
 let hint=canSolve()&&!v.solved?'<p class="codex-hint">Las notas del mercado, la red y el escriba hablan de una misma piedra. Tal vez sea el momento de compararlas.</p>':'';
 let choice=canSolve()&&!v.solved?actions([['Relacionar las tres pistas','solve']]):'';
 if(v.solved){entries+=`<button type="button" class="codex-entry codex-revealed" data-codex="read:revealed"><span>${esc(DOCS.revealed.title)}</span><small>Descubrimiento</small></button>`;}
+if(v.solved){entries+=`<button type="button" class="codex-entry" data-codex="ledger"><span>La cuenta del canal</span><small>${v.resolved?'Familia escuchada':v.delivered?'Testimonio pendiente':'Una decisión pendiente'}</small></button>`;}
 const upcoming=NAMES.filter(id=>!visited.includes(DOCS[id].scene)).length;
 shell('DIARIO DE NATÁN','Los papeles del camino',`<p class="codex-intro">Entre la bolsa, los patios y los caminos quedan notas que ayudan a reconstruir una historia.</p><p class="codex-count">${collected.length} escritos encontrados · ${upcoming} lugares por visitar</p><div class="codex-list">${entries||'<p class="codex-muted">Todavía no has guardado ningún escrito. Mira la mesa de tu casa.</p>'}</div>${hint}${choice}${actions([['Volver al lugar','close']])}`);}
 function solve(){if(!canSolve())return collection();const html=`<p class="codex-intro">Mara escribió sobre una cuerda; Jonás recordó tres plomos y Siméon dejó una advertencia. ¿Qué lugar reúne las tres señales?</p>${actions([['El viejo canal bajo el olivo','answer:canal'],['Una barca olvidada en el muelle','answer:barca'],['El horno común del mercado','answer:horno'],['Volver a leer','collection']])}`;shell('ENIGMA · LA RUTA DEL AGUA','Relacionar las pistas',html);}
@@ -39,7 +40,7 @@ function answer(k){if(k!=='canal'){shell('PISTAS DEL CAMINO','Todavía falta una
 const v=get();v.solved=true;v.found=[...new Set([...(v.found||[]),'revealed'])];set(v);openDoc('revealed');}
 function close(){el.hidden=true;el.innerHTML='';lastFocus?.focus?.();}
 function open(id){lastFocus=document.activeElement; if(!id||id==='collection')collection();else if(id==='solve')solve();else openDoc(id);}
-el.addEventListener('click',e=>{const b=e.target.closest('[data-codex]');if(!b)return;const action=b.dataset.codex;if(action==='close')return close();if(action==='collection')return collection();if(action==='solve')return solve();if(action.startsWith('read:'))return openDoc(action.slice(5));if(action.startsWith('answer:'))return answer(action.slice(7));});
+el.addEventListener('click',e=>{const b=e.target.closest('[data-codex]');if(!b)return;const action=b.dataset.codex;if(action==='close')return close();if(action==='collection')return collection();if(action==='solve')return solve();if(action==='ledger'){close();return window.SENDAS_LEDGER?.run('result');}if(action.startsWith('read:'))return openDoc(action.slice(5));if(action.startsWith('answer:'))return answer(action.slice(7));});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!el.hidden){e.stopPropagation();close();}});
 window.SENDAS_CODEX={open,getState:()=>JSON.parse(JSON.stringify(get())),docs:DOCS};
 const nav=document.getElementById('btn-codex');if(nav)nav.addEventListener('click',()=>open('collection'));

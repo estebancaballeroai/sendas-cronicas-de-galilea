@@ -1,3 +1,10 @@
+## 1.6 — La cuenta del canal
+- Continuación de la investigación de 1.5: elegir entre Mara, Jonás o Siméon como confidente.
+- Presentación y contraste de las pistas, con respuestas incorrectas recuperables.
+- Audiencia de la familia en la aldea y diálogo posterior con el confidente elegido.
+- Consecuencias narrativas diferentes; sin falsas certezas ni atribuciones a Jesús.
+- Estado de la misión persistido en `state.codex`, conservando partidas anteriores; versión 1.5 respaldada en una rama.
+
 ## 1.5 — Los papeles del camino
 - Nueve documentos y objetos consultables en los escenarios, más un registro oculto.
 - Investigación en varias localizaciones: mercado, muelle, casa de Siméon y manantial.
