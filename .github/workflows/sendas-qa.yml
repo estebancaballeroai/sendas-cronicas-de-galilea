@@ -17,7 +17,7 @@ jobs:
       - name: Check JS and static resources
         run: |
           python3 tests/test_static.py
-          for f in game.js core20.js chapter18.js codex15.js chapter16.js ambient.js sw.js; do
+          for f in game.js core20.js shared-ui21.js chapter18.js codex15.js chapter16.js echoes17.js ambient.js sw.js; do
             test ! -f "$f" || node --check "$f"
           done
           node tests/test_core20.cjs
@@ -30,6 +30,12 @@ jobs:
         run: |
           python3 -m http.server 8777 --bind 127.0.0.1 >/tmp/sendas-http.log 2>&1 &
           node tests/test_e2e.mjs
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: sendas-2.1-mobile-panels
+          path: tests/screenshots/unified-*.png
+          if-no-files-found: ignore
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

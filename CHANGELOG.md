@@ -1,3 +1,10 @@
+## 2.1.0 — Un solo interfaz de lectura y decisiones
+- Documentos, investigación del canal y ecos posteriores utilizan la única ventana modal del motor.
+- Misma navegación, botones táctiles, estados grises, Escape y restauración de foco.
+- Migración de documentos y elecciones previas sin modificar el guardado de partida.
+- Corrección de las ayudas aplazadas, ahora reabribles y persistentes.
+- Compatibilidad retrospectiva y controles nuevos en CI Chromium.
+
 ## 2.0.0 — Motor unificado y continuidad completa
 - Capítulos I/II comparten escena, mapa, hotspots, modales, historial gris de preguntas/acciones, diario y guardado.
 - Nuevo escenario de Yael con ilustración y retratos originales WebP; telar, grano y medida investigables.

@@ -14,7 +14,7 @@ const saveData=()=>{try{CORE.migrate(state);localStorage.setItem(KEY,JSON.string
 const readData=()=>{try{const raw=localStorage.getItem(KEY);if(raw&&!localStorage.getItem(BACKUP_KEY))localStorage.setItem(BACKUP_KEY,raw);let obj=JSON.parse(raw||'null');if(obj&&obj.version===1&&SCENES[obj.scene])return CORE.migrate(obj);}catch(e){} return null;};
 function initialState(){return CORE.migrate({version:1,scene:'home',inv:{agua:1,pan:1},flags:{},choices:{},visited:['home'],logs:['Amanece cerca de Cafarnaúm. Natán recuerda las palabras del Maestro.'],time:1,fontScale:1,completed:false});}
 let renderSeq=0;
-let state=initialState(),currentModal='',fishFrame=0,fishPos=0,knotStep=0,scriptStep=0,toastTimer=0;
+let state=initialState(),currentModal='',modalOrigin=null,fishFrame=0,fishPos=0,knotStep=0,scriptStep=0,toastTimer=0;
 const SCENES={
  home:{title:'Antes del amanecer',place:'Interior de la casa de Natán',art:'home',over:'LUZ EN LA PUERTA',body:()=> 'La primera claridad entra por la puerta y alcanza la esterilla, los cántaros y la mesa baja. Natán recoge su manto: afuera empiezan los ruidos del trabajo junto al lago.\n\nEntre sus pertenencias descansa la nota de alguien a quien aún espera volver a ver. Antes de salir, puede leerla otra vez.',acts:()=>[
   a('Examinar la mesa y los utensilios','field:home','◌'),a('Leer la nota que guardaste','introLetter','▤'),a('Examinar el rollo familiar','codex:home','▤'),a('Abrir el diario','journal','▤'),a('Salir a la aldea','go:village','↗')],spots:()=>[sp(31,61,'Mesa','field:home'),sp(81,55,'Salir','go:village')]},
@@ -60,8 +60,8 @@ function setFlag(k){state.flags[k]=true;saveData();}
 function remember(text){if(state.logs.indexOf(text)<0)state.logs.push(text);saveData();}
 function progress(){return ['netDone','iritDone','springSolved'].filter(k=>flag(k)).length;}
 function toast(msg){let el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2450);}
-function closeModal(){cancelAnimationFrame(fishFrame);fishFrame=0;$('modal-root').hidden=true;$('modal-content').innerHTML='';currentModal='';}
-function openModal(title,content,over='UN ENCUENTRO'){cancelAnimationFrame(fishFrame);fishFrame=0;$('modal-root').hidden=false;$('modal-title').textContent=title;$('modal-overline').textContent=over;$('modal-content').innerHTML=content;currentModal=title;setTimeout(()=>{let b=$('modal-content').querySelector('button');if(b)b.focus();},0);}
+function closeModal(){cancelAnimationFrame(fishFrame);fishFrame=0;$('modal-root').hidden=true;$('modal-content').innerHTML='';currentModal='';const source=modalOrigin;modalOrigin=null;if(source&&source.isConnected&&typeof source.focus==='function')source.focus({preventScroll:true});}
+function openModal(title,content,over='UN ENCUENTRO'){cancelAnimationFrame(fishFrame);fishFrame=0;if($('modal-root').hidden)modalOrigin=document.activeElement;$('modal-root').hidden=false;$('modal-title').textContent=title;$('modal-overline').textContent=over;$('modal-content').innerHTML=content;currentModal=title;setTimeout(()=>{let b=$('modal-content').querySelector('button');if(b)b.focus();},0);}
 function btn(label,id,style=''){return `<button class="modal-choice ${style}" data-run="${esc(id)}">${esc(label)}<span>›</span></button>`;}
 function conversation(data){
  const name=data.name||'Viajero',portrait=data.portrait||'portrait_natan',description=data.desc||'';
@@ -214,8 +214,8 @@ $('modal-close').addEventListener('click',closeModal);$('modal-backdrop').addEve
 document.addEventListener('change',e=>{if(e.target.id==='import-file'&&e.target.files&&e.target.files[0])handleImport(e.target.files[0]);});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('modal-root').hidden)closeModal();if(e.target.tagName==='INPUT')return;if(e.key.toLowerCase()==='m'&&$('modal-root').hidden&&$('start-screen').hidden)openMap();if(e.key.toLowerCase()==='j'&&$('modal-root').hidden&&$('start-screen').hidden)openJournal();});
 window.SENDAS_CODEX_API={get:()=>state.codex||{found:[],solved:false},set:v=>{state.codex={...(state.codex||{}),...v,found:Array.isArray(v.found)?[...new Set(v.found)].slice(0,30):[],solved:!!v.solved};saveData();render();},note:remember,refresh:()=>render()};
-window.SENDAS_GAME_API={conversation:conversation,change:fn=>{fn(state);CORE.migrate(state);saveData();return JSON.parse(JSON.stringify(state));},remember:remember,navigate:go,refresh:()=>render()};
+window.SENDAS_GAME_API={conversation:conversation,openPanel:openModal,closePanel:closeModal,change:fn=>{fn(state);CORE.migrate(state);saveData();return JSON.parse(JSON.stringify(state));},remember:remember,navigate:go,refresh:()=>render()};
 window.SENDAS_CHAPTER_API={get:()=>JSON.parse(JSON.stringify(state)),setChapter18:v=>{state.chapter18=JSON.parse(JSON.stringify(v));CORE.migrate(state);saveData();}};
-window.SENDAS_READONLY={getState:()=>JSON.parse(JSON.stringify(state)),version:'2.0.0',getPhase:()=>worldPeriod()};
+window.SENDAS_READONLY={getState:()=>JSON.parse(JSON.stringify(state)),version:'2.1.0',getPhase:()=>worldPeriod()};
 showStart();
 })();

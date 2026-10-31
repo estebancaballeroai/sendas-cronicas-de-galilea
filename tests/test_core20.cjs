@@ -97,4 +97,17 @@ t('chapter II is a standard action provider and has no overlay or localStorage c
  assert.ok(!fs.readFileSync(path.join(root,'chapter18.js'),'utf8').includes('localStorage'));
  assert.ok(!fs.readFileSync(path.join(root,'chapter18.js'),'utf8').includes('innerHTML'));
 });
+
+t('historical documents and witness/echo options migrate to unified panel history',()=>{
+ const s=makeSave('jonas');s.codex.found=['market','dock','simeon'];s.codex.solved=true;s.codex.echoes={irit:'later',mara:'help'};
+ core.migrate(s);
+ assert.ok(core.seen(s,'dialog:panel:codex','read:market'));
+ assert.ok(core.seen(s,'dialog:panel:codex','answer:canal'));
+ assert.ok(core.seen(s,'dialog:panel:ledger','choose:jonas'));
+ assert.ok(core.seen(s,'dialog:panel:ledger','check:correct'));
+ assert.ok(core.seen(s,'dialog:panel:echo','decline:irit'));
+ assert.ok(core.seen(s,'dialog:panel:echo','accept:mara'));
+ const copy=json(s);core.migrate(copy);
+ assert.deepEqual(json(copy.interactions),json(s.interactions));
+});
 console.log('INTERMEDIATE TEST RESULT',assertions,'/',assertions,'passing');

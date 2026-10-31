@@ -16,11 +16,6 @@ var PEOPLE={
     ending:'Siméon prepara una copia clara y ofrece acompañar a la familia cuando se revisen las cantidades. El escrito ya no queda oculto, aunque todavía falta comprobar la reclamación.',
     afterward:'«Una copia bien hecha conserva palabras. Para comprenderlas, todavía necesitamos personas».'}
 };
-var root=document.createElement('section');
-root.id='ledger16-overlay';root.className='codex-overlay ledger16-overlay';root.hidden=true;
-root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','La cuenta del canal');
-document.body.appendChild(root);
-var lastFocus=null;
 function esc(value){return String(value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c];});}
 function get(){return window.SENDAS_CODEX_API&&window.SENDAS_CODEX_API.get()||{};}
 function current(){return window.SENDAS_READONLY&&window.SENDAS_READONLY.getState()||{scene:'home'};}
@@ -30,12 +25,9 @@ function save(changes){var updated=Object.assign({},get(),changes);window.SENDAS
 function buttons(items){return '<div class="codex-actions">'+items.map(function(item){return '<button type="button" class="codex-button" data-ledger="'+esc(item[1])+'">'+esc(item[0])+'</button>';}).join('')+'</div>';}
 function portrait(person){return '<div class="ledger16-portrait"><img src="assets/portrait_'+esc(person.portrait)+'.webp" alt="Retrato de '+esc(person.name)+'"></div>';}
 function page(over,title,body,items){
-  lastFocus=root.hidden?document.activeElement:lastFocus;
-  root.innerHTML='<div class="codex-backdrop" data-ledger="close"></div><article class="codex-sheet ledger16-sheet" aria-labelledby="ledger16-title"><header class="codex-head"><div><small>'+esc(over)+'</small><h2 id="ledger16-title">'+esc(title)+'</h2></div><button class="codex-close" type="button" data-ledger="close" aria-label="Cerrar">×</button></header><div class="codex-scroll">'+body+buttons(items||[['Volver al camino','close']])+'</div></article>';
-  root.hidden=false;
-  if(typeof requestAnimationFrame==='function')requestAnimationFrame(function(){var b=root.querySelector('.codex-close');if(b)b.focus();});
+ window.SENDAS_UI.show({module:'ledger',overline:over,title:title,body:body+buttons(items||[['Volver al camino','close']]),attribute:'data-ledger'});
 }
-function close(){root.hidden=true;root.innerHTML='';if(lastFocus&&lastFocus.focus)lastFocus.focus();lastFocus=null;}
+function close(){window.SENDAS_UI.close();}
 function plan(){
  var v=get();if(!v.solved)return;
  if(v.delivered)return progress();
@@ -114,7 +106,6 @@ function run(action){
  if(action.indexOf('choose:')===0)return choose(action.slice(7));
  if(action.indexOf('check:')===0)return check(action.slice(6));
 }
-root.addEventListener('click',function(e){var btn=e.target.closest('[data-ledger]');if(btn){e.preventDefault();run(btn.getAttribute('data-ledger'));}});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!root.hidden){e.stopPropagation();close();}});
+window.SENDAS_UI.register('ledger',run,function(action){return action.indexOf('choose:')===0||action.indexOf('check:')===0;});
 window.SENDAS_LEDGER={run:run,actionsFor:actionsFor,ambientLine:ambientLine,epilogue:epilogue,status:get};
 })();

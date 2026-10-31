@@ -52,6 +52,21 @@
         if (typeof id === 'string') append(ch2, 'ch2:topic:' + id);
       });
     }
+    // Migrate old collected documents and resolved witness/echo choices into the same
+    // visited-option history. Old saves keep their data and become visually coherent.
+    var oldCodex=state.codex && typeof state.codex==='object' ? state.codex : {};
+    if(Array.isArray(oldCodex.found))oldCodex.found.forEach(function(id){
+      if(typeof id==='string')append(bucket(state,'dialog:panel:codex'),'read:'+id);
+    });
+    if(oldCodex.solved)append(bucket(state,'dialog:panel:codex'),'answer:canal');
+    if(['mara','jonas','simeon'].indexOf(oldCodex.entrusted)>=0)
+      append(bucket(state,'dialog:panel:ledger'),'choose:'+oldCodex.entrusted);
+    if(oldCodex.delivered)append(bucket(state,'dialog:panel:ledger'),'check:correct');
+    var oldEchoes=oldCodex.echoes&&typeof oldCodex.echoes==='object'?oldCodex.echoes:{};
+    Object.keys(oldEchoes).forEach(function(name){
+      if(oldEchoes[name]==='help')append(bucket(state,'dialog:panel:echo'),'accept:'+name);
+      if(oldEchoes[name]==='later')append(bucket(state,'dialog:panel:echo'),'decline:'+name);
+    });
     state.saveSchema = 2;
     return state;
   }
