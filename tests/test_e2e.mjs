@@ -22,7 +22,7 @@ async function pageAt(width=390,height=844,seed=null){
 function seed(){
   return {version:1,scene:'spring',inv:{agua:1,pan:1,moneda:1},flags:{netDone:true,iritDone:true,simeonPuzzle:true,springSolved:true},choices:{},visited:['home','village','market','dock','irit','herbs','simeon','spring'],logs:['El pergamino fue hallado junto al agua.'],time:3,fontScale:1,completed:false,codex:{found:['market','dock','simeon','spring','revealed'],solved:true}};
 }
-const choose=(page,action)=>page.locator('[data-ledger="'+action+'"]').last().click({timeout:10000});
+const choose=(page,action)=>page.locator('#modal-content [data-sendas-ui="'+action+'"]').last().click({timeout:10000});
 const action=(page,act)=>page.locator('.action-btn[data-run="'+act+'"]').first().click({timeout:10000});
 const state=page=>page.evaluate(()=>window.SENDAS_READONLY.getState());
 await check('new game mobile and image decoding',async()=>{
@@ -165,6 +165,78 @@ await check('visited scene action becomes gray and survives reload',async()=>{
   assert.deepEqual(errs,[]);
  }finally{await context.close();}
 });
+
+await check('unified codex shell reads the old archive and persists gray history',async()=>{
+ const s=seed();s.scene='spring';
+ const {context,page,errs}=await pageAt(390,844,s);
+ try{
+  await page.locator('#start-continue').click();
+  await page.locator('#btn-codex').click();
+  assert.equal(await page.locator('#modal-content .sendas-panel-codex').count(),1);
+  assert.equal(await page.locator('#codex-overlay,#ledger16-overlay,#sendas17-voice').count(),0);
+  assert.ok(await page.locator('#modal-content [data-sendas-ui="read:market"]').evaluate(el=>el.classList.contains('sendas-ui-seen')),'Old document visit did not migrate');
+  await page.screenshot({path:'tests/screenshots/unified-codex-390.png'});
+  await page.locator('#modal-content [data-sendas-ui="read:market"]').click();
+  assert.match(await page.locator('#modal-title').innerText(),/El registro de Mara/i);
+  await page.locator('#modal-content [data-sendas-ui="collection"]').click();
+  assert.ok(await page.locator('#modal-content [data-sendas-ui="read:market"]').evaluate(el=>el.classList.contains('sendas-ui-seen')));
+  await page.locator('#modal-close').click();
+  assert.ok(await page.locator('#modal-root').isHidden());
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();await page.locator('#btn-codex').click();
+  assert.ok(await page.locator('#modal-content [data-sendas-ui="read:market"]').evaluate(el=>el.classList.contains('sendas-ui-seen')));
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+await check('ledger witnesses are visited in unified native modal',async()=>{
+ const s=seed();s.scene='spring';
+ const {context,page,errs}=await pageAt(390,844,s);
+ try{
+  await page.locator('#start-continue').click();
+  await action(page,'story:plan');
+  assert.equal(await page.locator('#modal-content .sendas-panel-ledger').count(),1);
+  await page.locator('#modal-content [data-sendas-ui="choose:mara"]').click();
+  assert.equal((await state(page)).codex.entrusted,'mara');
+  await page.locator('#modal-close').click();
+  await action(page,'story:plan');
+  assert.ok(await page.locator('#modal-content [data-sendas-ui="choose:mara"]').evaluate(el=>el.classList.contains('sendas-ui-seen')));
+  await page.locator('#modal-close').click();
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+await check('echoes can be postponed, revisited and accepted with one gray history',async()=>{
+ const s=seed();s.scene='irit';s.codex={...s.codex,entrusted:'mara',delivered:true,resolved:true};
+ const {context,page,errs}=await pageAt(390,844,s);
+ try{
+  await page.locator('#start-continue').click();
+  await action(page,'echo:irit');
+  assert.equal(await page.locator('#modal-content .sendas-panel-echo').count(),1);
+  await page.screenshot({path:'tests/screenshots/unified-echo-390.png'});
+  await page.locator('#modal-content [data-sendas-ui="decline:irit"]').click();
+  assert.equal((await state(page)).codex.echoes.irit,'later');
+  await page.locator('#modal-close').click();
+  await action(page,'echo:irit');
+  assert.ok(await page.locator('#modal-content [data-sendas-ui="decline:irit"]').evaluate(el=>el.classList.contains('sendas-ui-seen')));
+  await page.locator('#modal-content [data-sendas-ui="accept:irit"]').click();
+  assert.equal((await state(page)).codex.echoes.irit,'help');
+  await page.locator('#modal-close').click();
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  assert.equal((await state(page)).codex.echoes.irit,'help');
+  assert.equal(await page.locator('#actions [data-run="echo:irit"]').count(),0);
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+await check('one overlay responds to Escape and focus returns to Papeles',async()=>{
+ const {context,page,errs}=await pageAt(360,640,seed());
+ try{
+  await page.locator('#start-continue').click();await page.locator('#btn-codex').click();
+  await page.keyboard.press('Escape');
+  assert.ok(await page.locator('#modal-root').isHidden());
+  assert.ok(await page.locator('#btn-codex').evaluate(b=>b===document.activeElement));
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
 for(const [width,height] of [[360,640],[390,844],[800,1280],[1365,768]]){
  await check('responsive '+width+'x'+height,async()=>{
   const {context,page,errs}=await pageAt(width,height,seed());
@@ -184,8 +256,8 @@ for(const [key,location] of [['mara','market'],['jonas','dock'],['simeon','simeo
     await page.locator('#start-continue').click();
     await action(page,'story:plan');
     await choose(page,'choose:'+key);
-    assert.equal((await state(page)).codex.entrusted,key,'Entrusted selection should persist: '+JSON.stringify(await page.evaluate(()=>({state:window.SENDAS_READONLY.getState().codex,ledger:window.SENDAS_LEDGER.status(),overlay:document.querySelector('#ledger16-overlay')?.innerText.slice(0,200)}))));
-    await page.locator('.ledger16-sheet .codex-close').click();
+    assert.equal((await state(page)).codex.entrusted,key,'Entrusted selection should persist: '+JSON.stringify(await page.evaluate(()=>({state:window.SENDAS_READONLY.getState().codex,ledger:window.SENDAS_LEDGER.status(),overlay:document.querySelector('#modal-content')?.innerText.slice(0,200)}))));
+    await page.locator('#modal-close').click();
     await action(page,'go:village');
     await action(page,'go:'+location);
     await action(page,'story:deliver');
@@ -194,11 +266,11 @@ for(const [key,location] of [['mara','market'],['jonas','dock'],['simeon','simeo
     await choose(page,'deliver');
     await choose(page,'check:correct');
     assert.ok((await state(page)).codex.delivered,'Correct response not saved');
-    await page.locator('.ledger16-sheet .codex-close').click();
+    await page.locator('#modal-close').click();
     await action(page,'go:village');
     await action(page,'story:conclude');
     assert.ok((await state(page)).codex.resolved,'Audience was not saved');
-    await page.locator('.ledger16-sheet .codex-close').click();
+    await page.locator('#modal-close').click();
     await page.reload({waitUntil:'domcontentloaded'});
     await page.locator('#start-continue').click();
     assert.equal((await state(page)).codex.entrusted,key);

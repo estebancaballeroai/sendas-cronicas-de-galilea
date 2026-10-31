@@ -1,0 +1,24 @@
+/* SENDAS 2.1: identical shell, typography, gestures and seen-choice rules across all modules. */
+#modal-root .modal-sheet{width:min(680px,100%)}
+#modal-content .sendas-panel{width:100%;min-width:0;display:flex;flex-direction:column;gap:10px;color:var(--ink)}
+#modal-content .sendas-panel .codex-actions{display:grid;gap:9px;margin:12px 0 2px}
+#modal-content .sendas-panel :is(.codex-button,.codex-entry,.ledger16-person){min-height:48px;width:100%;border-radius:12px;border:1px solid #c6a9799c;background:#263c42;color:#f4e8d2;padding:12px 14px;text-align:left;font:600 15px/1.4 system-ui;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-start}
+#modal-content .sendas-panel .codex-entry{justify-content:space-between}
+#modal-content .sendas-panel .codex-entry small{display:block;color:#d1c1a5;font-size:12px;font-weight:400}
+#modal-content .sendas-panel .codex-button{background:#344c50}
+#modal-content .sendas-panel :is(.codex-button,.codex-entry,.ledger16-person):focus-visible{outline:3px solid #ffe3aa;outline-offset:2px;opacity:1}
+#modal-content .sendas-panel .codex-parchment p{color:#342c21}
+#modal-content .sendas-panel .codex-intro{color:#eee2cd}
+#modal-content .sendas-panel .codex-art{width:100%}
+#modal-content .sendas-panel .ledger16-people{display:grid;gap:9px}
+#modal-content .sendas-panel .ledger16-person img{width:58px;height:62px;object-fit:cover;border-radius:9px;flex:none}
+#modal-content .sendas-panel .ledger16-person span{min-width:0;flex:1}
+#modal-content .sendas-panel .ledger16-person strong{display:block;color:#f5dec0}
+#modal-content .sendas-panel .ledger16-person small{display:block;color:#d0c4b5;font-size:12px;font-weight:400}
+#modal-content .sendas-panel .ledger16-portrait img{display:block;width:120px;height:128px;object-fit:cover;object-position:center 20%;margin:0 auto 8px;border-radius:12px;border:2px solid #bb996b}
+#modal-content .sendas-panel [data-sendas-ui].sendas-ui-seen{opacity:.64;filter:grayscale(1);background:#343b3f!important;border-color:#889095!important;color:#e0e2e3}
+#modal-content .sendas-panel .sendas-ui-visited{display:block;width:100%;color:#c5c9ca;font-size:11px;font-weight:500;letter-spacing:.03em}
+#modal-content .sendas-panel .codex-parchment{max-width:100%}
+#modal-content .sendas-panel p{overflow-wrap:break-word}
+@media(max-width:430px){#modal-root{padding:8px}#modal-root .modal-sheet{max-height:96dvh;border-radius:15px}#modal-content{padding:13px 14px 20px}#modal-content .sendas-panel :is(.codex-button,.codex-entry,.ledger16-person){font-size:14px;padding:11px 12px}#modal-content .sendas-panel .codex-parchment{padding:14px}}
+@media(prefers-reduced-motion:reduce){#modal-content .sendas-panel *{transition:none!important}}

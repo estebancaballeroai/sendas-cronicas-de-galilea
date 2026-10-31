@@ -13,8 +13,6 @@ const DOCS={
  revealed:{scene:'spring',kind:'Copia del registro',title:'El nombre que faltaba',image:'item_scroll',lead:'Las notas del mercado, la red y Siméon permiten comprender el escondite.',paragraphs:['La cuenta es de una familia del valle. Alguien había cargado a su nombre el precio de unas mercancías que nunca recibió.','El maestro copió el registro para que los vecinos pudieran responder cuando se reclamara el pago. Natán todavía debe decidir a quién confiar la noticia.'],clue:'La investigación aporta un nuevo testimonio sobre la familia del canal.'}
 };
 const NAMES=['home','village','market','dock','irit','olive','simeon','spring','ruins'];
-const el=document.createElement('section');el.className='codex-overlay';el.id='codex-overlay';el.hidden=true;el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('aria-label','Papeles del viajero');document.body.appendChild(el);
-let lastFocus=null;
 const get=()=>window.SENDAS_CODEX_API?.get?.()||{found:[],solved:false};
 const set=data=>window.SENDAS_CODEX_API?.set?.(data);
 const art=n=>(window.__SENDAS_EMBEDDED__&&window.__SENDAS_EMBEDDED__[n])||('assets/'+n+'.webp');
@@ -23,12 +21,12 @@ const current=()=>window.SENDAS_READONLY?.getState?.()||{visited:[],flags:{},sce
 const found=id=>get().found?.includes(id)||false;
 function saveFound(id){if(found(id))return;let v=get();v.found=[...new Set([...(v.found||[]),id])];set(v);}
 function actions(items){return `<div class="codex-actions">${items.map(x=>`<button type="button" class="codex-button" data-codex="${esc(x[1])}">${esc(x[0])}</button>`).join('')}</div>`;}
-function shell(over,title,html){el.innerHTML=`<div class="codex-backdrop" data-codex="close"></div><article class="codex-sheet"><header class="codex-head"><div><small>${esc(over)}</small><h2>${esc(title)}</h2></div><button class="codex-close" data-codex="close" type="button" aria-label="Cerrar documentos">×</button></header><div class="codex-scroll">${html}</div></article>`;el.hidden=false;requestAnimationFrame(()=>el.querySelector('.codex-close')?.focus());}
+function shell(over,title,html){window.SENDAS_UI.show({module:'codex',overline:over,title:title,body:html,attribute:'data-codex'});}
 function openDoc(id){if(!DOCS[id])return collection();const doc=DOCS[id],st=current();if(id==='revealed'&&!get().solved)return collection();if(id!=='revealed'&&(!st.visited||!st.visited.includes(doc.scene)))return collection();saveFound(id);
 const body=`<div class="codex-art"><img src="${esc(art(doc.image))}" alt="Objeto examinado"></div><div class="codex-parchment"><div class="codex-type">${esc(doc.kind)}</div><p class="codex-lead">${esc(doc.lead)}</p>${doc.paragraphs.map(x=>`<p>${esc(x)}</p>`).join('')}<div class="codex-clue">Lo que Natán recuerda: ${esc(doc.clue)}</div></div>`;
  shell('PAPELES DEL CAMINO',doc.title,body+actions([['Volver a mis papeles','collection'],['Cerrar','close']]));}
 function canSolve(){const st=current(),f=get().found||[];return ['market','dock','simeon'].every(x=>f.includes(x))&&st.visited?.includes('spring');}
-function collection(){const st=current(),v=get();const visited=st.visited||[];const collected=NAMES.filter(x=>found(x));const entries=collected.map(id=>`<button type="button" class="codex-entry" data-codex="read:${id}"><span>${esc(DOCS[id].title)}</span><small>${esc(DOCS[id].kind)}</small></button>`).join('');
+function collection(){const st=current(),v=get();const visited=st.visited||[];const collected=NAMES.filter(x=>found(x));let entries=collected.map(id=>`<button type="button" class="codex-entry" data-codex="read:${id}"><span>${esc(DOCS[id].title)}</span><small>${esc(DOCS[id].kind)}</small></button>`).join('');
 let hint=canSolve()&&!v.solved?'<p class="codex-hint">Las notas del mercado, la red y el escriba hablan de una misma piedra. Tal vez sea el momento de compararlas.</p>':'';
 let choice=canSolve()&&!v.solved?actions([['Relacionar las tres pistas','solve']]):'';
 if(v.solved){entries+=`<button type="button" class="codex-entry codex-revealed" data-codex="read:revealed"><span>${esc(DOCS.revealed.title)}</span><small>Descubrimiento</small></button>`;}
@@ -38,10 +36,16 @@ shell('DIARIO DE NATÁN','Los papeles del camino',`<p class="codex-intro">Entre 
 function solve(){if(!canSolve())return collection();const html=`<p class="codex-intro">Mara escribió sobre una cuerda; Jonás recordó tres plomos y Siméon dejó una advertencia. ¿Qué lugar reúne las tres señales?</p>${actions([['El viejo canal bajo el olivo','answer:canal'],['Una barca olvidada en el muelle','answer:barca'],['El horno común del mercado','answer:horno'],['Volver a leer','collection']])}`;shell('ENIGMA · LA RUTA DEL AGUA','Relacionar las pistas',html);}
 function answer(k){if(k!=='canal'){shell('PISTAS DEL CAMINO','Todavía falta una señal',`<p class="codex-intro">La red y el mercado señalan un camino, pero Siméon escribió expresamente sobre agua y olivos. Vuelve a compararlos.</p>${actions([['Intentarlo de nuevo','solve'],['Consultar los papeles','collection']])}`);return;}
 const v=get();v.solved=true;v.found=[...new Set([...(v.found||[]),'revealed'])];set(v);openDoc('revealed');}
-function close(){el.hidden=true;el.innerHTML='';lastFocus?.focus?.();}
-function open(id){lastFocus=document.activeElement; if(!id||id==='collection')collection();else if(id==='solve')solve();else openDoc(id);}
-el.addEventListener('click',e=>{const b=e.target.closest('[data-codex]');if(!b)return;const action=b.dataset.codex;if(action==='close')return close();if(action==='collection')return collection();if(action==='solve')return solve();if(action==='ledger'){close();return window.SENDAS_LEDGER?.run('result');}if(action.startsWith('read:'))return openDoc(action.slice(5));if(action.startsWith('answer:'))return answer(action.slice(7));});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!el.hidden){e.stopPropagation();close();}});
+function close(){window.SENDAS_UI.close();}
+function open(id){if(!id||id==='collection')collection();else if(id==='solve')solve();else openDoc(id);}
+window.SENDAS_UI.register('codex',function(action){
+ if(action==='close')return close();
+ if(action==='collection')return collection();
+ if(action==='solve')return solve();
+ if(action==='ledger'){close();return window.SENDAS_LEDGER?.run('result');}
+ if(action.indexOf('read:')===0)return openDoc(action.slice(5));
+ if(action.indexOf('answer:')===0)return answer(action.slice(7));
+},function(action){return action==='solve'||action.indexOf('read:')===0||action.indexOf('answer:')===0;});
 window.SENDAS_CODEX={open,getState:()=>JSON.parse(JSON.stringify(get())),docs:DOCS};
 const nav=document.getElementById('btn-codex');if(nav)nav.addEventListener('click',()=>open('collection'));
 })();
