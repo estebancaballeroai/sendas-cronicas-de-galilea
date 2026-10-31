@@ -1,1 +1,4 @@
 .dialog-option-seen .modal-choice{opacity:.52;filter:grayscale(1);border-color:#858585!important;background:#343434!important}.dialog-option-seen small{display:block;color:#a9a9a9;font-size:.73rem;margin:0 0 9px 12px}.dialog-option-seen .modal-choice:focus-visible{opacity:1;outline:2px solid #d5b67a}
+/* Previously used scene actions remain available for revisiting. */
+.action-btn.action-btn-seen{opacity:.53;filter:grayscale(1);background:#30383c;border-color:#777!important}
+.action-btn.action-btn-seen:focus-visible{opacity:1;outline:2px solid #d5b67a}
