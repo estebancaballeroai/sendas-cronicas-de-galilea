@@ -37,6 +37,23 @@ await check('new game mobile and image decoding',async()=>{
     assert.deepEqual(errs,[]);
   }finally{await context.close();}
 });
+await check('chapter II choices survive game engine save and reload',async()=>{
+ const initial=seed();initial.scene='dock';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await page.locator('[data-ch18="open"]').click();
+  await page.locator('[data-ch18-choice="listen"]').click();
+  assert.ok((await state(page)).chapter18.choices.includes('listen'));
+  await page.locator('[data-ch18-choice="close"]').click();
+  await action(page,'talkJonas');
+  await page.locator('#modal-close').click();
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  assert.ok((await state(page)).chapter18.choices.includes('listen'),'Chapter II choice lost on reload');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
 await check('NPC dialogue history persists across reopening and reload',async()=>{
  const initial=seed();initial.scene='dock';initial.flags.netDone=false;
  const {context,page,errs}=await pageAt(390,844,initial);
