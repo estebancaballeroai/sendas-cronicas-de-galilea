@@ -110,7 +110,7 @@
       else ch.resolution='pendiente';
     });
     var diary={
-      consult:'Yael autorizó contrastar el registro con los vecinos y permanecer presente. No se ha declarado saldada la deuda.',
+      consult:'Yael autorizó una revisión de la cuenta ante testigos y quiso estar presente. No se ha declarado saldada la deuda.',
       impose:'Mostré el registro antes de recibir permiso. Yael me hizo ver que tenía que recuperar su confianza.',
       postpone:'Decidí esperar. Las provisiones de la familia siguen siendo escasas.'
     };
