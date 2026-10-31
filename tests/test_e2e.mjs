@@ -71,8 +71,8 @@ for(const [key,location] of [['mara','market'],['jonas','dock'],['simeon','simeo
     await action(page,'story:conclude');
     assert.ok((await state(page)).codex.resolved,'Audience was not saved');
     await page.locator('.ledger16-sheet .codex-close').click();
-    await page.reload({waitUntil:'domcontentloaded'});
-    await page.locator('#start-continue').click();
+    console.log('PRE_RELOAD',key,JSON.stringify(await state(page)),JSON.stringify(await page.evaluate(()=>localStorage.getItem('sendas_cronicas_ilustrada_1'))));await page.reload({waitUntil:'domcontentloaded'});
+    await page.locator('#start-continue').click();console.log('POST_RELOAD',key,JSON.stringify(await state(page)));
     assert.equal((await state(page)).codex.entrusted,key);
     assert.ok((await state(page)).codex.resolved);
     assert.ok((await state(page)).codex.found.includes('revealed'),'Previous collection lost');
