@@ -17,12 +17,14 @@ document.addEventListener('click',function(e){
  var b=e.target.closest('#actions .action-btn[data-run]');
  if(!b)return;
  var data=read();if(!data||!data.scene)return;
- var action=b.getAttribute('data-run');
- data.actionHistory=data.actionHistory||{};
- var history=data.actionHistory[data.scene]||[];
- if(history.indexOf(action)===-1){data.actionHistory[data.scene]=history.concat(action).slice(-120);
- try{localStorage.setItem(KEY,JSON.stringify(data));}catch(err){}}
+ var action=b.getAttribute('data-run'),scene=data.scene;
  b.classList.add('action-btn-seen');
+ setTimeout(function(){var latest=read();if(!latest)return;
+ latest.actionHistory=latest.actionHistory||{};
+ var history=latest.actionHistory[scene]||[];
+ if(history.indexOf(action)===-1){latest.actionHistory[scene]=history.concat(action).slice(-120);
+ try{localStorage.setItem(KEY,JSON.stringify(latest));}catch(err){}}
+ mark();},0);
 },true);
 var root=document.getElementById('actions');
 if(root)new MutationObserver(mark).observe(root,{childList:true});
