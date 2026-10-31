@@ -24,7 +24,7 @@ function seed(){
 }
 const choose=(page,action)=>page.locator('[data-ledger="'+action+'"]').last().click({timeout:10000});
 const action=(page,act)=>page.locator('.action-btn[data-run="'+act+'"]').first().click({timeout:10000});
-const state=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('sendas_cronicas_ilustrada_1')));
+const state=page=>page.evaluate(()=>window.SENDAS_READONLY.getState());
 await check('new game mobile and image decoding',async()=>{
   const {context,page,errs}=await pageAt();
   try{
