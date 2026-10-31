@@ -45,7 +45,7 @@ await check('chapter II choices survive game engine save and reload',async()=>{
   await page.locator('[data-ch18="open"]').click();
   await page.locator('[data-ch18-choice="listen"]').click();
   assert.ok((await state(page)).chapter18.choices.includes('listen'));
-  await page.locator('[data-ch18-choice="close"]').click();
+  await page.locator('[data-ch18-choice="close"]').first().click();
   await action(page,'talkJonas');
   await page.locator('#modal-close').click();
   await page.reload({waitUntil:'domcontentloaded'});
@@ -61,11 +61,11 @@ await check('Yael visited questions remain gray after reopening and reload',asyn
   await page.locator('#start-continue').click();
   await page.locator('[data-ch18="open"]').click();
   await page.locator('[data-ch18-choice="listen"]').click();
-  await page.locator('[data-ch18-choice="close"]').click();
+  await page.locator('[data-ch18-choice="close"]').first().click();
   await page.locator('[data-ch18="open"]').click();
   await page.locator('[data-ch18-choice="listen"]').click();
   assert.ok(await page.locator('[data-ch18-choice="account"]').count());
-  await page.locator('[data-ch18-choice="close"]').click();
+  await page.locator('[data-ch18-choice="close"]').first().click();
   await page.reload({waitUntil:'domcontentloaded'});
   await page.locator('#start-continue').click();
   await page.locator('[data-ch18="open"]').click();
