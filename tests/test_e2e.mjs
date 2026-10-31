@@ -37,6 +37,72 @@ await check('new game mobile and image decoding',async()=>{
     assert.deepEqual(errs,[]);
   }finally{await context.close();}
 });
+await check('chapter II choices survive game engine save and reload',async()=>{
+ const initial=seed();initial.scene='dock';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await page.locator('[data-ch18="open"]').click();
+  await page.locator('[data-ch18-choice="listen"]').click();
+  assert.ok((await state(page)).chapter18.choices.includes('listen'));
+  await page.locator('[data-ch18-choice="close"]').first().click();
+  await action(page,'talkJonas');
+  await page.locator('#modal-close').click();
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  assert.ok((await state(page)).chapter18.choices.includes('listen'),'Chapter II choice lost on reload');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+await check('chapter II WebP art files are present and decode',async()=>{
+ const initial=seed();initial.scene='dock';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await page.locator('[data-ch18="open"]').click();
+  const paths=['assets/chapter18/galilea_courtyard_detail.webp','assets/chapter18/yael_portrait.webp','assets/chapter18/eliab_portrait.webp'];
+  const result=await page.evaluate(async(paths)=>Promise.all(paths.map(async path=>{const img=new Image();img.src=path;try{await img.decode();return {path,width:img.naturalWidth,height:img.naturalHeight};}catch(e){return {path,error:String(e)};}})),paths);
+  assert.ok(result.every(x=>x.width>0&&x.height>0),'Missing or undecodable chapter art: '+JSON.stringify(result));
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+await check('Yael visited questions remain gray after reopening and reload',async()=>{
+ const initial=seed();initial.scene='dock';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await page.locator('[data-ch18="open"]').click();
+  await page.locator('[data-ch18-choice="listen"]').click();
+  await page.locator('[data-ch18-choice="close"]').first().click();
+  await page.locator('[data-ch18="open"]').click();
+  await page.locator('[data-ch18-choice="account"]').click();
+  assert.ok(await page.locator('[data-ch18-choice="listen"]').count());
+  await page.locator('[data-ch18-choice="close"]').first().click();
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  await page.locator('[data-ch18="open"]').click();
+  await page.locator('[data-ch18-choice="listen"]').click();
+  assert.ok(await page.locator('[data-ch18-choice="account"]').evaluate(el=>el.classList.contains('ch18-seen')),'Visited question lost gray styling after reload');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+await check('NPC dialogue history persists across reopening and reload',async()=>{
+ const initial=seed();initial.scene='dock';initial.flags.netDone=false;
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await action(page,'talkJonas');
+  await page.locator('#modal-content [data-run="jonasFaith"]').click();
+  await page.locator('#modal-close').click();
+  await action(page,'talkJonas');
+  assert.ok(await page.locator('#modal-content [data-run="jonasFaith"]').evaluate(el=>el.closest('.dialog-option').classList.contains('dialog-option-seen')),'Reopened dialogue lost visited state');
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  await action(page,'talkJonas');
+  assert.ok(await page.locator('#modal-content [data-run="jonasFaith"]').evaluate(el=>el.closest('.dialog-option').classList.contains('dialog-option-seen')),'Reload lost visited dialogue state');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
 await check('visited scene action becomes gray and survives reload',async()=>{
  const {context,page,errs}=await pageAt();
  try{
