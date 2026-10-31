@@ -56,7 +56,7 @@ for(const [key,location] of [['mara','market'],['jonas','dock'],['simeon','simeo
     await page.locator('#start-continue').click();
     await action(page,'story:plan');
     await choose(page,'choose:'+key);
-    assert.equal((await state(page)).codex.entrusted,key);
+    assert.equal((await state(page)).codex.entrusted,key,'Entrusted selection should persist');
     await page.locator('.ledger16-sheet .codex-close').click();
     await action(page,'go:village');
     await action(page,'go:'+location);
