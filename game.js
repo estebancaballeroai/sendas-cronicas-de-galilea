@@ -78,7 +78,7 @@ function canGo(id){if(id==='hill'&&progress()<3){let missing=[];if(!flag('netDon
  if(id==='ruins'&&!flag('springSolved')){simple('Una entrada escondida','Primero debes descubrir qué hay detrás de los canales del manantial.');return false;}
  return true;}
 const WORLD_SCENES=new Set(['home','village','market','dock','irit','simeon']);
-function worldPhase(){if(state.visited&&state.visited.includes('yael'))return 0;return state.completed?4:Math.min(3,progress());}
+function worldPhase(){return state.completed?4:Math.min(3,progress());}
 function worldPeriod(){return ['AMANECER','MEDIODÍA','ATARDECER','NOCHE','NOCHE'][worldPhase()];}
 function worldArt(id){if(id==='jesus'&&state.completed)return 'epilogue';if(!WORLD_SCENES.has(id))return SCENES[id].art;const v=worldPhase();return SCENES[id].art+(v===0?'':v===1?'_late':v===2?'_dusk':'_night');}
 function worldMoment(id){const stage=worldPhase();if(!WORLD_SCENES.has(id))return '';const moments={
