@@ -7,8 +7,8 @@ var branches={
  jonas:'Jonás ha ofrecido preguntar por trabajo en el embarcadero. Yael teme que la propuesta se convierta en otra deuda.',
  simeon:'Siméon conserva una copia del registro. Yael quiere saber quién tendrá acceso a lo que su familia diga.'
 };
-function get(){try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}}
-function patch(fn){var s=get();if(!s)return null;s.chapter18=s.chapter18||{stage:0,choices:[],notes:[]};fn(s.chapter18,s);try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}return s;}
+function get(){return window.SENDAS_CHAPTER_API?window.SENDAS_CHAPTER_API.get():null;}
+function patch(fn){var s=get();if(!s)return null;s.chapter18=s.chapter18||{stage:0,choices:[],notes:[]};fn(s.chapter18,s);if(window.SENDAS_CHAPTER_API)window.SENDAS_CHAPTER_API.setChapter18(s.chapter18);return s;}
 function eligible(s){return !!(s&&s.codex&&(s.codex.delivered||s.codex.resolved||s.codex.followup));}
 function button(){var s=get(),host=document.getElementById('actions');if(!host||!eligible(s))return; if(host.querySelector('[data-ch18]'))return;
  var b=document.createElement('button');b.type='button';b.className='action-btn';b.setAttribute('data-ch18','open');b.textContent='Capítulo II · Visitar a la familia del canal';host.appendChild(b);
