@@ -1,0 +1,4 @@
+/* SENDAS 1.8: original illustrated assets, with existing scene fallback. */
+#chapter18-root .ch18-art{background-image:linear-gradient(0deg,rgba(9,20,25,.25),transparent 65%),url('assets/chapter18/galilea_courtyard_detail.webp'),url('assets/home.webp');background-size:cover;background-position:center}
+#chapter18-root .ch18-dialogue-head::before{content:'';display:block;flex:none;width:64px;height:72px;border:2px solid #bca06f;border-radius:10px;background:url('assets/chapter18/yael_portrait.webp') center 24%/cover no-repeat}
+#chapter18-root .ch18-dialogue-head.ch18-eliab::before{background-image:url('assets/chapter18/eliab_portrait.webp')}
