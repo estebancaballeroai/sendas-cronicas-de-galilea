@@ -37,52 +37,97 @@ await check('new game mobile and image decoding',async()=>{
     assert.deepEqual(errs,[]);
   }finally{await context.close();}
 });
-await check('chapter II choices survive game engine save and reload',async()=>{
- const initial=seed();initial.scene='dock';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
+await check('chapter II is a real navigable scene and choices survive reload',async()=>{
+ const initial=seed();initial.scene='village';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
  const {context,page,errs}=await pageAt(390,844,initial);
  try{
   await page.locator('#start-continue').click();
-  await page.locator('[data-ch18="open"]').click();
-  await page.locator('[data-ch18-choice="listen"]').click();
+  await action(page,'go:yael');
+  assert.match(await page.locator('#story-title').innerText(),/amanecer de las deudas/i);
+  assert.match(await page.locator('.chapter-chip').innerText(),/CAPÍTULO II/);
+  await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth>100);
+  await action(page,'ch2:talk:yael');
+  assert.ok(await page.locator('#modal-content .dialog-head').count(),'Shared dialogue renderer missing');
+  await page.locator('#modal-content [data-run="ch2:topic:listen"]').click();
   assert.ok((await state(page)).chapter18.choices.includes('listen'));
-  await page.locator('[data-ch18-choice="close"]').first().click();
-  await action(page,'talkJonas');
+  await page.locator('#modal-close').click();
+  await action(page,'ch2:observe:grain');
   await page.locator('#modal-close').click();
   await page.reload({waitUntil:'domcontentloaded'});
   await page.locator('#start-continue').click();
-  assert.ok((await state(page)).chapter18.choices.includes('listen'),'Chapter II choice lost on reload');
+  assert.equal((await state(page)).scene,'yael');
+  assert.ok((await state(page)).chapter18.notes.includes('provisiones'));
+  assert.ok((await state(page)).chapter18.choices.includes('listen'));
   assert.deepEqual(errs,[]);
  }finally{await context.close();}
 });
-await check('chapter II WebP art files are present and decode',async()=>{
- const initial=seed();initial.scene='dock';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
+await check('chapter II WebP originals decode and zoom is absent',async()=>{
+ const initial=seed();initial.scene='village';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
  const {context,page,errs}=await pageAt(390,844,initial);
  try{
   await page.locator('#start-continue').click();
-  await page.locator('[data-ch18="open"]').click();
+  await action(page,'go:yael');
   const paths=['assets/chapter18/galilea_courtyard_detail.webp','assets/chapter18/yael_portrait.webp','assets/chapter18/eliab_portrait.webp'];
   const result=await page.evaluate(async(paths)=>Promise.all(paths.map(async path=>{const img=new Image();img.src=path;try{await img.decode();return {path,width:img.naturalWidth,height:img.naturalHeight};}catch(e){return {path,error:String(e)};}})),paths);
-  assert.ok(result.every(x=>x.width>0&&x.height>0),'Missing or undecodable chapter art: '+JSON.stringify(result));
+  assert.ok(result.every(x=>x.width>0&&x.height>0),'Missing chapter art: '+JSON.stringify(result));
+  assert.equal(await page.locator('#btn-scene-zoom').count(),0);
+  assert.equal(await page.locator('#scene-lightbox').count(),0);
+  assert.equal(await page.locator('#hotspot-layer [data-run="ch2:talk:yael"]').count(),1);
   assert.deepEqual(errs,[]);
  }finally{await context.close();}
 });
-await check('Yael visited questions remain gray after reopening and reload',async()=>{
- const initial=seed();initial.scene='dock';initial.codex={...initial.codex,entrusted:'jonas',delivered:true,resolved:true};
+await check('one gray dialogue history for Yael survives reopening and reload',async()=>{
+ const initial=seed();initial.scene='village';initial.codex={...initial.codex,entrusted:'mara',delivered:true,resolved:true};
  const {context,page,errs}=await pageAt(390,844,initial);
  try{
   await page.locator('#start-continue').click();
-  await page.locator('[data-ch18="open"]').click();
-  await page.locator('[data-ch18-choice="listen"]').click();
-  await page.locator('[data-ch18-choice="close"]').first().click();
-  await page.locator('[data-ch18="open"]').click();
-  await page.locator('[data-ch18-choice="account"]').click();
-  assert.ok(await page.locator('[data-ch18-choice="listen"]').count());
-  await page.locator('[data-ch18-choice="close"]').first().click();
+  await action(page,'go:yael');
+  await action(page,'ch2:talk:yael');
+  await page.locator('#modal-content [data-run="ch2:topic:listen"]').click();
+  await page.locator('#modal-close').click();
+  await action(page,'ch2:talk:yael');
+  await page.locator('#modal-content [data-run="ch2:topic:grain"]').click();
+  const seenChoice=page.locator('#modal-content [data-run="ch2:topic:listen"]');
+  assert.ok(await seenChoice.evaluate(el=>el.closest('.dialog-option').classList.contains('dialog-option-seen')),'Dialogue choice is not gray');
+  await page.locator('#modal-close').click();
   await page.reload({waitUntil:'domcontentloaded'});
   await page.locator('#start-continue').click();
-  await page.locator('[data-ch18="open"]').click();
-  await page.locator('[data-ch18-choice="listen"]').click();
-  assert.ok(await page.locator('[data-ch18-choice="account"]').evaluate(el=>el.classList.contains('ch18-seen')),'Visited question lost gray styling after reload');
+  await action(page,'ch2:talk:yael');
+  assert.ok(await page.locator('#modal-content [data-run="ch2:topic:listen"]').evaluate(el=>el.closest('.dialog-option').classList.contains('dialog-option-seen')),'Gray state lost after reload');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+for(const [w,person] of [['mara','Mara'],['jonas','Jonás'],['simeon','Siméon']]){
+ await check('Chapter II continuity from '+w+' testimony',async()=>{
+  const initial=seed();initial.scene='village';initial.codex={...initial.codex,entrusted:w,delivered:true,resolved:true};
+  const {context,page,errs}=await pageAt(390,844,initial);
+  try{
+   await page.locator('#start-continue').click();await action(page,'go:yael');await action(page,'ch2:talk:yael');
+   assert.ok((await page.locator('#modal-content').innerText()).includes(person),'Missing testimony consequence');
+   assert.deepEqual(errs,[]);
+  }finally{await context.close();}
+ });
+}
+await check('Chapter II informed decision persists and appears in journal',async()=>{
+ const initial=seed();initial.scene='village';initial.codex={...initial.codex,entrusted:'simeon',delivered:true,resolved:true};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();await action(page,'go:yael');
+  await action(page,'ch2:observe:grain');await page.locator('#modal-close').click();
+  await action(page,'ch2:observe:measure');await page.locator('#modal-close').click();
+  await action(page,'ch2:talk:yael');
+  await page.locator('#modal-content [data-run="ch2:topic:permission"]').click();
+  await page.locator('#modal-content [data-run="ch2:topic:promise"]').click();
+  await page.locator('#modal-content [data-run="ch2:topic:commit"]').click();
+  await page.locator('#modal-close').click();
+  await action(page,'ch2:meeting');
+  await page.locator('#modal-content [data-run="ch2:decision:consult"]').click();
+  assert.equal((await state(page)).chapter18.resolution,'revisión-con-consentimiento');
+  await page.locator('#modal-close').click();
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  assert.equal((await state(page)).chapter18.decision,'consult');
+  assert.ok((await state(page)).logs.some(x=>x.includes('revisión')||x.includes('revisar')));
   assert.deepEqual(errs,[]);
  }finally{await context.close();}
 });
