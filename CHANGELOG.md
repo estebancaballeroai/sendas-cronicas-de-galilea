@@ -1,3 +1,11 @@
+## 2.0.0 — Motor unificado y continuidad completa
+- Capítulos I/II comparten escena, mapa, hotspots, modales, historial gris de preguntas/acciones, diario y guardado.
+- Nuevo escenario de Yael con ilustración y retratos originales WebP; telar, grano y medida investigables.
+- Tres decisiones con consecuencias diferentes y continuidad según testigo previo, sin inventar anulación de deuda.
+- Desaparece la lupa y el visor de ampliación; imágenes originales intactas.
+- Migración compatible de partidas v1.7/1.8 y caché PWA renovada.
+- Pruebas del modelo y recorridos de navegador de ambos capítulos, incluyendo dispositivos móviles.
+
 ## 1.7 — Ecos del pueblo (desarrollo)
 - Tres encuentros posteriores al desenlace de la cuenta: ayuda con Irit, Jonás y Mara.
 - Posibilidad de posponer y volver a la conversación; decisiones registradas con compatibilidad de partidas anteriores.

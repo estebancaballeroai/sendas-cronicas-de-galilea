@@ -17,9 +17,11 @@ jobs:
       - name: Check JS and static resources
         run: |
           python3 tests/test_static.py
-          for f in game.js codex15.js chapter16.js mobile-ux.js ambient.js sw.js; do
+          for f in game.js core20.js chapter18.js codex15.js chapter16.js ambient.js sw.js; do
             test ! -f "$f" || node --check "$f"
           done
+          node tests/test_core20.cjs
+          node tests/test_sim20.cjs
       - name: Install Chromium and Playwright
         run: |
           npm install --no-save playwright@1.56.1

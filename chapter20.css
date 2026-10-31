@@ -1,0 +1,19 @@
+/* SENDAS 2.0: one visual language and dialogue component across all chapters. */
+.game-main.chapter-two .scene-art{object-position:center 45%;filter:contrast(1.04) saturate(1.03)}
+.game-main.chapter-two #story-overline{color:#ebc494}
+.game-main.chapter-two .scene-badge{border-color:rgba(238,201,147,.65)}
+.game-header .chapter-chip{min-width:87px;text-align:center}
+#modal-content .dialog-option{position:relative;margin-bottom:4px}
+#modal-content .dialog-option .modal-choice{min-height:48px}
+#modal-content .dialog-option.dialog-option-seen .modal-choice{opacity:.57;filter:grayscale(1);background:#343a3c!important;border-color:#899093!important}
+#modal-content .dialog-option.dialog-option-seen small{display:block;padding:1px 4px 9px 12px;color:#bfc4c7;font-size:.76rem;letter-spacing:.02em}
+#modal-content .dialog-option .modal-choice:focus-visible{outline:3px solid #f3d59d;outline-offset:2px;opacity:1}
+#actions .action-btn.action-btn-seen{opacity:.56;filter:grayscale(1);border-color:#8c9295!important}
+#actions .action-btn.action-btn-seen:focus-visible{opacity:1;outline:3px solid #f3d59d}
+/* Ch. II portraits are loaded by the same modal renderer as Ch. I portraits. */
+#modal-content .dialog-head .portrait{object-fit:cover;object-position:50% 20%;background:#1b2c33}
+/* The old separate zoom overlay is removed, preserving active scene hotspots. */
+.scene-zoom-btn,.scene-lightbox{display:none!important}
+@media(max-width:600px){.game-main.chapter-two .story-body{line-height:1.63}#modal-content .dialog-option .modal-choice{min-height:50px}}
+.scene-art,.scene-art.fading{transform:none!important}
+@media(max-width:820px){.game-header .chapter-chip{display:inline-flex;align-items:center;justify-content:center;font-size:9px;padding:5px 7px;min-width:0}.game-header .progress-chip{display:none}}

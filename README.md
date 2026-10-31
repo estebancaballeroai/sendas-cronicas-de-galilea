@@ -1,5 +1,12 @@
 # SENDAS — Crónicas de Galilea
 
+**Versión 2.0.0 · Los que escuchan / El peso de la verdad.** Los capítulos I y II utilizan el mismo motor de escenas, conversaciones, historial de acciones y guardado. El capítulo II tiene un patio explorable, tres observaciones y una decisión de consecuencias persistentes. Sin visor de zoom; se mantienen las imágenes originales y los puntos interactivos.
+
+La partida antigua (`sendas_cronicas_ilustrada_1`) se migra en memoria sin borrar los campos previos; importación y exportación JSON. Leer `NARRATIVE_BIBLE_20.md`, `VERSIONS_20.md` y las pruebas para los criterios de publicación. La web pública usa GitHub Pages y funciona sin servicios de pago.
+
+## Historial de versiones anteriores
+
+
 **1.4 · Mundo vivo** — RPG narrativo cinematográfico en español para móvil. Capítulo I: *Los que escuchan*.
 
 ## Jugar
