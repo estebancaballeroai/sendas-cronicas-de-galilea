@@ -23,7 +23,7 @@ function show(){
  root.innerHTML='<div class="ch18-shade"><section class="ch18-panel" role="dialog" aria-modal="true" aria-label="El amanecer de las deudas"><button class="ch18-close" data-ch18-choice="close" aria-label="Cerrar">×</button><p class="ch18-overline">CAPÍTULO II · EL PESO DE LA VERDAD</p><h2>El amanecer de las deudas</h2><p class="ch18-scene">Casa de Yael · Cafarnaúm · Amanecer</p><p class="ch18-story">'+text+'</p><div class="ch18-options">'+choices.map(function(c){return '<button data-ch18-choice="'+c[1]+'" class="'+((ch.choices||[]).indexOf(c[1])!==-1?'ch18-seen':'')+'">'+c[0]+'</button>';}).join('')+'</div><p class="ch18-foot">Las decisiones se guardan en esta partida.</p></section></div>';
 }
 document.addEventListener('click',function(e){var b=e.target.closest('[data-ch18],[data-ch18-choice]');if(!b)return;var choice=b.getAttribute('data-ch18-choice');if(!choice){show();return;}if(choice==='close'){document.getElementById('chapter18-root')?.remove();return;}
- patch(function(ch){ch.choices=ch.choices||[];if(ch.choices.indexOf(choice)<0)ch.choices.push(choice);ch.stage=Math.min(2,(ch.stage||0)+1);ch.lastChoice=choice;});
+ patch(function(ch){ch.choices=ch.choices||[];if(ch.choices.indexOf(choice)<0)ch.choices.push(choice);if(ch.stage===0){ch.stage=1;}else if(ch.stage===1){ch.stage=2;}ch.lastChoice=choice;});
  show();
 });
 var actions=document.getElementById('actions');if(actions)new MutationObserver(button).observe(actions,{childList:true});document.addEventListener('click',function(){setTimeout(button,0)});button();
