@@ -4,7 +4,7 @@
 const api=()=>window.SENDAS_GAME_API;
 const get=()=>window.SENDAS_CHAPTER_API.get();
 const seen=s=>s.chapter22||{};
-const view=(title,text,options)=>api().openPanel(title,'<p class="lead">'+text+'</p><div class="modal-actions">'+options.map(o=>'<button class="modal-choice" type="button" data-run="ch3:'+o[1]+'">'+o[0]+'<span>›</span></button>').join('')+'</div>','CAPÍTULO III · EL MENSAJERO');
+const view=(title,text,options)=>api().openPanel(title,(window.SENDAS_CINEMA25?.messageVisual(title)||'')+'<p class="lead">'+text+'</p><div class="modal-actions">'+options.map(o=>'<button class="modal-choice" type="button" data-run="ch3:'+o[1]+'">'+o[0]+'<span>›</span></button>').join('')+'</div>','CAPÍTULO III · EL MENSAJERO');
 const change=(key,value)=>{api().change(s=>{s.chapter22=s.chapter22||{stage:0,choices:{}};s.chapter22.choices=s.chapter22.choices||{};s.chapter22.choices[key]=value;s.chapter22.stage=Math.max(s.chapter22.stage||0,key==='route'?2:1);});api().refresh();};
 function start(){const s=get();if(s.scene!=='yael')return;const c=seen(s);
 if(c.stage>=2)return view('La decisión de Natán','El mensajero ha partido, y la tablilla espera su respuesta. El sendero hacia Magdala está abierto. Puedes seguirlo desde las rutas del pueblo.',[['Caminar hacia Magdala','travel'],['Regresar a Yael','close']]);
