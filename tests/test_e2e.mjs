@@ -337,6 +337,35 @@ await check('chapter III Yael return and persistent resolution',async()=>{
  }finally{await context.close();}
 });
 
+await check('chapter 2.4 clues and Yael persistence',async()=>{
+ const initial=seed();initial.scene='magdala3';
+ initial.codex={...initial.codex,entrusted:'mara',delivered:true,resolved:true};
+ initial.chapter18={stage:3,decision:'consult',choices:['listen'],notes:['provisiones']};
+ initial.chapter22={stage:4,clue:'record',choices:{route:'consult'},roadChoice:'talk'};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  for(const k of ['weights','origin','dates']){
+   await action(page,'m24:'+k);
+   await page.locator('#modal-close').click();
+  }
+  assert.equal((await state(page)).chapter24.clues.length,3);
+  await action(page,'m24:compare');
+  await page.locator('#modal-content [data-run="m24:theory:measures"]').click();
+  assert.equal((await state(page)).chapter24.compared,true);
+  await page.locator('#modal-content [data-run="m24:return"]').click();
+  assert.equal((await state(page)).scene,'yael');
+  await action(page,'m24:report');
+  await page.locator('#modal-content [data-run="m24:honest"]').click();
+  assert.equal((await state(page)).chapter24.reported,'honest');
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  assert.equal((await state(page)).chapter24.reported,'honest');
+  assert.equal((await state(page)).chapter24.clues.length,3);
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);
