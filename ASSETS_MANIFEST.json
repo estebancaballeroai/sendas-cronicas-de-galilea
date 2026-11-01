@@ -669,5 +669,45 @@
     ],
     "bytes": 553574,
     "sha256": "12aa92f8697f3d36d94019e9b9add71384803e7170589e2883689ad66b943be9"
+  },
+  "chapter26/almacen_magdala": {
+    "source": "ImageGen 2.6; original cinematic diptych cropped without synthetic vector drawing",
+    "kind": "scene",
+    "px": [
+      1536,
+      506
+    ],
+    "bytes": 278884,
+    "sha256": "689b0cb2229a4bb0c42e7d7f07be202806d684bf906acfde3d6f6f00fd336571"
+  },
+  "chapter26/voces_magdala": {
+    "source": "ImageGen 2.6; original cinematic diptych cropped without synthetic vector drawing",
+    "kind": "scene",
+    "px": [
+      1536,
+      508
+    ],
+    "bytes": 182824,
+    "sha256": "87d3a07c548d21bad1b3b0919f43d0275fea82775300de072df63361cc9b1063"
+  },
+  "chapter26/neria_portrait": {
+    "source": "ImageGen 2.6; original cinematic diptych cropped without synthetic vector drawing",
+    "kind": "character_portrait",
+    "px": [
+      512,
+      512
+    ],
+    "bytes": 68666,
+    "sha256": "383cc07fc24f45f54533a2d0e0db84a118be680639d0c6c9cbc523ee4b6bd082"
+  },
+  "chapter26/asaf_portrait": {
+    "source": "ImageGen 2.6; original cinematic diptych cropped without synthetic vector drawing",
+    "kind": "character_portrait",
+    "px": [
+      512,
+      512
+    ],
+    "bytes": 62720,
+    "sha256": "2e0ff57899a691f0b07a0d1cf65b0ad73c0d38ccb6e572ada748e0491b9044c2"
   }
 }

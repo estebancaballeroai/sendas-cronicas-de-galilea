@@ -1,3 +1,12 @@
+## 2.6 — Las voces de Magdala (1 de noviembre de 2026)
+
+- Nuevo episodio narrativo del capítulo III con Neria, comerciante, y Asaf, cargador del puerto.
+- Dos panorámicas originales del almacén y la mesa, más retratos coherentes de ambos testigos.
+- Cuatro indicios: dos testimonios, pesas y tablillas. No es posible elegir una hipótesis hasta reunir al menos tres, incluido un testigo.
+- Tres desenlaces en el patio de Yael con memoria de la escucha respetuosa y de la información compartida anteriormente.
+- Historial gris unificado y guardado en la misma partida anterior; soporte PWA y móviles.
+- Documentación: `DESIGN_26.md`, `QA_26.md` y `HISTORICAL_SOURCES.md`.
+
 ## 2.5 — Magdala cinematográfica (rama experimental)
 - Se preparan tres ilustraciones originales: camino, puerto y mensajero.
 - Hotspots vinculados a la composición y adaptados a móviles; no se restaura el zoom.

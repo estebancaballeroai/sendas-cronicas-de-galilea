@@ -417,6 +417,119 @@ await check('2.5 arriving messenger uses illustration with fallback',async()=>{
  }finally{await context.close();}
 });
 
+
+// SENDAS 2.6 — browser-level regression. Uses original image decoding, not a fallback.
+const seed26=()=>{
+ const s=seed();s.scene='magdala3';s.codex={...s.codex,entrusted:'mara',delivered:true,resolved:true};
+ s.visited=[...s.visited,'yael','road3','magdala3'];
+ s.chapter18={stage:3,decision:'consult',choices:['listen'],notes:['provisiones']};
+ s.chapter22={stage:4,clue:'record',choices:{route:'consult'},roadChoice:'talk'};
+ s.chapter24={clues:['weights','origin','dates'],compared:true,theory:'measures',reported:'honest'};
+ return s;
+};
+const m26=(page,id)=>page.locator('#modal-content [data-sendas-ui="'+id+'"]').click({timeout:12000});
+async function real26(page,name,w,h){
+ await page.waitForFunction(fragment=>{const im=document.querySelector('#scene-art');return im?.complete&&im.naturalWidth===1536&&im.src.includes('assets/chapter26/'+fragment+'.webp');},name,{timeout:15000});
+ const hActual=await page.locator('#scene-art').evaluate(img=>img.naturalHeight);
+ assert.equal(hActual,name==='almacen_magdala'?506:508);
+ await page.locator('#scene-stage').screenshot({path:'tests/screenshots/sendas26-'+name+'-'+w+'.png'});
+ const overflow=await page.evaluate(()=>({w:document.documentElement.scrollWidth,v:window.innerWidth}));
+ assert.ok(overflow.w<=overflow.v+3,'Horizontal overflow '+JSON.stringify(overflow));
+ if(w===390){const hScene=await page.locator('#scene-stage').evaluate(el=>el.getBoundingClientRect().height);assert.ok(hScene>=200&&hScene<=270,'Unexpected scene height '+hScene);}
+}
+for(const [w,h] of [[390,844],[800,1280]]){
+ await check('2.6 original cinematic art and interactive witness investigation '+w+'x'+h,async()=>{
+  const initial=seed26();const {context,page,errs}=await pageAt(w,h,initial);
+  try{
+   await page.locator('#start-continue').click();
+   await action(page,'m26:enter');assert.equal((await state(page)).scene,'almacen26');
+   await real26(page,'almacen_magdala',w,h);
+   await action(page,'m26:neria');await m26(page,'neria:deliveries');
+   assert.ok((await state(page)).chapter26.clues.includes('neria'));
+   await m26(page,'neria:open');
+   assert.ok(await page.locator('#modal-content [data-sendas-ui="neria:deliveries"]').evaluate(el=>el.classList.contains('sendas-ui-seen')),'Neria topic not gray');
+   await m26(page,'neria:listen');
+   assert.equal((await state(page)).chapter26.stance.neria,'neria:listen');
+   await page.locator('#modal-close').click();
+   await action(page,'m26:asaf');await m26(page,'asaf:shifts');
+   assert.ok((await state(page)).chapter26.clues.includes('asaf'));
+   await page.locator('#modal-close').click();
+   await action(page,'m26:table');assert.equal((await state(page)).scene,'mesa26');
+   await real26(page,'voces_magdala',w,h);
+   await action(page,'m26:weights');
+   assert.ok((await state(page)).chapter26.clues.includes('weights'));
+   await page.locator('#modal-close').click();
+   assert.match(await page.locator('#scene-discovery').innerText(),/3 de 4/);
+   await action(page,'m26:compare');await m26(page,'theory:deliveries');
+   assert.equal((await state(page)).chapter26.theory,'deliveries');
+   await m26(page,'return');assert.equal((await state(page)).scene,'yael');
+   await action(page,'m26:report');
+   await page.locator('#modal-content').screenshot({path:'tests/screenshots/sendas26-yael-'+w+'.png'});
+   await m26(page,'ending:transparent');
+   assert.equal((await state(page)).chapter26.ending,'transparent');
+   await page.locator('#modal-close').click();
+   await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
+   assert.equal((await state(page)).chapter26.ending,'transparent');
+   await action(page,'m26:report');
+   assert.match(await page.locator('#modal-title').innerText(),/Un relato que no se borra/);
+   await page.locator('#modal-close').click();
+   await page.evaluate(()=>window.SENDAS_GAME_API.navigate('almacen26'));
+   await action(page,'m26:neria');
+   assert.ok(await page.locator('#modal-content [data-sendas-ui="neria:deliveries"]').evaluate(el=>el.classList.contains('sendas-ui-seen')),'dialogue state lost after reload');
+   assert.deepEqual(errs,[]);
+   assert.equal(await page.locator('#btn-scene-zoom').count(),0);
+  }finally{await context.close();}
+ });
+}
+await check('2.6 routes inaccessible before a completed Magdala journey',async()=>{
+ const initial=seed26();initial.chapter22.stage=2;
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{await page.locator('#start-continue').click();assert.equal(await page.locator('#actions [data-run="m26:enter"]').count(),0);await page.evaluate(()=>window.SENDAS_CHAPTER26.run('enter'));assert.equal((await state(page)).scene,'magdala3');assert.deepEqual(errs,[]);}finally{await context.close();}
+});
+await check('2.6 evidence gate cannot be bypassed with optional moral answers',async()=>{
+ const initial=seed26();initial.scene='almacen26';initial.chapter26={clues:['neria','consent','respect'],topics:[],stance:{},theory:null};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await action(page,'m26:compare');
+  assert.match(await page.locator('#modal-title').innerText(),/La cuenta aún no habla/);
+  await page.evaluate(()=>window.SENDAS_CHAPTER26.run('theory:deliveries'));
+  assert.ok(!(await state(page)).chapter26.theory);
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+for(const ending of ['privacy','accuse']){
+ await check('2.6 Yael alternative '+ending+' is persistent and irreversible',async()=>{
+  const initial=seed26();initial.scene='yael';initial.chapter26={clues:['neria','asaf','weights'],topics:['neria:deliveries','asaf:shifts'],stance:{},theory:'measures',ending:null};
+  const {context,page,errs}=await pageAt(390,844,initial);
+  try{
+   await page.locator('#start-continue').click();
+   await action(page,'m26:report');await m26(page,'ending:'+ending);
+   assert.equal((await state(page)).chapter26.ending,ending);
+   await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
+   assert.equal((await state(page)).chapter26.ending,ending);
+   await action(page,'m26:report');assert.equal(await page.locator('#modal-content [data-sendas-ui="ending:transparent"]').count(),0);
+   assert.deepEqual(errs,[]);
+  }finally{await context.close();}
+ });
+}
+await check('2.6 new chapter scenes work offline after PWA cache installation',async()=>{
+ const initial=seed26();const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await page.evaluate(async()=>{await navigator.serviceWorker.ready;});
+  await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:20000});
+  await action(page,'m26:enter');
+  await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1536);
+  await context.setOffline(true);
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1536);
+  assert.equal((await state(page)).scene,'almacen26');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);

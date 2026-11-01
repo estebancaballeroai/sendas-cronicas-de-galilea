@@ -1,6 +1,6 @@
 # SENDAS — Crónicas de Galilea
 
-**2.5 (rama experimental):** nuevas escenas panorámicas y hotspots para Magdala. Los tres WebP originales de 1672 × 941 ya están integrados bajo assets/chapter23, registrados en el manifiesto y sometidos a pruebas automáticas de decodificación y captura visual. La versión pública permanece en 2.4. Ver QA_25.md.
+**2.6 (publicación condicionada a QA):** *Las voces de Magdala*. Natán escucha a Neria y Asaf en dos nuevos espacios ilustrados, reúne cuatro tipos de indicios y toma una decisión sobre qué contar a Yael. Son tres desenlaces persistentes, sin convertir la sospecha en prueba. Conserva las decisiones de capítulos I–III y el historial gris de diálogos. Los cuatro WebP originales están en `assets/chapter26` y en el manifiesto. Pruebas y límites: `QA_26.md`. La versión 2.5 permanece conservada en `backup/pre-2.6-20261101`.
 
 **Versión 2.1.0 · Los que escuchan / El peso de la verdad.** Los capítulos I y II utilizan el mismo motor de escenas, conversaciones, historial de acciones y guardado. El capítulo II tiene un patio explorable, tres observaciones y una decisión de consecuencias persistentes. Sin visor de zoom; se mantienen las imágenes originales y los puntos interactivos.
 
