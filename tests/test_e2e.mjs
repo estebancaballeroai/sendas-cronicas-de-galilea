@@ -314,6 +314,29 @@ await check('chapter III route, choice, Magdala clue and reload',async()=>{
  }finally{await context.close();}
 });
 
+await check('chapter III Yael return and persistent resolution',async()=>{
+ const initial=seed();initial.scene='yael';
+ initial.codex={...initial.codex,entrusted:'mara',delivered:true,resolved:true};
+ initial.chapter18={stage:3,decision:'consult',choices:['listen'],notes:['provisiones']};
+ initial.chapter22={stage:4,clue:'record',choices:{route:'consult'},roadChoice:'talk'};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await action(page,'ch4:open');
+  await page.locator('#modal-content [data-run="ch4:compare"]').click();
+  await page.locator('#modal-content [data-run="ch4:listen"]').click();
+  await page.locator('#modal-content [data-run="ch4:gather"]').click();
+  assert.equal((await state(page)).chapter23.outcome,'gather');
+  await page.locator('#modal-close').click();
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  assert.equal((await state(page)).chapter23.finished,true);
+  await action(page,'ch4:open');
+  assert.match(await page.locator('#modal-title').innerText(),/Lo que queda pendiente/);
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);
