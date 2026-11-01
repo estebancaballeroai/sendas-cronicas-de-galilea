@@ -530,6 +530,40 @@ await check('2.6 new chapter scenes work offline after PWA cache installation',a
  }finally{await context.close();}
 });
 
+
+// SENDAS 2.7 — consequence paths using the real shared UI and save.
+for(const previous of ['transparent','privacy','accuse']){
+ await check('2.7 reencounters persist after '+previous,async()=>{
+  const initial=seed26(); initial.scene='almacen26';initial.chapter26={clues:['neria','asaf','weights'],topics:[],stance:{},theory:'measures',ending:previous};
+  const {context,page,errs}=await pageAt(390,844,initial);
+  try{
+   await page.locator('#start-continue').click();
+   await action(page,'m27:neria');
+   assert.ok((await state(page)).chapter27.visits.neria);
+   await page.locator('#modal-close').click();
+   await action(page,'m27:asaf');
+   assert.ok((await state(page)).chapter27.visits.asaf);
+   await page.locator('#modal-close').click();
+   await page.evaluate(()=>window.SENDAS_GAME_API.navigate('yael'));
+   await action(page,'m27:yael');
+   assert.ok((await state(page)).chapter27.visits.yael);
+   await page.locator('#modal-close').click();
+   await action(page,'m27:resolve');
+   const choice=previous==='accuse'?'reconcile':'records';
+   await page.locator('#modal-content [data-sendas-ui="'+choice+'"]').click();
+   assert.equal((await state(page)).chapter27.choice,choice);
+   await page.locator('#modal-close').click();
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.locator('#start-continue').click();
+   assert.equal((await state(page)).chapter27.choice,choice);
+   assert.equal((await state(page)).chapter26.ending,previous);
+   await action(page,'m27:resolve');
+   assert.match(await page.locator('#modal-title').innerText(),/confianza tiene memoria/);
+   assert.deepEqual(errs,[]);
+  }finally{await context.close();}
+ });
+}
+
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);

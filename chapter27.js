@@ -19,7 +19,7 @@ function encounter(who){if(!eligible()||!ids.includes(who))return;const s=read()
 }
 function recap(){if(!eligible())return;const d=state(),end=read().chapter26.ending;const names={neria:'Neria',asaf:'Asaf',yael:'Yael'};
 show('La memoria del lago','<p>El puerto sigue trabajando. Las palabras que elegiste llegaron a personas que no estaban presentes cuando hablaste.</p><div class="m26-evidence">'+ids.map(w=>'<span class="'+(d.visits[w]?'m26-found':'')+'">'+names[w]+' · '+(d.visits[w]?'Reencuentro vivido':'Pendiente')+'</span>').join('')+'</div><p class="m27-note">Tu respuesta anterior a Yael: '+({transparent:'relato completo',privacy:'reserva de nombres',accuse:'acusación apresurada'}[end])+'. No se puede cambiar.</p>',[
- ['Volver a escuchar a Neria','neria'],['Volver a escuchar a Asaf','asaf'],['Cerrar','close']]);}
+ ['Cerrar y volver al lugar','close']]);}
 function resolution(){const d=state(),end=read().chapter26.ending;if(!eligible()||read().scene!=='yael'||!d.visits.neria||!d.visits.asaf)return;
 if(d.choice)return ending(d.choice);
 const options=end==='accuse'?[['Reconocer el daño sin exigir perdón','reconcile'],['Dejar que Yael decida cuándo hablar','patient']]:[['Proponer una revisión con los testigos','records'],['Dejar que Yael decida el momento','patient']];
