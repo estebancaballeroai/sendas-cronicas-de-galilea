@@ -1,3 +1,6 @@
+## 2.8.0 — El peso del amanecer
+Dos decorados originales; pruebas, testigos, reparto consentido, decisiones persistentes y epílogo con Yael. Compatible con guardados anteriores.
+
 ## 2.7 · Las huellas de las palabras (experimental)
 - Reencuentros con Neria, Asaf y Yael, ramificados según el desenlace 2.6.
 - Reparación sin perdón automático, revisión consensuada o espera con respeto a la familia.

@@ -1,0 +1,17 @@
+/* SENDAS 2.8: responsive cinematic chapters, no secondary overlays or extra assets. */
+#game-main.chapter-four .scene-stage{background:#23251f}
+#game-main.chapter-four .scene-art{object-fit:cover;object-position:center center;filter:contrast(1.025) saturate(1.035)}
+.m28-text{display:grid;gap:13px;font-size:15px;line-height:1.58;color:#efe3ce}
+.m28-text p{margin:0}
+.m28-quote{font:italic 18px/1.55 Georgia,serif;color:#f1dfbb;padding:14px;background:#36332a;border-left:3px solid #dcc18f;border-radius:0 10px 10px 0}
+.m28-actions{display:grid;gap:9px;margin-top:15px}
+.m28-choice{border:1px solid #a9997e;border-radius:10px;background:#333e3b;color:#f6e9d5;width:100%;min-height:51px;padding:12px 13px;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;font:600 14px/1.4 system-ui,sans-serif}
+.m28-choice span{font-size:21px;color:#e3c48e}
+.m28-meter{padding:11px;background:#25352f;border:1px solid #b1a47c77;border-radius:9px;display:grid;gap:7px}
+.m28-meter span{font:600 11px/1.4 system-ui,sans-serif;letter-spacing:.08em;color:#efdfbc}
+.m28-meter div{height:7px;background:#11221c;border-radius:9px;overflow:hidden}
+.m28-meter i{display:block;height:100%;background:#dcb87f;border-radius:9px}
+#modal-content .sendas-panel-amanecer28{display:block}
+#game-main.chapter-four .hotspot{min-height:44px;min-width:44px}
+@media(max-width:600px) and (orientation:portrait){#game-main.chapter-four .scene-stage{flex:0 0 60vw;min-height:0;max-height:42dvh}.m28-quote{font-size:16px}.m28-text{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.m28-meter i{transition:none}}
