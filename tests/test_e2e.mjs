@@ -652,7 +652,7 @@ await check('2.9 day-two scene and new art remain available offline',async()=>{
   await page.locator('#start-continue').click();await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1672);
   await page.evaluate(async()=>{await navigator.serviceWorker.ready;});
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:20000});
-  const keys=await page.evaluate(async()=>{const c=await caches.open('sendas-tres-dias-v2.9.0');return (await c.keys()).map(r=>new URL(r.url).pathname)});
+  const keys=await page.evaluate(async()=>{const c=await caches.open('sendas-campana-integrada-v3.0.0');return (await c.keys()).map(r=>new URL(r.url).pathname)});
   assert.ok(keys.some(p=>p.endsWith('/assets/chapter29/consejo_lamparas.webp')),'New WebP not in PWA cache');
   await context.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
   await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1672);
@@ -660,6 +660,82 @@ await check('2.9 day-two scene and new art remain available offline',async()=>{
  }finally{await context.close();}
 });
 
+
+await check('3.0 continuity opens from each chapter and preserves save',async()=>{
+ for(const scene of ['home','yael','road3','magdala3','almacen26','orilla28','patio29']){
+  const saved=seed();saved.scene=scene;saved.visited=[...new Set([...(saved.visited||[]),scene,'yael','road3','magdala3','almacen26','orilla28'])];
+  saved.codex={...saved.codex,entrusted:'mara',delivered:true,resolved:true};
+  saved.chapter18={stage:3,decision:'consult',choices:['listen'],notes:['provisiones']};
+  saved.chapter22={stage:4,clue:'record',choices:{route:'consult'},roadChoice:'talk'};
+  saved.chapter26={ending:'transparent',clues:['neria','asaf','weights']};
+  saved.chapter27={choice:'records',visits:{neria:true,asaf:true}};
+  saved.chapter28={plan:'record',closing:'share',evidence:['rope','load','turn','voice']};
+  saved.chapter29={started:true,day:1,heard:{patio29:[],consejo29:[],orilla29:[]}};
+  const {context,page,errs}=await pageAt(390,844,saved);
+  try{
+   await page.locator('#start-continue').click();
+   assert.equal(await page.locator('#actions [data-run="continuity:open"]').count(),1);
+   const before=await state(page);
+   await action(page,'continuity:open');
+   assert.equal(await page.locator('.continuity-step').count(),7);
+   assert.equal(await page.locator('.continuity-consequence').count(),4);
+   assert.match(await page.locator('#modal-title').innerText(),/Un solo camino/);
+   await page.locator('#modal-close').click();
+   const after=await state(page);
+   assert.equal(after.chapter29.day,before.chapter29.day);
+   assert.equal(after.chapter27.choice,before.chapter27.choice);
+   assert.deepEqual(errs,[]);
+  }finally{await context.close();}
+ }
+});
+await check('3.0 continuity never unlocks a future scene or rewrites a save',async()=>{
+ const saved=seed();saved.scene='home';
+ const {context,page,errs}=await pageAt(360,640,saved);
+ try{
+  await page.locator('#start-continue').click();
+  await action(page,'continuity:open');
+  const info=await page.evaluate(()=>window.SENDAS_CAMPAIGN30.graph(window.SENDAS_READONLY.getState()));
+  assert.equal(info.active,0);assert.equal(info.target,'village');
+  assert.ok(!info.stages[6].complete);
+  await page.locator('#modal-content [data-run="continuity:resume"]').click();
+  assert.equal((await state(page)).scene,'village');
+  assert.ok(!(await state(page)).chapter29?.final);
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  assert.equal((await state(page)).scene,'village');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+await check('3.0 continuity layout and reload on phone and tablet',async()=>{
+ for(const [w,h] of [[360,640],[390,844],[800,1280]]){
+  const saved=seed();saved.scene='village';
+  const {context,page,errs}=await pageAt(w,h,saved);
+  try{
+   await page.locator('#start-continue').click();await action(page,'continuity:open');
+   await page.waitForFunction(()=>{const p=document.querySelector('.continuity > p');const h=document.querySelector('.modal-header');return p&&h&&p.getBoundingClientRect().top>=h.getBoundingClientRect().bottom-3;});
+   await page.screenshot({path:'tests/screenshots/sendas30-campaign-'+w+'.png'});
+   const result=await page.evaluate(()=>({width:document.documentElement.scrollWidth,visible:innerWidth,segments:document.querySelectorAll('.continuity-step').length}));
+   assert.ok(result.width<=result.visible+3,'horizontal overflow '+JSON.stringify(result));
+   assert.equal(result.segments,7);
+   await page.locator('#modal-close').click();
+   await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
+   await action(page,'continuity:open');assert.equal(await page.locator('.continuity-step').count(),7);
+   assert.deepEqual(errs,[]);
+  }finally{await context.close();}
+ }
+});
+await check('3.0 campaign files are accessible offline',async()=>{
+ const {context,page,errs}=await pageAt(390,844,seed());
+ try{
+  await page.locator('#start-continue').click();await page.evaluate(()=>navigator.serviceWorker.ready);
+  await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:25000});
+  const files=await page.evaluate(async()=>{const c=await caches.open('sendas-campana-integrada-v3.0.0');return (await c.keys()).map(r=>new URL(r.url).pathname);});
+  assert.ok(files.some(p=>p.endsWith('/campaign30.js'))&&files.some(p=>p.endsWith('/campaign30.css')));
+  await context.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
+  await action(page,'continuity:open');assert.equal(await page.locator('.continuity-step').count(),7);
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);

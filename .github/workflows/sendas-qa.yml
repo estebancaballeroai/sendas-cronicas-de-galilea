@@ -17,7 +17,7 @@ jobs:
       - name: Check JS and static resources
         run: |
           python3 tests/test_static.py
-          for f in chapter29.js chapter28.js chapter27.js chapter26.js chapter25.js chapter24.js chapter22.js chapter23.js game.js core20.js shared-ui21.js chapter18.js codex15.js chapter16.js echoes17.js ambient.js sw.js; do
+          for f in campaign30.js chapter29.js chapter28.js chapter27.js chapter26.js chapter25.js chapter24.js chapter22.js chapter23.js game.js core20.js shared-ui21.js chapter18.js codex15.js chapter16.js echoes17.js ambient.js sw.js; do
             test ! -f "$f" || node --check "$f"
           done
           node tests/test_core20.cjs
@@ -39,8 +39,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: sendas-2.9-visual-qa
+          name: sendas-3.0-visual-qa
           path: |
+            tests/screenshots/sendas30-*.png
             tests/screenshots/unified-*.png
             tests/screenshots/cinema25-*.png
             tests/screenshots/sendas26-*.png
@@ -50,7 +51,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: sendas-2.9-qa-failures
+          name: sendas-3.0-qa-failures
           path: |
             tests/screenshots/
             /tmp/sendas-http.log

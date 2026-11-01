@@ -1,3 +1,9 @@
+## 3.0.0 — Una sola campaña
+- Cronología conectada y accesible desde todas las escenas y el diario.
+- Reanudación contextual sin desbloquear lugares ni reescribir decisiones.
+- Recordatorio de los efectos sobre Yael, Magdala, la carga y los tres días.
+- Pruebas de regresión históricas y nuevas pruebas cruzadas de continuidad.
+
 ## 2.9.0 - Tres días junto al lago
 
 - Nuevo capítulo V: tres escenas originales de 1672 x 941, cada una con puntos interactivos y decisiones.

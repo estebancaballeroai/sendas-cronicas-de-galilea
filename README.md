@@ -1,3 +1,7 @@
+## SENDAS 3.0 — Una sola campaña
+
+Continuidad de capítulos I–V, consecuencias y reanudación contextual, respetando los guardados antiguos y la dirección artística existente. Ver DESIGN_30.md y QA_30.md.
+
 ## 2.9.0 - Tres días junto al lago
 
 La versión 2.9 añade el capítulo V, que transcurre en tres jornadas tras la respuesta de Yael del capítulo IV. Tres ilustraciones originales panorámicas en `assets/chapter29/` representan el patio de las medidas, el consejo de noche y la orilla del tercer día. El jugador escucha a Yael, Neria, Mara, Siméon, Jonás, Irit y Asaf y toma **una decisión significativa por jornada**, con consecuencias y un cierre que no borra las cuentas pendientes.
