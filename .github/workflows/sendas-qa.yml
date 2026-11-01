@@ -17,7 +17,7 @@ jobs:
       - name: Check JS and static resources
         run: |
           python3 tests/test_static.py
-          for f in chapter22.js chapter23.js game.js core20.js shared-ui21.js chapter18.js codex15.js chapter16.js echoes17.js ambient.js sw.js; do
+          for f in chapter24.js chapter22.js chapter23.js game.js core20.js shared-ui21.js chapter18.js codex15.js chapter16.js echoes17.js ambient.js sw.js; do
             test ! -f "$f" || node --check "$f"
           done
           node tests/test_core20.cjs
