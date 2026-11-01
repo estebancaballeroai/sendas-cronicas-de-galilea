@@ -366,6 +366,55 @@ await check('chapter 2.4 clues and Yael persistence',async()=>{
  }finally{await context.close();}
 });
 
+
+await check('2.5 responsive route, port hotspots and persistent discoveries',async()=>{
+ for(const [width,height] of [[390,844],[800,1280]]){
+  const initial=seed();initial.scene='road3';
+  initial.codex={...initial.codex,entrusted:'mara',delivered:true,resolved:true};
+  initial.chapter18={stage:3,decision:'consult',choices:['listen'],notes:['provisiones']};
+  initial.chapter22={stage:2,choices:{route:'consult'}};
+  const {context,page,errs}=await pageAt(width,height,initial);
+  try{
+   await page.locator('#start-continue').click();
+   await page.waitForFunction(()=>document.querySelector('#scene-art')?.complete&&document.querySelector('#scene-art')?.naturalWidth>100);
+   assert.equal(await page.locator('#hotspot-layer [data-run="ch3:talk"]').count(),1);
+   assert.match(await page.locator('#scene-art').getAttribute('src'),/road_galilee|olive/);
+   await action(page,'ch3:talk');
+   await page.locator('#modal-close').click();
+   await action(page,'ch3:magdala');
+   await page.waitForFunction(()=>document.querySelector('#scene-art')?.complete&&document.querySelector('#scene-art')?.naturalWidth>100);
+   assert.equal((await state(page)).scene,'magdala3');
+   assert.match(await page.locator('#scene-art').getAttribute('src'),/magdala_port|dock/);
+   assert.equal(await page.locator('#hotspot-layer [data-run="m24:weights"]').count(),1);
+   await action(page,'m24:weights');
+   await page.locator('#modal-close').click();
+   assert.match(await page.locator('#scene-discovery').innerText(),/1 de 4/);
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.locator('#start-continue').click();
+   assert.ok((await state(page)).chapter24.clues.includes('weights'));
+   const dimensions=await page.evaluate(()=>({page:document.documentElement.scrollWidth,screen:innerWidth}));
+   assert.ok(dimensions.page<=dimensions.screen+3,'horizontal overflow '+JSON.stringify(dimensions));
+   assert.deepEqual(errs,[]);
+   await page.screenshot({path:'tests/screenshots/cinema25-'+width+'.png'});
+  }finally{await context.close();}
+ }
+});
+await check('2.5 arriving messenger uses illustration with fallback',async()=>{
+ const initial=seed();initial.scene='yael';
+ initial.codex={...initial.codex,entrusted:'mara',delivered:true,resolved:true};
+ initial.chapter18={stage:3,decision:'consult',choices:['listen'],notes:['provisiones']};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await action(page,'ch3:start');
+  assert.equal(await page.locator('#modal-content .cinema25-arrival img').count(),1);
+  await page.waitForFunction(()=>{let im=document.querySelector('#modal-content .cinema25-arrival img');return im&&im.complete&&im.naturalWidth>100;});
+  await page.locator('#modal-close').click();
+  assert.ok(await page.locator('#modal-root').isHidden());
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);
