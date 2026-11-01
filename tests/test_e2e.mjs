@@ -284,6 +284,36 @@ for(const [key,location] of [['mara','market'],['jonas','dock'],['simeon','simeo
   finally{await context.close();}
  });
 }
+
+await check('chapter III route, choice, Magdala clue and reload',async()=>{
+ const initial=seed();initial.scene='yael';initial.codex={...initial.codex,entrusted:'mara',delivered:true,resolved:true};initial.chapter18={stage:3,decision:'consult',choices:['listen'],notes:['provisiones']};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();
+  await action(page,'ch3:start');
+  await page.locator('#modal-content [data-run="ch3:yael"]').click();
+  await page.locator('#modal-content [data-run="ch3:consult"]').click();
+  await page.locator('#modal-content [data-run="ch3:travel"]').click();
+  assert.equal((await state(page)).scene,'road3');
+  await action(page,'ch3:talk');
+  assert.equal((await state(page)).chapter22.roadChoice,'talk');
+  await page.locator('#modal-close').click();
+  await action(page,'ch3:magdala');
+  assert.equal((await state(page)).scene,'magdala3');
+  await action(page,'ch3:observe');
+  assert.ok((await state(page)).chapter22.observed);
+  await page.locator('#modal-close').click();
+  await action(page,'ch3:question');
+  assert.equal((await state(page)).chapter22.clue,'question');
+  await page.locator('#modal-close').click();
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  assert.equal((await state(page)).scene,'magdala3');
+  assert.equal((await state(page)).chapter22.clue,'question');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);
