@@ -9,7 +9,7 @@ const change=(key,value)=>{api().change(s=>{s.chapter22=s.chapter22||{stage:0,ch
 function start(){const s=get();if(s.scene!=='yael')return;const c=seen(s);
 if(c.stage>=2)return view('La decisión de Natán','El mensajero ha partido, y la tablilla espera su respuesta. El sendero hacia Magdala está abierto. Puedes seguirlo desde las rutas del pueblo.',[['Caminar hacia Magdala','travel'],['Regresar a Yael','close']]);
 view('Una voz desde Magdala','El sol cae sobre el patio. Un hombre cubierto de polvo pide agua y entrega a Natán una pequeña tablilla. Habla de una segunda cuenta en Magdala. No sabe quién la escribió ni si es verdadera. Yael escucha desde el umbral: «Antes de marcharte, dime qué esperas encontrar. Mi familia no puede vivir de promesas».',[['Preguntar al mensajero por el origen de la tablilla','ask'],['Escuchar primero a Yael','yael'],['Guardar silencio y examinar la marca','mark']]);}
-function run(k){if(k==='close'){api().closePanel();return;}if(k==='travel'){if(seen(get()).stage>=2)api().navigate('road3');return;}if(k==='return'){api().navigate('yael');return;}if(['water','bread','talk','ignore','observe','record','question','leave','doubt'].includes(k)){encounter(k);return;}if(!['ask','yael','mark','stay','go','consult'].includes(k))return;
+function run(k){if(k==='close'){api().closePanel();return;}if(k==='travel'){if(seen(get()).stage>=2)api().navigate('road3');return;}if(k==='return'){api().navigate('yael');return;}if(['water','bread','talk','ignore','observe','record','question','leave','magdala','doubt'].includes(k)){encounter(k);return;}if(!['ask','yael','mark','stay','go','consult'].includes(k))return;
 const s=get();if(s.scene!=='yael')return;
 if(['ask','yael','mark'].includes(k)){
 change('approach',k);
