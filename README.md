@@ -1,3 +1,5 @@
+**2.7 experimental — Las huellas de las palabras**: reencuentros con Neria, Asaf y Yael, desbloqueados tras el desenlace 2.6. Las tres respuestas anteriores condicionan cada conversación; una decisión adicional irreversible se guarda en `chapter27`. Sin gráficos nuevos; se reutilizan ilustraciones originales 2.6 para coherencia visual.
+
 # SENDAS — Crónicas de Galilea
 
 **2.6 (publicación condicionada a QA):** *Las voces de Magdala*. Natán escucha a Neria y Asaf en dos nuevos espacios ilustrados, reúne cuatro tipos de indicios y toma una decisión sobre qué contar a Yael. Son tres desenlaces persistentes, sin convertir la sospecha en prueba. Conserva las decisiones de capítulos I–III y el historial gris de diálogos. Los cuatro WebP originales están en `assets/chapter26` y en el manifiesto. Pruebas y límites: `QA_26.md`. La versión 2.5 permanece conservada en `backup/pre-2.6-20261101`.

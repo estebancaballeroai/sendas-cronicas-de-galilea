@@ -17,7 +17,7 @@ print('SENDAS static validation: PASS')
 
 # 2.6: prevent a visually stale release where the code exists but is never loaded.
 html=(R/'index.html').read_text(encoding='utf-8')
-for needle in ('chapter26.js', 'chapter26.css', 'Versión 2.6.0', 'Las voces de Magdala 2.6'):
+for needle in ('chapter26.js', 'chapter26.css', 'Versión 2.7.0', 'chapter27.js'):
     assert needle in html, 'Missing 2.6 UI integration: '+needle
 for path in ['assets/chapter26/almacen_magdala.webp','assets/chapter26/voces_magdala.webp','assets/chapter26/neria_portrait.webp','assets/chapter26/asaf_portrait.webp']:
     d=(R/path).read_bytes()
@@ -25,3 +25,6 @@ for path in ['assets/chapter26/almacen_magdala.webp','assets/chapter26/voces_mag
 for path in ('chapter26.js','chapter26.css','DESIGN_26.md','QA_26.md'):
     assert (R/path).is_file(), path
 print('SENDAS 2.6 static chapter integration: PASS')
+
+assert (R/"chapter27.js").exists()
+print("SENDAS 2.7 static integration: PASS")
