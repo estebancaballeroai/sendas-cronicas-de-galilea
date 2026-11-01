@@ -1,0 +1,12 @@
+/* SENDAS 2.5: cinematic illustration while preserving the unified mobile UI. */
+.cinema25-arrival{margin:0 0 18px;position:relative;overflow:hidden;border:1px solid rgba(222,190,139,.36);border-radius:12px;background:#192226}
+.cinema25-arrival img{width:100%;height:auto;aspect-ratio:16/9;display:block;object-fit:cover}
+.cinema25-arrival figcaption{position:absolute;bottom:0;inset-inline:0;padding:18px 14px 11px;color:#fff0d2;background:linear-gradient(transparent,rgba(10,14,17,.78));font:700 10px/1.2 system-ui,sans-serif;letter-spacing:.16em}
+.chapter-three .scene-stage{background:#141d22}
+.chapter-three .scene-art{object-fit:cover}
+.chapter-three .image-caption{background:linear-gradient(transparent,rgba(7,14,19,.79));text-shadow:0 1px 4px #111}
+.chapter-three .scene-badge{background:rgba(19,29,32,.69);backdrop-filter:blur(4px)}
+.chapter-three #scene-discovery{font-size:.86rem}
+.chapter-three .hotspot{touch-action:manipulation}
+@media(max-width:600px){.cinema25-arrival{margin-bottom:14px;border-radius:9px}.chapter-three .hot-label{font-size:.74rem}.chapter-three .scene-stage{min-height:36vh}.chapter-three .image-hint{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.chapter-three .scene-art,.chapter-three .hotspot{transition:none!important;animation:none!important}}
