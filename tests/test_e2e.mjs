@@ -652,7 +652,7 @@ await check('2.9 day-two scene and new art remain available offline',async()=>{
   await page.locator('#start-continue').click();await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1672);
   await page.evaluate(async()=>{await navigator.serviceWorker.ready;});
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:20000});
-  const keys=await page.evaluate(async()=>{const c=await caches.open('sendas-tres-dias-v2.9.0');return (await c.keys()).map(r=>new URL(r.url).pathname)});
+  const keys=await page.evaluate(async()=>{const c=await caches.open('sendas-campana-integrada-v3.0.0');return (await c.keys()).map(r=>new URL(r.url).pathname)});
   assert.ok(keys.some(p=>p.endsWith('/assets/chapter29/consejo_lamparas.webp')),'New WebP not in PWA cache');
   await context.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
   await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1672);
