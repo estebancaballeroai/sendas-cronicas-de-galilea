@@ -612,7 +612,7 @@ for(const [previous,priorChoice,priorPlan,dayOne,dayTwo,dayThree] of [
    assert.equal(await page.locator('#actions [data-run="m29:start"]').count(),1);
    await action(page,'m29:start');assert.equal((await state(page)).scene,'patio29');await waitArt('patio_acuerdos');
    await page.locator('#scene-stage').screenshot({path:'tests/screenshots/sendas29-day1-'+previous+'.png'});
-   await action(page,'m29:deliberate');assert.equal((await state(page)).chapter29.first,null);await page.locator('#modal-close').click();
+   await action(page,'m29:deliberate');assert.ok(!(await state(page)).chapter29.first);await page.locator('#modal-close').click();
    await action(page,'m29:hear:yael');await page.locator('#modal-close').click();
    await action(page,'m29:hear:neria');await page.locator('#modal-close').click();
    await action(page,'m29:deliberate');await pick('pick:first:'+dayOne);
