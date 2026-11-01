@@ -1,3 +1,13 @@
+## 2.9.0 - Tres días junto al lago
+
+- Nuevo capítulo V: tres escenas originales de 1672 x 941, cada una con puntos interactivos y decisiones.
+- Una actuación por jornada: contrastar, reparar o acompañar; convocatoria, discreción o espera; compromiso final limitado.
+- Tres conjuntos de voces (9 conversaciones), progresión temporal, estados reactivos de familia, carga y trabajadores.
+- Las conversaciones ya consultadas siguen grisadas; las decisiones y su historia sobreviven a recargas y exportación.
+- Mapa actualizado para permitir volver a rutas del capítulo IV y a la jornada actual del V, bloqueando el viaje al pasado.
+- Caché PWA y manifiesto verificado de recursos cinematográficos.
+- Tests de 81 rutas de tres días, 648 intentos de reversión, regresión completa y navegación Playwright.
+
 ## 2.8.0 — El peso del amanecer
 Dos decorados originales; pruebas, testigos, reparto consentido, decisiones persistentes y epílogo con Yael. Compatible con guardados anteriores.
 

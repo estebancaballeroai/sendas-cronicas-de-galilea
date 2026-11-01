@@ -14,3 +14,11 @@ Separar siempre **evidencia material**, **reconstrucción razonable** y **ficci�
 ## Límites de v1.3
 
 No hay prueba de que los patios o los objetos del juego pertenezcan exactamente a este emplazamiento imaginado. La ropa y la flora son plausibles de forma general; hay detalles cuya datación y especificidad siguen sin estar verificados. No utilizar las escenas como reconstrucciones arqueológicas certificadas.
+
+
+## Marco de Magdala en SENDAS 2.9
+
+- https://publications.iaa.org.il/atiqot/vol90/iss1/7/ : fases de ocupación de Magdala, cerámicas y monedas; evidencia general para cronología, no para los personajes ficticios.
+- https://www.magdala.org/archaeology : parque arqueológico, mercado y espacio portuario como referencia visual.
+
+El reparto, la deuda, la intervención de Natán, Neria, Yael, Irit y los demás personajes son elementos de ficción, no eventos identificados históricamente.

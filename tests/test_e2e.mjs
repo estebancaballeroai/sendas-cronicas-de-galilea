@@ -593,6 +593,73 @@ for(const [outcome,choice] of [['transparent','records'],['privacy','patient'],[
  });
 }
 
+
+// SENDAS 2.9 — three days, original cinematic assets, limited actions and irreversible consequences.
+for(const [previous,priorChoice,priorPlan,dayOne,dayTwo,dayThree] of [
+ ['transparent','records','secure','verify','gather','notes'],
+ ['privacy','patient','council','family','quiet','offer'],
+ ['accuse','reconcile','record','mend','wait','invite']
+]){
+ await check('2.9 three-day campaign after '+previous,async()=>{
+  const initial=seed26();initial.scene='yael';initial.chapter26={ending:previous,clues:['neria','asaf','weights'],theory:'measures'};
+  initial.chapter27={choice:priorChoice,visits:{neria:true,asaf:true,yael:true}};
+  initial.chapter28={plan:priorPlan,closing:priorPlan,evidence:['rope','turn','voice'],spoke:true};
+  const {context,page,errs}=await pageAt(390,844,initial);
+  const pick=(value)=>page.locator('#modal-content [data-sendas-ui="'+value+'"]').click({timeout:10000});
+  const waitArt=async(file)=>{await page.waitForFunction(file=>{const im=document.querySelector('#scene-art');return im?.complete&&im.naturalWidth===1672&&im.naturalHeight===941&&im.src.includes('/chapter29/'+file+'.webp')&&im.dataset.artSource==='cinema29';},file);};
+  try{
+   await page.locator('#start-continue').click();
+   assert.equal(await page.locator('#actions [data-run="m29:start"]').count(),1);
+   await action(page,'m29:start');assert.equal((await state(page)).scene,'patio29');await waitArt('patio_acuerdos');
+   await page.locator('#scene-stage').screenshot({path:'tests/screenshots/sendas29-day1-'+previous+'.png'});
+   await action(page,'m29:deliberate');assert.ok(!(await state(page)).chapter29.first);await page.locator('#modal-close').click();
+   await action(page,'m29:hear:yael');await page.locator('#modal-close').click();
+   await action(page,'m29:hear:neria');await page.locator('#modal-close').click();
+   await action(page,'m29:deliberate');await pick('pick:first:'+dayOne);
+   assert.equal((await state(page)).chapter29.first,dayOne);
+   await pick('advance:2');assert.equal((await state(page)).scene,'consejo29');await waitArt('consejo_lamparas');
+   await page.locator('#scene-stage').screenshot({path:'tests/screenshots/sendas29-day2-'+previous+'.png'});
+   await action(page,'m29:hear:simeon');await page.locator('#modal-close').click();
+   await action(page,'m29:hear:jonas');await page.locator('#modal-close').click();
+   await action(page,'m29:deliberate');await pick('pick:second:'+dayTwo);
+   assert.equal((await state(page)).chapter29.second,dayTwo);
+   await pick('advance:3');assert.equal((await state(page)).scene,'orilla29');await waitArt('orilla_tercer_dia');
+   await page.locator('#scene-stage').screenshot({path:'tests/screenshots/sendas29-day3-'+previous+'.png'});
+   await action(page,'m29:hear:asaf');await page.locator('#modal-close').click();
+   await action(page,'m29:hear:yael');await page.locator('#modal-close').click();
+   await action(page,'m29:deliberate');await pick('pick:final:'+dayThree);
+   assert.equal((await state(page)).chapter29.final,dayThree);
+   await page.locator('#modal-close').click();
+   await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();await waitArt('orilla_tercer_dia');
+   const restored=await state(page);
+   assert.equal(restored.chapter29.first,dayOne);assert.equal(restored.chapter29.second,dayTwo);assert.equal(restored.chapter29.final,dayThree);
+   assert.equal(restored.chapter26.ending,previous);assert.equal(restored.chapter28.plan,priorPlan);
+   assert.match(await page.locator('#chapter-progress').innerText(),/3 \/ 3/);
+   await page.evaluate(()=>window.SENDAS_GAME_API.navigate('patio29'));assert.equal((await state(page)).scene,'orilla29');
+   await action(page,'m29:status');assert.ok(await page.locator('#modal-content .m29-effect').count()===3);
+   await page.locator('#modal-close').click();
+   const w=await page.evaluate(()=>({page:document.documentElement.scrollWidth,screen:innerWidth}));assert.ok(w.page<=w.screen+3,'Horizontal overflow '+JSON.stringify(w));
+   assert.deepEqual(errs,[]);
+  }finally{await context.close();}
+ });
+}
+await check('2.9 day-two scene and new art remain available offline',async()=>{
+ const initial=seed26();initial.scene='consejo29';initial.chapter26={ending:'transparent'};
+ initial.chapter27={choice:'records'};initial.chapter28={plan:'record',closing:'record'};
+ initial.chapter29={started:true,day:2,first:'verify',heard:{patio29:['yael','neria'],consejo29:[],orilla29:[]}};
+ const {context,page,errs}=await pageAt(390,844,initial);
+ try{
+  await page.locator('#start-continue').click();await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1672);
+  await page.evaluate(async()=>{await navigator.serviceWorker.ready;});
+  await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:20000});
+  const keys=await page.evaluate(async()=>{const c=await caches.open('sendas-tres-dias-v2.9.0');return (await c.keys()).map(r=>new URL(r.url).pathname)});
+  assert.ok(keys.some(p=>p.endsWith('/assets/chapter29/consejo_lamparas.webp')),'New WebP not in PWA cache');
+  await context.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
+  await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1672);
+  assert.equal((await state(page)).chapter29.day,2);assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);
