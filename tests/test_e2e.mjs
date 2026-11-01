@@ -712,6 +712,7 @@ await check('3.0 continuity layout and reload on phone and tablet',async()=>{
   const {context,page,errs}=await pageAt(w,h,saved);
   try{
    await page.locator('#start-continue').click();await action(page,'continuity:open');
+   await page.waitForFunction(()=>{const p=document.querySelector('.continuity > p');const h=document.querySelector('.modal-header');return p&&h&&p.getBoundingClientRect().top>=h.getBoundingClientRect().bottom-3;});
    await page.screenshot({path:'tests/screenshots/sendas30-campaign-'+w+'.png'});
    const result=await page.evaluate(()=>({width:document.documentElement.scrollWidth,visible:innerWidth,segments:document.querySelectorAll('.continuity-step').length}));
    assert.ok(result.width<=result.visible+3,'horizontal overflow '+JSON.stringify(result));
