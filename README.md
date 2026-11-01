@@ -1,3 +1,9 @@
+## 2.9.0 - Tres días junto al lago
+
+La versión 2.9 añade el capítulo V, que transcurre en tres jornadas tras la respuesta de Yael del capítulo IV. Tres ilustraciones originales panorámicas en `assets/chapter29/` representan el patio de las medidas, el consejo de noche y la orilla del tercer día. El jugador escucha a Yael, Neria, Mara, Siméon, Jonás, Irit y Asaf y toma **una decisión significativa por jornada**, con consecuencias y un cierre que no borra las cuentas pendientes.
+
+El diario, las rutas y las conversaciones comparten el mismo motor y guardado `sendas_cronicas_ilustrada_1`. Las decisiones de las versiones 2.6, 2.7 y 2.8 condicionan los textos. No se atribuye a Natán autoridad sobre las familias, se evitan cifras falsas de deuda y nadie obtiene perdón automático. La versión anterior se guarda en `backup/pre-2.9-20261101`. Consultar `DESIGN_29.md` y `QA_29.md`.
+
 **2.8.0: El peso del amanecer.** Dos escenas originales tras el epílogo de la 2.7, cuatro pruebas, conversación de Asaf, tres planes y respuesta persistente de Yael.
 
 **2.7 experimental — Las huellas de las palabras**: reencuentros con Neria, Asaf y Yael, desbloqueados tras el desenlace 2.6. Las tres respuestas anteriores condicionan cada conversación; una decisión adicional irreversible se guarda en `chapter27`. Sin gráficos nuevos; se reutilizan ilustraciones originales 2.6 para coherencia visual.

@@ -1,0 +1,29 @@
+/* SENDAS 2.9: illustrated three-day chapter, one accessible shared modal. */
+#game-main.chapter-five .scene-stage{background:#222a2a}
+#game-main.chapter-five .scene-art{object-fit:cover;object-position:center center;filter:contrast(1.02) saturate(1.055)}
+#game-main.chapter-five .scene-badge{background:rgba(28,30,29,.79);color:#fbe6bf;border:1px solid rgba(241,206,159,.52)}
+#game-main.chapter-five .image-caption{background:linear-gradient(90deg,rgba(18,24,22,.18),transparent);border-radius:8px}
+#game-main.chapter-five .hotspot{min-width:44px;min-height:44px;border-color:#f2d49c}
+#modal-content .sendas-panel-tresdias29{display:block;color:#eee4d5}
+.m29-body{display:grid;gap:13px;font-size:15px;line-height:1.64}
+.m29-body p{margin:0}
+.m29-meter{border:1px solid rgba(229,195,147,.52);background:linear-gradient(110deg,#2e3535,#263635);border-radius:13px;padding:14px;display:grid;gap:11px}
+.m29-days{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.m29-days strong{color:#ffdfad;font:700 13px/1.2 system-ui,sans-serif;letter-spacing:.11em}
+.m29-days span{font:500 12px/1.4 system-ui,sans-serif;color:#d4d1c6}
+.m29-track{height:7px;border-radius:10px;background:#162422;overflow:hidden}
+.m29-track i{display:block;height:100%;background:linear-gradient(90deg,#b6a87d,#f1d098);border-radius:inherit;transition:width .25s ease}
+.m29-meter>p{font-size:12px;color:#d1d0c6}
+.m29-quote{font:italic 17px/1.62 Georgia,serif;color:#fff1d8;background:rgba(137,109,64,.16);border-inline-start:3px solid #eac18b;border-radius:0 11px 11px 0;padding:14px 15px}
+.m29-options{display:grid;gap:9px;margin-top:17px}
+.m29-option{border:1px solid rgba(226,201,165,.54);border-radius:11px;background:#32403d;color:#f9e9d3;width:100%;min-height:50px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:start;font:600 14px/1.45 system-ui,sans-serif;touch-action:manipulation}
+.m29-option span{color:#f4cf91;font-size:21px;flex-shrink:0}
+.m29-option:hover,.m29-option:focus-visible{background:#40524d}
+.m29-options .sendas-ui-seen{border-color:#939b97;background:#33403d;color:#bec4bf}
+.m29-options .sendas-ui-visited{display:block;color:#aeb8ae;font-size:10px;font-weight:500}
+.m29-effects{display:grid;grid-template-columns:1fr;gap:8px}
+.m29-effect{display:grid;gap:4px;padding:10px 12px;border:1px solid rgba(226,202,167,.26);border-radius:9px;background:#243331}
+.m29-effect strong{font:600 11px/1.4 system-ui,sans-serif;color:#e7c997;letter-spacing:.045em}
+.m29-effect span{font:14px/1.45 system-ui,sans-serif;color:#ede4d4}
+@media(max-width:600px) and (orientation:portrait){#game-main.chapter-five .scene-stage{flex:0 0 60vw;min-height:0;max-height:42dvh}.m29-body{font-size:14px}.m29-quote{font-size:16px}.m29-meter{padding:11px}.m29-option{min-height:48px}}
+@media(prefers-reduced-motion:reduce){.m29-track i{transition:none}}

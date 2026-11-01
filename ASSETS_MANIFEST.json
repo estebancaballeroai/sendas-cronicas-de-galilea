@@ -729,5 +729,35 @@
     ],
     "bytes": 364328,
     "sha256": "244ffa8c586858f115caaf269d8d72e241a593f5f7712176f3be2e64930a1be2"
+  },
+  "chapter29/patio_acuerdos": {
+    "source": "ImageGen original cinematografico SENDAS 2.9",
+    "kind": "scene",
+    "px": [
+      1672,
+      941
+    ],
+    "bytes": 363038,
+    "sha256": "d81e31350c3c3c21ab112e43b97ab2eb7c7f1e53f1df6d83a448264134c2e2c4"
+  },
+  "chapter29/consejo_lamparas": {
+    "source": "ImageGen original cinematografico SENDAS 2.9",
+    "kind": "scene",
+    "px": [
+      1672,
+      941
+    ],
+    "bytes": 354872,
+    "sha256": "1df587199115803fed19416b779b296a42e83dca70614381d7420e4849a119e8"
+  },
+  "chapter29/orilla_tercer_dia": {
+    "source": "ImageGen original cinematografico SENDAS 2.9",
+    "kind": "scene",
+    "px": [
+      1672,
+      941
+    ],
+    "bytes": 460124,
+    "sha256": "b7c4bd087697f1eed81826500caad0ba19114f764c15024a3c5b4d5ca3707b23"
   }
 }

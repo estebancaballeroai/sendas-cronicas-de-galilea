@@ -17,7 +17,7 @@ print('SENDAS static validation: PASS')
 
 # 2.6: prevent a visually stale release where the code exists but is never loaded.
 html=(R/'index.html').read_text(encoding='utf-8')
-for needle in ('chapter26.js', 'chapter26.css', 'Versión 2.8.0', 'chapter27.js'):
+for needle in ('chapter26.js', 'chapter26.css', 'Versión 2.9.0', 'chapter27.js'):
     assert needle in html, 'Missing 2.6 UI integration: '+needle
 for path in ['assets/chapter26/almacen_magdala.webp','assets/chapter26/voces_magdala.webp','assets/chapter26/neria_portrait.webp','assets/chapter26/asaf_portrait.webp']:
     d=(R/path).read_bytes()
@@ -32,3 +32,17 @@ print("SENDAS 2.7 static integration: PASS")
 assert (R/"chapter28.js").exists() and (R/"chapter28.css").exists()
 for p in ["assets/chapter28/orilla_amanecer.webp","assets/chapter28/refugio_reparto.webp"]: assert (R/p).is_file(), p
 print("SENDAS 2.8 asset and entrypoint integration: PASS")
+
+# 2.9: the chapter must be loaded and its three cinematic originals must exist.
+for needle in ('chapter29.js','chapter29.css','Cap\u00edtulos I\u2013V'):
+    assert needle in html, 'Missing 2.9 entrypoint: '+needle
+for p in ('chapter29.js','chapter29.css','DESIGN_29.md','QA_29.md','tests/test_chapter29.cjs'):
+    assert (R/p).is_file(),p
+for name in ('patio_acuerdos','consejo_lamparas','orilla_tercer_dia'):
+    path=R/'assets/chapter29'/f'{name}.webp'
+    data=path.read_bytes()
+    assert data[:4]==b'RIFF' and data[8:12]==b'WEBP',str(path)
+    info=m['chapter29/'+name]
+    assert len(data)==info['bytes'] and info['px']==[1672,941] and hashlib.sha256(data).hexdigest()==info['sha256'],name
+assert 'sendas-tres-dias-v2.9.0' in cache
+print('SENDAS 2.9 three-day scenes, manifest, cache and entrypoint: PASS')
