@@ -564,6 +564,35 @@ for(const previous of ['transparent','privacy','accuse']){
  });
 }
 
+
+// 2.8: real Chromium original backgrounds, shared dialogue, three consequences and reload
+for(const [outcome,choice] of [['transparent','records'],['privacy','patient'],['accuse','reconcile']]){
+ await check('2.8 original scenes, evidence, final choice and reload '+outcome,async()=>{
+  const initial=seed26();initial.scene='yael';initial.chapter26={clues:['neria','asaf','weights'],topics:[],stance:{},theory:'measures',ending:outcome};initial.chapter27={visits:{neria:true,asaf:true,yael:true},choice};
+  const {context,page,errs}=await pageAt(390,844,initial);
+  try{
+   await page.locator('#start-continue').click();await action(page,'m28:begin');
+   assert.equal((await state(page)).scene,'orilla28');
+   await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1600&&document.querySelector('#scene-art')?.src.includes('orilla_amanecer'));
+   await page.locator('#scene-stage').screenshot({path:'tests/screenshots/sendas28-orilla-'+outcome+'.png'});
+   await action(page,'m28:rope');await page.locator('#modal-close').click();
+   await action(page,'m28:dialogue');await page.locator('#modal-close').click();
+   await action(page,'m28:turn');await page.locator('#modal-close').click();
+   await action(page,'go:refugio28');
+   await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1600&&document.querySelector('#scene-art')?.src.includes('refugio_reparto'));
+   await page.locator('#scene-stage').screenshot({path:'tests/screenshots/sendas28-refugio-'+outcome+'.png'});
+   await action(page,'m28:voice');await page.locator('#modal-close').click();
+   await action(page,'m28:compare');await page.locator('#modal-content [data-sendas-ui="secure"]').click();
+   assert.equal((await state(page)).chapter28.plan,'secure');
+   await page.locator('#modal-close').click();await page.evaluate(()=>window.SENDAS_GAME_API.navigate('yael'));
+   await action(page,'m28:finale');assert.equal((await state(page)).chapter28.closing,'secure');
+   await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
+   assert.equal((await state(page)).chapter28.closing,'secure');assert.equal((await state(page)).chapter27.choice,choice);
+   assert.deepEqual(errs,[]);
+  }finally{await context.close();}
+ });
+}
+
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);

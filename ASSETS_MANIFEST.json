@@ -709,5 +709,25 @@
     ],
     "bytes": 62720,
     "sha256": "2e0ff57899a691f0b07a0d1cf65b0ad73c0d38ccb6e572ada748e0491b9044c2"
+  },
+  "chapter28/orilla_amanecer": {
+    "source": "SENDAS 2.8 original ImageGen",
+    "kind": "scene",
+    "px": [
+      1600,
+      900
+    ],
+    "bytes": 409762,
+    "sha256": "edfc401f6509d5c7467dd8ea81a923a3aee2382b040e99279a214729a7dd8459"
+  },
+  "chapter28/refugio_reparto": {
+    "source": "SENDAS 2.8 original ImageGen",
+    "kind": "scene",
+    "px": [
+      1600,
+      900
+    ],
+    "bytes": 364328,
+    "sha256": "244ffa8c586858f115caaf269d8d72e241a593f5f7712176f3be2e64930a1be2"
   }
 }

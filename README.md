@@ -1,3 +1,5 @@
+**2.8.0: El peso del amanecer.** Dos escenas originales tras el epílogo de la 2.7, cuatro pruebas, conversación de Asaf, tres planes y respuesta persistente de Yael.
+
 **2.7 experimental — Las huellas de las palabras**: reencuentros con Neria, Asaf y Yael, desbloqueados tras el desenlace 2.6. Las tres respuestas anteriores condicionan cada conversación; una decisión adicional irreversible se guarda en `chapter27`. Sin gráficos nuevos; se reutilizan ilustraciones originales 2.6 para coherencia visual.
 
 # SENDAS — Crónicas de Galilea
