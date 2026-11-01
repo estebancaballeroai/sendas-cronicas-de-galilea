@@ -706,6 +706,35 @@ await check('3.0 continuity never unlocks a future scene or rewrites a save',asy
   assert.deepEqual(errs,[]);
  }finally{await context.close();}
 });
+await check('3.0 continuity layout and reload on phone and tablet',async()=>{
+ for(const [w,h] of [[360,640],[390,844],[800,1280]]){
+  const saved=seed();saved.scene='village';
+  const {context,page,errs}=await pageAt(w,h,saved);
+  try{
+   await page.locator('#start-continue').click();await action(page,'continuity:open');
+   await page.screenshot({path:'tests/screenshots/sendas30-campaign-'+w+'.png'});
+   const result=await page.evaluate(()=>({width:document.documentElement.scrollWidth,visible:innerWidth,segments:document.querySelectorAll('.continuity-step').length}));
+   assert.ok(result.width<=result.visible+3,'horizontal overflow '+JSON.stringify(result));
+   assert.equal(result.segments,7);
+   await page.locator('#modal-close').click();
+   await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
+   await action(page,'continuity:open');assert.equal(await page.locator('.continuity-step').count(),7);
+   assert.deepEqual(errs,[]);
+  }finally{await context.close();}
+ }
+});
+await check('3.0 campaign files are accessible offline',async()=>{
+ const {context,page,errs}=await pageAt(390,844,seed());
+ try{
+  await page.locator('#start-continue').click();await page.evaluate(()=>navigator.serviceWorker.ready);
+  await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:25000});
+  const files=await page.evaluate(async()=>{const c=await caches.open('sendas-campana-integrada-v3.0.0');return (await c.keys()).map(r=>new URL(r.url).pathname);});
+  assert.ok(files.some(p=>p.endsWith('/campaign30.js'))&&files.some(p=>p.endsWith('/campaign30.css')));
+  await context.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
+  await action(page,'continuity:open');assert.equal(await page.locator('.continuity-step').count(),7);
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);

@@ -41,6 +41,7 @@ jobs:
         with:
           name: sendas-3.0-visual-qa
           path: |
+            tests/screenshots/sendas30-*.png
             tests/screenshots/unified-*.png
             tests/screenshots/cinema25-*.png
             tests/screenshots/sendas26-*.png
