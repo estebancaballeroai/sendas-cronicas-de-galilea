@@ -1,3 +1,8 @@
+## 2.7 · Las huellas de las palabras (experimental)
+- Reencuentros con Neria, Asaf y Yael, ramificados según el desenlace 2.6.
+- Reparación sin perdón automático, revisión consensuada o espera con respeto a la familia.
+- Guardado automático y bloqueo de decisiones; conservación de las ilustraciones anteriores.
+
 ## 2.6 — Las voces de Magdala (1 de noviembre de 2026)
 
 - Nuevo episodio narrativo del capítulo III con Neria, comerciante, y Asaf, cargador del puerto.
