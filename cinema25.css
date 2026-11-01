@@ -10,3 +10,9 @@
 .chapter-three .hotspot{touch-action:manipulation}
 @media(max-width:600px){.cinema25-arrival{margin-bottom:14px;border-radius:9px}.chapter-three .hot-label{font-size:.74rem}.chapter-three .scene-stage{min-height:36vh}.chapter-three .image-hint{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.chapter-three .scene-art,.chapter-three .hotspot{transition:none!important;animation:none!important}}
+/* Portrait screens keep the seated traveler and quay in frame: preserve the panoramic 16:9 artwork. */
+@media(max-width:600px) and (orientation:portrait){
+ .chapter-three .scene-stage{flex:0 0 60vw;max-height:42dvh;min-height:0}
+ .chapter-three .image-caption #scene-place{font-size:clamp(16px,4.6vw,20px)}
+ .chapter-three .hotspot{min-width:44px;min-height:44px}
+}

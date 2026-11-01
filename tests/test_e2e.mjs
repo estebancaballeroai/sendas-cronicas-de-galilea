@@ -378,6 +378,7 @@ await check('2.5 responsive route, port hotspots and persistent discoveries',asy
    await page.locator('#start-continue').click();
    await page.waitForFunction(()=>{const im=document.querySelector('#scene-art');return im?.complete&&im.naturalWidth===1672&&im.naturalHeight===941&&im.src.includes('assets/chapter23/road_galilee.webp');});
    assert.equal(await page.locator('#hotspot-layer [data-run="ch3:talk"]').count(),1);
+   if(width<600){const h=await page.locator('#scene-stage').evaluate(el=>el.getBoundingClientRect().height);assert.ok(h<=width*.68&&h>=width*.54,'Panorama is cropped on narrow screens, height='+h);}
    await page.locator('#scene-stage').screenshot({path:'tests/screenshots/cinema25-road-'+width+'.png'});
    await action(page,'ch3:talk');
    await page.locator('#modal-close').click();
