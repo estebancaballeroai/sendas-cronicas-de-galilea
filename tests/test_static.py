@@ -17,7 +17,7 @@ print('SENDAS static validation: PASS')
 
 # 2.6: prevent a visually stale release where the code exists but is never loaded.
 html=(R/'index.html').read_text(encoding='utf-8')
-for needle in ('chapter26.js', 'chapter26.css', 'Versión 2.9.0', 'chapter27.js'):
+for needle in ('chapter26.js', 'chapter26.css', 'Versión 3.0.0', 'chapter27.js'):
     assert needle in html, 'Missing 2.6 UI integration: '+needle
 for path in ['assets/chapter26/almacen_magdala.webp','assets/chapter26/voces_magdala.webp','assets/chapter26/neria_portrait.webp','assets/chapter26/asaf_portrait.webp']:
     d=(R/path).read_bytes()
@@ -44,5 +44,10 @@ for name in ('patio_acuerdos','consejo_lamparas','orilla_tercer_dia'):
     assert data[:4]==b'RIFF' and data[8:12]==b'WEBP',str(path)
     info=m['chapter29/'+name]
     assert len(data)==info['bytes'] and info['px']==[1672,941] and hashlib.sha256(data).hexdigest()==info['sha256'],name
-assert 'sendas-tres-dias-v2.9.0' in cache
+assert 'sendas-campana-integrada-v3.0.0' in cache
 print('SENDAS 2.9 three-day scenes, manifest, cache and entrypoint: PASS')
+
+assert (R/"campaign30.js").exists() and (R/"campaign30.css").exists()
+assert "campaign30.js" in html and "campaign30.css" in html
+assert "./campaign30.js" in cache and "./campaign30.css" in cache
+print("SENDAS 3.0 continuity integration: PASS")

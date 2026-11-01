@@ -660,6 +660,52 @@ await check('2.9 day-two scene and new art remain available offline',async()=>{
  }finally{await context.close();}
 });
 
+
+await check('3.0 continuity opens from each chapter and preserves save',async()=>{
+ for(const scene of ['home','yael','road3','magdala3','almacen26','orilla28','patio29']){
+  const saved=seed();saved.scene=scene;saved.visited=[...new Set([...(saved.visited||[]),scene,'yael','road3','magdala3','almacen26','orilla28'])];
+  saved.codex={...saved.codex,entrusted:'mara',delivered:true,resolved:true};
+  saved.chapter18={stage:3,decision:'consult',choices:['listen'],notes:['provisiones']};
+  saved.chapter22={stage:4,clue:'record',choices:{route:'consult'},roadChoice:'talk'};
+  saved.chapter26={ending:'transparent',clues:['neria','asaf','weights']};
+  saved.chapter27={choice:'records',visits:{neria:true,asaf:true}};
+  saved.chapter28={plan:'record',closing:'share',evidence:['rope','load','turn','voice']};
+  saved.chapter29={started:true,day:1,heard:{patio29:[],consejo29:[],orilla29:[]}};
+  const {context,page,errs}=await pageAt(390,844,saved);
+  try{
+   await page.locator('#start-continue').click();
+   assert.equal(await page.locator('#actions [data-run="continuity:open"]').count(),1);
+   const before=await state(page);
+   await action(page,'continuity:open');
+   assert.equal(await page.locator('.continuity-step').count(),7);
+   assert.equal(await page.locator('.continuity-consequence').count(),4);
+   assert.match(await page.locator('#modal-title').innerText(),/Un solo camino/);
+   await page.locator('#modal-close').click();
+   const after=await state(page);
+   assert.equal(after.chapter29.day,before.chapter29.day);
+   assert.equal(after.chapter27.choice,before.chapter27.choice);
+   assert.deepEqual(errs,[]);
+  }finally{await context.close();}
+ }
+});
+await check('3.0 continuity never unlocks a future scene or rewrites a save',async()=>{
+ const saved=seed();saved.scene='home';
+ const {context,page,errs}=await pageAt(360,640,saved);
+ try{
+  await page.locator('#start-continue').click();
+  await action(page,'continuity:open');
+  const info=await page.evaluate(()=>window.SENDAS_CAMPAIGN30.graph(window.SENDAS_READONLY.getState()));
+  assert.equal(info.active,0);assert.equal(info.target,'village');
+  assert.ok(!info.stages[6].complete);
+  await page.locator('#modal-content [data-run="continuity:resume"]').click();
+  assert.equal((await state(page)).scene,'village');
+  assert.ok(!(await state(page)).chapter29?.final);
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#start-continue').click();
+  assert.equal((await state(page)).scene,'village');
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);
