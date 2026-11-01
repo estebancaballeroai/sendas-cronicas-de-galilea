@@ -1,0 +1,30 @@
+/* SENDAS 2.6 — art-first chapter styling, no secondary modal or heavy effects. */
+.chapter-three .scene-stage{background:#201c18}
+.chapter-three .scene-art{filter:contrast(1.035) saturate(1.05)}
+#modal-content .sendas-panel-magdala26{gap:12px}
+.m26-content{display:grid;gap:12px;font:400 15px/1.58 system-ui,sans-serif}
+.m26-content p{margin:0;color:#ede2d2}
+.m26-content strong{color:#f4d7aa}
+.m26-muted{font-size:13px;color:#c8bdb0!important}
+.m26-person{display:flex;gap:14px;align-items:center;padding:10px;background:linear-gradient(135deg,#28332e,#3d3229);border:1px solid #b9966670;border-radius:12px}
+.m26-person img{width:76px;height:78px;object-fit:cover;flex-shrink:0;border-radius:9px;border:1px solid #dfb58a88}
+.m26-person strong{display:block;color:#f8ddb5;font:600 20px/1.15 Georgia,serif}
+.m26-person span{font-size:12px;color:#cbb9a1}
+.m26-quote{background:#3a3028;border-left:3px solid #cba76f;padding:14px 15px;border-radius:0 10px 10px 0;font:italic 17px/1.52 Georgia,serif;color:#f1e0c8!important}
+.m26-options{display:grid;gap:9px}
+#modal-content .sendas-panel-magdala26 .m26-option{min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:13px;padding:11px 15px;width:100%;border-radius:10px;border:1px solid #a8926e;background:#3a403a;color:#f9e9d5;font:600 14px/1.3 system-ui,sans-serif;text-align:left;cursor:pointer}
+#modal-content .sendas-panel-magdala26 .m26-option span{font-size:20px;color:#eacb9b}
+#modal-content .sendas-panel-magdala26 .m26-option-secondary{background:#25312f;border-color:#61736c}
+#modal-content .sendas-panel-magdala26 .m26-option:focus-visible{outline:3px solid #f9d7a3;outline-offset:2px}
+.m26-meter{display:grid;gap:6px;background:#29352e;border:1px solid #7b8e7166;padding:11px;border-radius:10px}
+.m26-meter span{font-size:10px;letter-spacing:.1em;color:#e7cc9c;font-weight:700}
+.m26-bar{height:7px;border-radius:8px;background:#111c19;overflow:hidden}
+.m26-bar i{height:100%;display:block;background:linear-gradient(90deg,#b58b4e,#d9bc7b);border-radius:8px;transition:width .15s ease}
+.m26-evidence{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.m26-evidence span{background:#272f2b;border:1px solid #6b6f62;padding:9px 10px;border-radius:8px;font-size:12px;color:#a7aba2}
+.m26-evidence .m26-found{color:#f4dcae;border-color:#a58d65;background:#3f3b2d}
+.m26-illustration{display:block;width:100%;max-height:235px;object-fit:cover;border-radius:12px;border:1px solid #ba9c70}
+.m26-note{font-size:12px;background:#2a3330;border:1px solid #b89a6e80;border-radius:8px;padding:10px;color:#e8d9bf}
+.m26-resolution{border:1px solid #d4ad78;color:#e8cca2;font-size:11px;letter-spacing:.12em;text-align:center;padding:12px;border-radius:9px}
+@media(max-width:600px) and (orientation:portrait){.chapter-three .scene-stage{flex:0 0 60vw;max-height:42dvh;min-height:0}.m26-person img{width:70px;height:72px}.m26-quote{font-size:16px}.m26-illustration{max-height:180px}.m26-content{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.m26-bar i{transition:none}}
