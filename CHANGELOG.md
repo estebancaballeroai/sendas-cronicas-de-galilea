@@ -1,3 +1,10 @@
+## 2.5 — Magdala cinematográfica (rama experimental)
+- Se preparan tres ilustraciones originales: camino, puerto y mensajero.
+- Hotspots vinculados a la composición y adaptados a móviles; no se restaura el zoom.
+- Nueva escena visual de la llegada del mensajero, con fallback seguro.
+- Estado de la investigación visible; guardado previo intacto.
+- Los archivos WebP están en el paquete de assets y quedan pendientes de subir a GitHub.
+
 ## 2.1.0 — Un solo interfaz de lectura y decisiones
 - Documentos, investigación del canal y ecos posteriores utilizan la única ventana modal del motor.
 - Misma navegación, botones táctiles, estados grises, Escape y restauración de foco.
