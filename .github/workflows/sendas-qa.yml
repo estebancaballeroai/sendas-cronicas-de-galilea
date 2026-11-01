@@ -35,8 +35,10 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: sendas-2.1-mobile-panels
-          path: tests/screenshots/unified-*.png
+          name: sendas-2.5-visual-qa
+          path: |
+            tests/screenshots/unified-*.png
+            tests/screenshots/cinema25-*.png
           if-no-files-found: ignore
       - uses: actions/upload-artifact@v4
         if: failure()

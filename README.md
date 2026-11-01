@@ -1,6 +1,6 @@
 # SENDAS — Crónicas de Galilea
 
-**2.5 (rama experimental):** nuevas escenas panorámicas y hotspots para Magdala. Las tres imágenes WebP originales deben cargarse bajo assets/chapter23 antes de fusionar la versión. Ver QA_25.md.
+**2.5 (rama experimental):** nuevas escenas panorámicas y hotspots para Magdala. Los tres WebP originales de 1672 × 941 ya están integrados bajo assets/chapter23, registrados en el manifiesto y sometidos a pruebas automáticas de decodificación y captura visual. La versión pública permanece en 2.4. Ver QA_25.md.
 
 **Versión 2.1.0 · Los que escuchan / El peso de la verdad.** Los capítulos I y II utilizan el mismo motor de escenas, conversaciones, historial de acciones y guardado. El capítulo II tiene un patio explorable, tres observaciones y una decisión de consecuencias persistentes. Sin visor de zoom; se mantienen las imágenes originales y los puntos interactivos.
 

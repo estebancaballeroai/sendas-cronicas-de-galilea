@@ -376,15 +376,15 @@ await check('2.5 responsive route, port hotspots and persistent discoveries',asy
   const {context,page,errs}=await pageAt(width,height,initial);
   try{
    await page.locator('#start-continue').click();
-   await page.waitForFunction(()=>document.querySelector('#scene-art')?.complete&&document.querySelector('#scene-art')?.naturalWidth>100);
+   await page.waitForFunction(()=>{const im=document.querySelector('#scene-art');return im?.complete&&im.naturalWidth===1672&&im.naturalHeight===941&&im.src.includes('assets/chapter23/road_galilee.webp');});
    assert.equal(await page.locator('#hotspot-layer [data-run="ch3:talk"]').count(),1);
-   assert.match(await page.locator('#scene-art').getAttribute('src'),/road_galilee|olive/);
+   await page.locator('#scene-stage').screenshot({path:'tests/screenshots/cinema25-road-'+width+'.png'});
    await action(page,'ch3:talk');
    await page.locator('#modal-close').click();
    await action(page,'ch3:magdala');
-   await page.waitForFunction(()=>document.querySelector('#scene-art')?.complete&&document.querySelector('#scene-art')?.naturalWidth>100);
+   await page.waitForFunction(()=>{const im=document.querySelector('#scene-art');return im?.complete&&im.naturalWidth===1672&&im.naturalHeight===941&&im.src.includes('assets/chapter23/magdala_port.webp');});
    assert.equal((await state(page)).scene,'magdala3');
-   assert.match(await page.locator('#scene-art').getAttribute('src'),/magdala_port|dock/);
+   await page.locator('#scene-stage').screenshot({path:'tests/screenshots/cinema25-port-'+width+'.png'});
    assert.equal(await page.locator('#hotspot-layer [data-run="m24:weights"]').count(),1);
    await action(page,'m24:weights');
    await page.locator('#modal-close').click();
@@ -395,7 +395,7 @@ await check('2.5 responsive route, port hotspots and persistent discoveries',asy
    const dimensions=await page.evaluate(()=>({page:document.documentElement.scrollWidth,screen:innerWidth}));
    assert.ok(dimensions.page<=dimensions.screen+3,'horizontal overflow '+JSON.stringify(dimensions));
    assert.deepEqual(errs,[]);
-   await page.screenshot({path:'tests/screenshots/cinema25-'+width+'.png'});
+   await page.screenshot({path:'tests/screenshots/cinema25-port-reloaded-'+width+'.png'});
   }finally{await context.close();}
  }
 });
@@ -408,7 +408,8 @@ await check('2.5 arriving messenger uses illustration with fallback',async()=>{
   await page.locator('#start-continue').click();
   await action(page,'ch3:start');
   assert.equal(await page.locator('#modal-content .cinema25-arrival img').count(),1);
-  await page.waitForFunction(()=>{let im=document.querySelector('#modal-content .cinema25-arrival img');return im&&im.complete&&im.naturalWidth>100;});
+  await page.waitForFunction(()=>{const im=document.querySelector('#modal-content .cinema25-arrival img');return im?.complete&&im.naturalWidth===1672&&im.naturalHeight===941&&im.src.includes('assets/chapter23/messenger_courtyard.webp');});
+  await page.locator('#modal-content .cinema25-arrival').screenshot({path:'tests/screenshots/cinema25-messenger-390.png'});
   await page.locator('#modal-close').click();
   assert.ok(await page.locator('#modal-root').isHidden());
   assert.deepEqual(errs,[]);

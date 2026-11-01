@@ -639,5 +639,35 @@
     ],
     "bytes": 322728,
     "sha256": "1cebf67fda0634c7"
+  },
+  "chapter23/road_galilee": {
+    "source": "SENDAS 2.5 original — camino hacia Magdala",
+    "kind": "scene",
+    "px": [
+      1672,
+      941
+    ],
+    "bytes": 551314,
+    "sha256": "d56b2a5caca9a5c3e1843884007a54d2bdafa2c9f43b5a5368fe9ee5acab3a7a"
+  },
+  "chapter23/magdala_port": {
+    "source": "SENDAS 2.5 original — puerto de Magdala",
+    "kind": "scene",
+    "px": [
+      1672,
+      941
+    ],
+    "bytes": 515296,
+    "sha256": "42784e521c90369223e8d5c4effad76879d3fc0687e1a3dcbd8b909af2d1d28c"
+  },
+  "chapter23/messenger_courtyard": {
+    "source": "SENDAS 2.5 original — mensajero en patio",
+    "kind": "scene",
+    "px": [
+      1672,
+      941
+    ],
+    "bytes": 553574,
+    "sha256": "12aa92f8697f3d36d94019e9b9add71384803e7170589e2883689ad66b943be9"
   }
 }
