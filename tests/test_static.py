@@ -17,7 +17,7 @@ print('SENDAS static validation: PASS')
 
 # 2.6: prevent a visually stale release where the code exists but is never loaded.
 html=(R/'index.html').read_text(encoding='utf-8')
-for needle in ('chapter26.js', 'chapter26.css', 'Versión 3.0.0', 'chapter27.js'):
+for needle in ('chapter26.js', 'chapter26.css', 'Versión 3.1.0', 'chapter27.js'):
     assert needle in html, 'Missing 2.6 UI integration: '+needle
 for path in ['assets/chapter26/almacen_magdala.webp','assets/chapter26/voces_magdala.webp','assets/chapter26/neria_portrait.webp','assets/chapter26/asaf_portrait.webp']:
     d=(R/path).read_bytes()
@@ -44,10 +44,21 @@ for name in ('patio_acuerdos','consejo_lamparas','orilla_tercer_dia'):
     assert data[:4]==b'RIFF' and data[8:12]==b'WEBP',str(path)
     info=m['chapter29/'+name]
     assert len(data)==info['bytes'] and info['px']==[1672,941] and hashlib.sha256(data).hexdigest()==info['sha256'],name
-assert 'sendas-campana-integrada-v3.0.0' in cache
+assert 'sendas-puentes-vivos-v3.1.0' in cache
 print('SENDAS 2.9 three-day scenes, manifest, cache and entrypoint: PASS')
 
 assert (R/"campaign30.js").exists() and (R/"campaign30.css").exists()
 assert "campaign30.js" in html and "campaign30.css" in html
 assert "./campaign30.js" in cache and "./campaign30.css" in cache
 print("SENDAS 3.0 continuity integration: PASS")
+
+# 3.1: authentic original WebP, assets, and script ordering checked before any release.
+assert 'bridges31.js' in html and 'bridges31.css' in html
+assert (R/'bridges31.js').exists() and (R/'bridges31.css').exists()
+asset=(R/'assets/chapter31/umbral_yael.webp').read_bytes()
+assert asset[:4]==b'RIFF' and asset[8:12]==b'WEBP'
+assert hashlib.sha256(asset).hexdigest()==m['chapter31/umbral_yael']['sha256']
+assert html.index('shared-ui21.js')<html.index('bridges31.js')
+for k in ('umbral31','partida31','regreso31','velada31','despedida31'):
+    assert k in (R/'game.js').read_text(encoding='utf-8')
+print('SENDAS 3.1 cinematic bridges and campaign navigation: PASS')

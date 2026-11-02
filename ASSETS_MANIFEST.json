@@ -759,5 +759,15 @@
     ],
     "bytes": 460124,
     "sha256": "b7c4bd087697f1eed81826500caad0ba19114f764c15024a3c5b4d5ca3707b23"
+  },
+  "chapter31/umbral_yael": {
+    "source": "SENDAS 3.1 original cinematographic artwork — the debt ledger reaches Yael’s door",
+    "kind": "scene",
+    "px": [
+      1672,
+      941
+    ],
+    "bytes": 489986,
+    "sha256": "0fbbbb160abdcedb4c75d631f077f3007744ccf742ddb4ffcfcc48765cbff92d"
   }
 }

@@ -1,3 +1,9 @@
+## SENDAS 3.1 — Puentes vivos
+
+Cinco escenas de transición jugables conectan directamente los actos I–V y proponen una coda narrativa tras el tercer día. Cada escena contiene tres conversaciones, una elección irreversible y reacciones condicionadas por las decisiones anteriores. Ver `DESIGN_31.md` y `QA_31.md`.
+
+Las partidas nuevas recorren los enlaces dentro de la historia; las partidas de las versiones anteriores conservan sus rutas y no modifican elecciones ya tomadas. El motor, los paneles, el diario y la clave `sendas_cronicas_ilustrada_1` no cambian. Un nuevo WEBP cinematográfico original representa el encuentro en el umbral de Yael; los demás pasajes reutilizan los lugares reales de los capítulos existentes.
+
 ## SENDAS 3.0 — Una sola campaña
 
 Continuidad de capítulos I–V, consecuencias y reanudación contextual, respetando los guardados antiguos y la dirección artística existente. Ver DESIGN_30.md y QA_30.md.

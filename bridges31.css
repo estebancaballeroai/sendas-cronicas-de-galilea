@@ -1,0 +1,26 @@
+/* SENDAS 3.1 — one cinematic engine; bridge conversations inherit the same shared modal. */
+#game-main.chapter-bridge .scene-stage{background:#24282a}
+#game-main.chapter-bridge .scene-art{object-fit:cover;object-position:center;filter:contrast(1.025) saturate(1.04)}
+#game-main.chapter-bridge .scene-badge{background:rgba(30,30,31,.75);border-color:rgba(238,208,160,.52)}
+#game-main.chapter-bridge .hotspot{min-width:44px;min-height:44px;touch-action:manipulation;border-color:#e5c396}
+#game-main.chapter-bridge .image-caption{background:linear-gradient(transparent,rgba(14,17,18,.76))}
+#modal-content .sendas-panel-puentes31{display:block;color:#f0e5d4;font-size:15px;line-height:1.58}
+.pv-dialogue{display:grid;gap:14px}
+.pv-dialogue p{margin:0;font:16px/1.64 Georgia,serif;color:#ecdfc9}
+.pv-memento{border:1px solid rgba(231,202,161,.35);border-radius:10px;padding:10px 12px;color:#ecd1a0;font:700 11px/1.4 system-ui,sans-serif;letter-spacing:.075em;background:rgba(105,93,76,.22)}
+.pv-speaker{display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(230,199,159,.29);padding-bottom:12px}
+.pv-speaker img{width:76px;height:78px;border-radius:11px;object-fit:cover;border:2px solid #d8b785;flex:none}
+.pv-speaker strong{display:block;font:600 22px/1.2 Georgia,serif;color:#ffdfaa}
+.pv-speaker small{display:block;color:#b4c1b5;margin-top:5px;font-size:11px}
+.pv-dialogue .pv-quote{background:rgba(221,192,140,.09);border-left:3px solid #e5bb7c;border-radius:0 8px 8px 0;padding:13px 14px;color:#f4e6d2;font-style:italic;font-size:17px}
+.pv-buttons{display:grid;gap:9px;padding-top:8px}
+.pv-option{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;width:100%;min-height:50px;border:1px solid #e3c69d6d;border-radius:11px;padding:12px 15px;background:#31433e;color:#f5e9d7;font:600 14px/1.4 system-ui,sans-serif}
+.pv-option span{font-size:22px;color:#e5ba7d}
+.pv-option:hover,.pv-option:focus-visible{background:#40534b}
+#modal-content .sendas-panel-puentes31 .sendas-ui-seen{background:#353e40!important;color:#d0d2d0;filter:grayscale(1);opacity:.7}
+@media(max-width:600px) and (orientation:portrait){
+ #game-main.chapter-bridge .scene-stage{flex:0 0 60vw;min-height:0;max-height:42dvh}
+ .pv-dialogue p{font-size:15px}.pv-dialogue .pv-quote{font-size:16px}.pv-option{min-height:48px}
+ .pv-speaker img{width:63px;height:68px}
+}
+@media(prefers-reduced-motion:reduce){#game-main.chapter-bridge .scene-art,.pv-option{transition:none!important}}
