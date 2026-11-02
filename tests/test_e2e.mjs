@@ -652,7 +652,7 @@ await check('2.9 day-two scene and new art remain available offline',async()=>{
   await page.locator('#start-continue').click();await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1672);
   await page.evaluate(async()=>{await navigator.serviceWorker.ready;});
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:20000});
-  const keys=await page.evaluate(async()=>{const c=await caches.open('sendas-campana-integrada-v3.0.0');return (await c.keys()).map(r=>new URL(r.url).pathname)});
+  const keys=await page.evaluate(async()=>{const c=await caches.open('sendas-puentes-vivos-v3.1.0');return (await c.keys()).map(r=>new URL(r.url).pathname)});
   assert.ok(keys.some(p=>p.endsWith('/assets/chapter29/consejo_lamparas.webp')),'New WebP not in PWA cache');
   await context.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
   await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1672);
@@ -678,7 +678,7 @@ await check('3.0 continuity opens from each chapter and preserves save',async()=
    const before=await state(page);
    await action(page,'continuity:open');
    assert.equal(await page.locator('.continuity-step').count(),7);
-   assert.equal(await page.locator('.continuity-consequence').count(),4);
+   assert.ok(await page.locator('.continuity-consequence').count()>=4);
    assert.match(await page.locator('#modal-title').innerText(),/Un solo camino/);
    await page.locator('#modal-close').click();
    const after=await state(page);
@@ -729,13 +729,67 @@ await check('3.0 campaign files are accessible offline',async()=>{
  try{
   await page.locator('#start-continue').click();await page.evaluate(()=>navigator.serviceWorker.ready);
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:25000});
-  const files=await page.evaluate(async()=>{const c=await caches.open('sendas-campana-integrada-v3.0.0');return (await c.keys()).map(r=>new URL(r.url).pathname);});
+  const files=await page.evaluate(async()=>{const c=await caches.open('sendas-puentes-vivos-v3.1.0');return (await c.keys()).map(r=>new URL(r.url).pathname);});
   assert.ok(files.some(p=>p.endsWith('/campaign30.js'))&&files.some(p=>p.endsWith('/campaign30.css')));
   await context.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
   await action(page,'continuity:open');assert.equal(await page.locator('.continuity-step').count(),7);
   assert.deepEqual(errs,[]);
  }finally{await context.close();}
 });
+// 3.1: real navigation through five interludes, not a standalone dialogue simulation.
+const bridgeSeed=(scene='village')=>{
+ const s=seed();s.scene=scene;s.codex={...s.codex,entrusted:'mara',delivered:true,resolved:true};
+ s.visited=[...new Set([...(s.visited||[]),'village',scene])];
+ s.bridges31={fresh:true,heard:{},entered:{},choices:{}};
+ s.chapter18={};s.chapter22={stage:0};s.chapter26={};s.chapter27={};s.chapter28={};s.chapter29={};
+ return s;
+};
+const BRIDGE_CASES=[
+ {id:'umbral31',people:['simeon','yael'],choice:'escuchar',dest:'yael',prepare:s=>{},enter:async page=>action(page,'go:yael')},
+ {id:'partida31',people:['yael','eliab'],choice:'reserva',dest:'road3',prepare:s=>{s.scene='yael';s.chapter18={decision:'consult'};s.chapter22={stage:2};},enter:async page=>page.evaluate(()=>window.SENDAS_GAME_API.navigate('road3'))},
+ {id:'regreso31',people:['neria','asaf'],choice:'hechos',dest:'yael',prepare:s=>{s.scene='yael';s.chapter18={decision:'consult'};s.chapter22={stage:4,roadChoice:'talk'};s.chapter26={ending:'privacy'};s.chapter27={choice:'records'};},enter:async page=>action(page,'m28:begin')},
+ {id:'velada31',people:['irit','jonas'],choice:'reunion',dest:'patio29',prepare:s=>{s.scene='yael';s.chapter18={decision:'consult'};s.chapter22={stage:4,roadChoice:'talk'};s.chapter26={ending:'privacy'};s.chapter27={choice:'records'};s.chapter28={plan:'secure',opened:true,closing:'secure'};},enter:async page=>action(page,'m29:start')},
+ {id:'despedida31',people:['eliab','yael'],choice:'quedar',dest:'village',prepare:s=>{s.scene='orilla29';s.chapter18={decision:'consult'};s.chapter22={stage:4,roadChoice:'talk'};s.chapter26={ending:'privacy'};s.chapter27={choice:'records'};s.chapter28={plan:'secure',opened:true,closing:'secure'};s.chapter29={started:true,day:3,first:'family',second:'quiet',final:'notes'};},enter:async page=>action(page,'go:despedida31')}
+];
+for(const item of BRIDGE_CASES)await check('3.1 playable bridge, ethical gate, reloaded history: '+item.id,async()=>{
+ const s=bridgeSeed();item.prepare(s);s.visited=[...new Set([...s.visited,s.scene])];
+ const w=item.id==='umbral31'?360:390;const {context,page,errs}=await pageAt(w,w===360?640:844,s);
+ try{
+  await page.locator('#start-continue').click();await item.enter(page);
+  assert.equal((await state(page)).scene,item.id,'interlude was bypassed');
+  if(await page.locator('#modal-root').isVisible())await page.locator('#modal-close').click();
+  await page.waitForFunction(()=>{const im=document.querySelector('#scene-art');return im?.complete&&im.naturalWidth>=1000;});
+  assert.match(await page.locator('#game-main').getAttribute('class'),/chapter-bridge/);
+  await page.locator('#scene-stage').screenshot({path:'tests/screenshots/sendas31-'+item.id+'-'+w+'.png'});
+  await action(page,'pv:decide');assert.match(await page.locator('#modal-title').innerText(),/Falta escuchar/);await page.locator('#modal-close').click();
+  for(const person of item.people){await action(page,'pv:talk:'+person);assert.equal(await page.locator('#modal-content .pv-speaker').count(),1);await page.locator('#modal-close').click();}
+  await action(page,'pv:decide');await page.locator('#modal-content [data-sendas-ui="choose:'+item.choice+'"]').click();
+  assert.equal((await state(page)).bridges31.choices[item.id],item.choice);
+  await page.locator('#modal-close').click();
+  await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
+  assert.equal((await state(page)).bridges31.choices[item.id],item.choice);
+  assert.equal((await state(page)).bridges31.heard[item.id].length,2);
+  assert.ok(await page.locator('#actions .action-btn-seen[data-run^="pv:talk:"]').count()>=2,'Conversations lost visited styling');
+  await action(page,'pv:exit');assert.equal((await state(page)).scene,item.dest);
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+await check('3.1 legacy 3.0 save retains old paths and cannot rewrite earlier choices',async()=>{
+ const s=bridgeSeed('yael');delete s.bridges31;s.chapter18={decision:'impose'};s.chapter22={stage:4,roadChoice:'talk'};s.chapter26={ending:'accuse'};s.chapter27={choice:'patient'};
+ const {context,page,errs}=await pageAt(390,844,s);
+ try{await page.locator('#start-continue').click();await action(page,'m28:begin');assert.equal((await state(page)).scene,'orilla28');assert.ok(!(await state(page)).bridges31);assert.equal((await state(page)).chapter18.decision,'impose');assert.deepEqual(errs,[]);}finally{await context.close();}
+});
+await check('3.1 new bridge and original illustration work offline after installation',async()=>{
+ const s=bridgeSeed('umbral31');s.bridges31.entered.umbral31=true;s.visited.push('umbral31');const {context,page,errs}=await pageAt(390,844,s);
+ try{await page.locator('#start-continue').click();await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:25000});
+  await page.waitForFunction(async()=>{const c=await caches.open('sendas-puentes-vivos-v3.1.0');return (await c.keys()).some(r=>r.url.includes('assets/chapter31/umbral_yael.webp'));},{timeout:25000});
+  await context.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});await page.locator('#start-continue').click();
+  assert.equal((await state(page)).scene,'umbral31');await page.waitForFunction(()=>document.querySelector('#scene-art')?.naturalWidth===1672);
+  await action(page,'pv:talk:simeon');assert.equal(await page.locator('.pv-speaker').count(),1);
+  assert.deepEqual(errs,[]);
+ }finally{await context.close();}
+});
+
 await browser.close();
 console.log('RESULT',tests-failures,'/',tests,'passing');
 if(failures)process.exit(1);

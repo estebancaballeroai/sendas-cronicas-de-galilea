@@ -28,7 +28,7 @@ function currentScene(){const d=state();return d.day===1?'patio29':d.day===2?'co
 function canEnter(scene){return unlocked()&&state().started&&scene===currentScene();}
 function note(text){API().remember('Tres d\u00edas: '+text);}
 function change(mutator,log){let altered=false;API().change(s=>{s.chapter29=s.chapter29||{started:false,day:1,heard:{patio29:[],consejo29:[],orilla29:[]}};altered=!!mutator(s.chapter29);});if(altered&&log)note(log);if(altered)API().refresh();return altered;}
-function start(){if(!unlocked()||READ().scene!=='yael')return;change(d=>{if(d.started)return false;d.started=true;d.day=1;return true;},'Yael invit\u00f3 a Nat\u00e1n a escuchar lo que sucede despu\u00e9s del reparto.');API().navigate(currentScene());}
+function start(){if(!unlocked()||READ().scene!=='yael')return;if(window.SENDAS_BRIDGES31?.redirect('patio29',READ()))return API().navigate('velada31');change(d=>{if(d.started)return false;d.started=true;d.day=1;return true;},'Yael invit\u00f3 a Nat\u00e1n a escuchar lo que sucede despu\u00e9s del reparto.');API().navigate(currentScene());}
 const before={
  transparent:'Neria recuerda que contaste tambi\u00e9n lo que ignorabas. Ahora permite que examines sus marcas, pero no promete un resultado.',
  privacy:'La reserva de nombres ha evitado rumores. Neria aprecia la prudencia, aunque todav\u00eda no sabe qu\u00e9 cantidad puede salir.',

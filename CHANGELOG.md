@@ -1,3 +1,10 @@
+## 3.1.0 — Puentes vivos · Entre las orillas
+- Cuatro escenas jugables de enlace I→II, II→III, III→IV, IV→V, más coda posterior al V.
+- 15 conversaciones, dos testimonios mínimos por compromiso, 15 desenlaces de transición posibles y callbacks en capítulos posteriores.
+- Una ilustración cinematográfica WebP original para el umbral de Yael, reutilización coherente de escenarios existentes, hotspots y paneles compartidos.
+- Navegación integrada, mapa y campaña, guardado antiguo intacto, irreversible y sin bifurcaciones falsas.
+- Pruebas nuevas de ramificación, continuidad, historial gris, guardado, UX móvil y caché offline; ver QA_31.md.
+
 ## 3.0.0 — Una sola campaña
 - Cronología conectada y accesible desde todas las escenas y el diario.
 - Reanudación contextual sin desbloquear lugares ni reescribir decisiones.
